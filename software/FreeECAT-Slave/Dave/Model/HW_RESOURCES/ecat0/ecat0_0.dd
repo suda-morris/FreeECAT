@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ResourceModel:Peripheral xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" URI="http://resources/48.0.1/peripheral/ecat/0" description="EtherCAT 0" baseAddress="0x54010000">
+  <provided xsi:type="ResourceModel:ResourceGroup" name="ecat" URI="http://resources/48.0.1/peripheral/ecat/0/ecat">
+    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/ECAT_SSC/v4_0_14/ECAT_SSC_0.app#//@hwResources.0"/>
+    <resourcesList name="al_control" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/al_control"/>
+    <resourcesList name="al_event_mask" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/al_event_mask"/>
+    <resourcesList name="al_event_req" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/al_event_req"/>
+    <resourcesList name="al_status" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/al_status"/>
+    <resourcesList name="al_status_code" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/al_status_code"/>
+    <resourcesList name="build" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/build"/>
+    <resourcesList name="con_con" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_con"/>
+    <resourcesList name="con_con_latchin0sel" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_con/latchin0sel"/>
+    <resourcesList name="con_con_latchin1sel" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_con/latchin1sel"/>
+    <resourcesList name="con_con_mdio" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_con/mdio"/>
+    <resourcesList name="con_conp0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp0"/>
+    <resourcesList name="con_conp0_link" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp0/link"/>
+    <resourcesList name="con_conp0_rxd0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rxd0"/>
+    <resourcesList name="con_conp0_rxd1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rxd1"/>
+    <resourcesList name="con_conp0_rxd2" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rxd2"/>
+    <resourcesList name="con_conp0_rxd3" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rxd3"/>
+    <resourcesList name="con_conp0_rx_clk" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rx_clk"/>
+    <resourcesList name="con_conp0_rx_dv" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rx_dv"/>
+    <resourcesList name="con_conp0_rx_err" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rx_err"/>
+    <resourcesList name="con_conp0_tx_clk" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp0/tx_clk"/>
+    <resourcesList name="con_conp1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp1"/>
+    <resourcesList name="con_conp1_link" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp1/link"/>
+    <resourcesList name="con_conp1_rxd0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rxd0"/>
+    <resourcesList name="con_conp1_rxd1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rxd1"/>
+    <resourcesList name="con_conp1_rxd2" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rxd2"/>
+    <resourcesList name="con_conp1_rxd3" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rxd3"/>
+    <resourcesList name="con_conp1_rx_clk" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rx_clk"/>
+    <resourcesList name="con_conp1_rx_dv" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rx_dv"/>
+    <resourcesList name="con_conp1_rx_err" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rx_err"/>
+    <resourcesList name="con_conp1_tx_clk" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp1/tx_clk"/>
+    <resourcesList name="dc_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_act"/>
+    <resourcesList name="dc_act_stat" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_act_stat"/>
+    <resourcesList name="dc_cyc_cont" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_cyc_cont"/>
+    <resourcesList name="dc_cyc_start_time0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_cyc_start_time0"/>
+    <resourcesList name="dc_cyc_start_time1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_cyc_start_time1"/>
+    <resourcesList name="dc_cyc_start_time2" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_cyc_start_time2"/>
+    <resourcesList name="dc_cyc_start_time3" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_cyc_start_time3"/>
+    <resourcesList name="dc_ecat_cng_ev_time" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_ecat_cng_ev_time"/>
+    <resourcesList name="dc_latch0_cont" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch0_cont"/>
+    <resourcesList name="dc_latch0_stat" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch0_stat"/>
+    <resourcesList name="dc_latch0_time_neg0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch0_time_neg0"/>
+    <resourcesList name="dc_latch0_time_neg1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch0_time_neg1"/>
+    <resourcesList name="dc_latch0_time_neg2" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch0_time_neg2"/>
+    <resourcesList name="dc_latch0_time_neg3" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch0_time_neg3"/>
+    <resourcesList name="dc_latch0_time_pos0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch0_time_pos0"/>
+    <resourcesList name="dc_latch0_time_pos1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch0_time_pos1"/>
+    <resourcesList name="dc_latch0_time_pos2" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch0_time_pos2"/>
+    <resourcesList name="dc_latch0_time_pos3" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch0_time_pos3"/>
+    <resourcesList name="dc_latch1_cont" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch1_cont"/>
+    <resourcesList name="dc_latch1_stat" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch1_stat"/>
+    <resourcesList name="dc_latch1_time_neg0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch1_time_neg0"/>
+    <resourcesList name="dc_latch1_time_neg1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch1_time_neg1"/>
+    <resourcesList name="dc_latch1_time_neg2" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch1_time_neg2"/>
+    <resourcesList name="dc_latch1_time_neg3" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch1_time_neg3"/>
+    <resourcesList name="dc_latch1_time_pos0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch1_time_pos0"/>
+    <resourcesList name="dc_latch1_time_pos1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch1_time_pos1"/>
+    <resourcesList name="dc_latch1_time_pos2" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch1_time_pos2"/>
+    <resourcesList name="dc_latch1_time_pos3" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_latch1_time_pos3"/>
+    <resourcesList name="dc_next_sync1_pulse0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_next_sync1_pulse0"/>
+    <resourcesList name="dc_next_sync1_pulse1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_next_sync1_pulse1"/>
+    <resourcesList name="dc_next_sync1_pulse2" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_next_sync1_pulse2"/>
+    <resourcesList name="dc_next_sync1_pulse3" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_next_sync1_pulse3"/>
+    <resourcesList name="dc_pdi_cng_ev_time" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_pdi_cng_ev_time"/>
+    <resourcesList name="dc_pdi_start_ev_time" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_pdi_start_ev_time"/>
+    <resourcesList name="dc_pulse_len" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_pulse_len"/>
+    <resourcesList name="dc_rcv_time_port0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_rcv_time_port0"/>
+    <resourcesList name="dc_rcv_time_port1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_rcv_time_port1"/>
+    <resourcesList name="dc_speed_count_diff" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_speed_count_diff"/>
+    <resourcesList name="dc_speed_count_fil_depth" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_speed_count_fil_depth"/>
+    <resourcesList name="dc_speed_count_start" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_speed_count_start"/>
+    <resourcesList name="dc_sync0_cyc_time" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_sync0_cyc_time"/>
+    <resourcesList name="dc_sync0_stat" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_sync0_stat"/>
+    <resourcesList name="dc_sync1_cyc_time" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_sync1_cyc_time"/>
+    <resourcesList name="dc_sync1_stat" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_sync1_stat"/>
+    <resourcesList name="dc_sys_time" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_sys_time"/>
+    <resourcesList name="dc_sys_time0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_sys_time0"/>
+    <resourcesList name="dc_sys_time1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_sys_time1"/>
+    <resourcesList name="dc_sys_time2" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_sys_time2"/>
+    <resourcesList name="dc_sys_time3" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_sys_time3"/>
+    <resourcesList name="dc_sys_time_delay" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_sys_time_delay"/>
+    <resourcesList name="dc_sys_time_diff" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_sys_time_diff"/>
+    <resourcesList name="dc_sys_time_fil_depth" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_sys_time_fil_depth"/>
+    <resourcesList name="dc_sys_time_offset0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_sys_time_offset0"/>
+    <resourcesList name="dc_sys_time_offset1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_sys_time_offset1"/>
+    <resourcesList name="dc_sys_time_offset2" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_sys_time_offset2"/>
+    <resourcesList name="dc_sys_time_offset3" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/dc_sys_time_offset3"/>
+    <resourcesList name="eep_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/eep_adr"/>
+    <resourcesList name="eep_conf" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/eep_conf"/>
+    <resourcesList name="eep_cont_stat" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/eep_cont_stat"/>
+    <resourcesList name="eep_data0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/eep_data0"/>
+    <resourcesList name="eep_data1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/eep_data1"/>
+    <resourcesList name="eep_data2" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/eep_data2"/>
+    <resourcesList name="eep_data3" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/eep_data3"/>
+    <resourcesList name="eep_state" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/eep_state"/>
+    <resourcesList name="err_led" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/err_led"/>
+    <resourcesList name="esc_config" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/esc_config"/>
+    <resourcesList name="esc_dl_control" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/esc_dl_control"/>
+    <resourcesList name="esc_dl_status" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/esc_dl_status"/>
+    <resourcesList name="esc_reset_ecat" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/esc_reset_ecat"/>
+    <resourcesList name="esc_reset_pdi" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/esc_reset_pdi"/>
+    <resourcesList name="esc_wr_enable" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/esc_wr_enable"/>
+    <resourcesList name="esc_wr_protect" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/esc_wr_protect"/>
+    <resourcesList name="event_mask" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/event_mask"/>
+    <resourcesList name="event_req" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/event_req"/>
+    <resourcesList name="feature" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/feature"/>
+    <resourcesList name="fmmu0_fmmu_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu0_fmmu_act"/>
+    <resourcesList name="fmmu0_fmmu_len" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu0_fmmu_len"/>
+    <resourcesList name="fmmu0_fmmu_l_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu0_fmmu_l_start_adr"/>
+    <resourcesList name="fmmu0_fmmu_l_start_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu0_fmmu_l_start_bit"/>
+    <resourcesList name="fmmu0_fmmu_l_stop_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu0_fmmu_l_stop_bit"/>
+    <resourcesList name="fmmu0_fmmu_p_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu0_fmmu_p_start_adr"/>
+    <resourcesList name="fmmu0_fmmu_p_start_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu0_fmmu_p_start_bit"/>
+    <resourcesList name="fmmu0_fmmu_type" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu0_fmmu_type"/>
+    <resourcesList name="fmmu1_fmmu_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu1_fmmu_act"/>
+    <resourcesList name="fmmu1_fmmu_len" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu1_fmmu_len"/>
+    <resourcesList name="fmmu1_fmmu_l_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu1_fmmu_l_start_adr"/>
+    <resourcesList name="fmmu1_fmmu_l_start_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu1_fmmu_l_start_bit"/>
+    <resourcesList name="fmmu1_fmmu_l_stop_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu1_fmmu_l_stop_bit"/>
+    <resourcesList name="fmmu1_fmmu_p_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu1_fmmu_p_start_adr"/>
+    <resourcesList name="fmmu1_fmmu_p_start_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu1_fmmu_p_start_bit"/>
+    <resourcesList name="fmmu1_fmmu_type" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu1_fmmu_type"/>
+    <resourcesList name="fmmu2_fmmu_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu2_fmmu_act"/>
+    <resourcesList name="fmmu2_fmmu_len" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu2_fmmu_len"/>
+    <resourcesList name="fmmu2_fmmu_l_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu2_fmmu_l_start_adr"/>
+    <resourcesList name="fmmu2_fmmu_l_start_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu2_fmmu_l_start_bit"/>
+    <resourcesList name="fmmu2_fmmu_l_stop_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu2_fmmu_l_stop_bit"/>
+    <resourcesList name="fmmu2_fmmu_p_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu2_fmmu_p_start_adr"/>
+    <resourcesList name="fmmu2_fmmu_p_start_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu2_fmmu_p_start_bit"/>
+    <resourcesList name="fmmu2_fmmu_type" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu2_fmmu_type"/>
+    <resourcesList name="fmmu3_fmmu_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu3_fmmu_act"/>
+    <resourcesList name="fmmu3_fmmu_len" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu3_fmmu_len"/>
+    <resourcesList name="fmmu3_fmmu_l_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu3_fmmu_l_start_adr"/>
+    <resourcesList name="fmmu3_fmmu_l_start_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu3_fmmu_l_start_bit"/>
+    <resourcesList name="fmmu3_fmmu_l_stop_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu3_fmmu_l_stop_bit"/>
+    <resourcesList name="fmmu3_fmmu_p_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu3_fmmu_p_start_adr"/>
+    <resourcesList name="fmmu3_fmmu_p_start_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu3_fmmu_p_start_bit"/>
+    <resourcesList name="fmmu3_fmmu_type" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu3_fmmu_type"/>
+    <resourcesList name="fmmu4_fmmu_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu4_fmmu_act"/>
+    <resourcesList name="fmmu4_fmmu_len" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu4_fmmu_len"/>
+    <resourcesList name="fmmu4_fmmu_l_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu4_fmmu_l_start_adr"/>
+    <resourcesList name="fmmu4_fmmu_l_start_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu4_fmmu_l_start_bit"/>
+    <resourcesList name="fmmu4_fmmu_l_stop_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu4_fmmu_l_stop_bit"/>
+    <resourcesList name="fmmu4_fmmu_p_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu4_fmmu_p_start_adr"/>
+    <resourcesList name="fmmu4_fmmu_p_start_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu4_fmmu_p_start_bit"/>
+    <resourcesList name="fmmu4_fmmu_type" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu4_fmmu_type"/>
+    <resourcesList name="fmmu5_fmmu_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu5_fmmu_act"/>
+    <resourcesList name="fmmu5_fmmu_len" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu5_fmmu_len"/>
+    <resourcesList name="fmmu5_fmmu_l_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu5_fmmu_l_start_adr"/>
+    <resourcesList name="fmmu5_fmmu_l_start_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu5_fmmu_l_start_bit"/>
+    <resourcesList name="fmmu5_fmmu_l_stop_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu5_fmmu_l_stop_bit"/>
+    <resourcesList name="fmmu5_fmmu_p_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu5_fmmu_p_start_adr"/>
+    <resourcesList name="fmmu5_fmmu_p_start_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu5_fmmu_p_start_bit"/>
+    <resourcesList name="fmmu5_fmmu_type" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu5_fmmu_type"/>
+    <resourcesList name="fmmu6_fmmu_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu6_fmmu_act"/>
+    <resourcesList name="fmmu6_fmmu_len" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu6_fmmu_len"/>
+    <resourcesList name="fmmu6_fmmu_l_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu6_fmmu_l_start_adr"/>
+    <resourcesList name="fmmu6_fmmu_l_start_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu6_fmmu_l_start_bit"/>
+    <resourcesList name="fmmu6_fmmu_l_stop_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu6_fmmu_l_stop_bit"/>
+    <resourcesList name="fmmu6_fmmu_p_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu6_fmmu_p_start_adr"/>
+    <resourcesList name="fmmu6_fmmu_p_start_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu6_fmmu_p_start_bit"/>
+    <resourcesList name="fmmu6_fmmu_type" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu6_fmmu_type"/>
+    <resourcesList name="fmmu7_fmmu_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu7_fmmu_act"/>
+    <resourcesList name="fmmu7_fmmu_len" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu7_fmmu_len"/>
+    <resourcesList name="fmmu7_fmmu_l_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu7_fmmu_l_start_adr"/>
+    <resourcesList name="fmmu7_fmmu_l_start_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu7_fmmu_l_start_bit"/>
+    <resourcesList name="fmmu7_fmmu_l_stop_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu7_fmmu_l_stop_bit"/>
+    <resourcesList name="fmmu7_fmmu_p_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu7_fmmu_p_start_adr"/>
+    <resourcesList name="fmmu7_fmmu_p_start_bit" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu7_fmmu_p_start_bit"/>
+    <resourcesList name="fmmu7_fmmu_type" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu7_fmmu_type"/>
+    <resourcesList name="fmmu_num" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fmmu_num"/>
+    <resourcesList name="fwd_rx_err_count0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fwd_rx_err_count0"/>
+    <resourcesList name="fwd_rx_err_count1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/fwd_rx_err_count1"/>
+    <resourcesList name="id" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/id"/>
+    <resourcesList name="lost_link_count0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/lost_link_count0"/>
+    <resourcesList name="lost_link_count1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/lost_link_count1"/>
+    <resourcesList name="mii_cont_stat" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/mii_cont_stat"/>
+    <resourcesList name="mii_ecat_acs_state" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/mii_ecat_acs_state"/>
+    <resourcesList name="mii_pdi_acs_state" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/mii_pdi_acs_state"/>
+    <resourcesList name="mii_phy_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/mii_phy_adr"/>
+    <resourcesList name="mii_phy_data" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/mii_phy_data"/>
+    <resourcesList name="mii_phy_reg_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/mii_phy_reg_adr"/>
+    <resourcesList name="pdi_config" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/pdi_config"/>
+    <resourcesList name="pdi_control" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/pdi_control"/>
+    <resourcesList name="pdi_err_count" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/pdi_err_count"/>
+    <resourcesList name="pdi_ext_config" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/pdi_ext_config"/>
+    <resourcesList name="physical_rw_offset" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/physical_rw_offset"/>
+    <resourcesList name="port_desc" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/port_desc"/>
+    <resourcesList name="proc_err_count" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/proc_err_count"/>
+    <resourcesList name="ram_size" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ram_size"/>
+    <resourcesList name="receive_time_pu0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/receive_time_pu0"/>
+    <resourcesList name="receive_time_pu1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/receive_time_pu1"/>
+    <resourcesList name="receive_time_pu2" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/receive_time_pu2"/>
+    <resourcesList name="receive_time_pu3" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/receive_time_pu3"/>
+    <resourcesList name="revision" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/revision"/>
+    <resourcesList name="run_led" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/run_led"/>
+    <resourcesList name="rx_err_count0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/rx_err_count0"/>
+    <resourcesList name="rx_err_count1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/rx_err_count1"/>
+    <resourcesList name="scu_con_ecatrsten" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_con/ecatrsten"/>
+    <resourcesList name="scu_con_latchin0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_con/latchin0"/>
+    <resourcesList name="scu_con_latchin1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_con/latchin1"/>
+    <resourcesList name="scu_con_phyoffset" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_con/phyoffset"/>
+    <resourcesList name="scu_conp0_tx_shift" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp0/tx_shift"/>
+    <resourcesList name="scu_conp1_tx_shift" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/con_conp1/tx_shift"/>
+    <resourcesList name="sm0_sm_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm0_sm_act"/>
+    <resourcesList name="sm0_sm_control" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm0_sm_control"/>
+    <resourcesList name="sm0_sm_len" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm0_sm_len"/>
+    <resourcesList name="sm0_sm_pdi_ctr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm0_sm_pdi_ctr"/>
+    <resourcesList name="sm0_sm_p_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm0_sm_p_start_adr"/>
+    <resourcesList name="sm0_sm_status" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm0_sm_status"/>
+    <resourcesList name="sm1_sm_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm1_sm_act"/>
+    <resourcesList name="sm1_sm_control" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm1_sm_control"/>
+    <resourcesList name="sm1_sm_len" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm1_sm_len"/>
+    <resourcesList name="sm1_sm_pdi_ctr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm1_sm_pdi_ctr"/>
+    <resourcesList name="sm1_sm_p_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm1_sm_p_start_adr"/>
+    <resourcesList name="sm1_sm_status" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm1_sm_status"/>
+    <resourcesList name="sm2_sm_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm2_sm_act"/>
+    <resourcesList name="sm2_sm_control" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm2_sm_control"/>
+    <resourcesList name="sm2_sm_len" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm2_sm_len"/>
+    <resourcesList name="sm2_sm_pdi_ctr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm2_sm_pdi_ctr"/>
+    <resourcesList name="sm2_sm_p_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm2_sm_p_start_adr"/>
+    <resourcesList name="sm2_sm_status" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm2_sm_status"/>
+    <resourcesList name="sm3_sm_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm3_sm_act"/>
+    <resourcesList name="sm3_sm_control" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm3_sm_control"/>
+    <resourcesList name="sm3_sm_len" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm3_sm_len"/>
+    <resourcesList name="sm3_sm_pdi_ctr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm3_sm_pdi_ctr"/>
+    <resourcesList name="sm3_sm_p_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm3_sm_p_start_adr"/>
+    <resourcesList name="sm3_sm_status" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm3_sm_status"/>
+    <resourcesList name="sm4_sm_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm4_sm_act"/>
+    <resourcesList name="sm4_sm_control" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm4_sm_control"/>
+    <resourcesList name="sm4_sm_len" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm4_sm_len"/>
+    <resourcesList name="sm4_sm_pdi_ctr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm4_sm_pdi_ctr"/>
+    <resourcesList name="sm4_sm_p_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm4_sm_p_start_adr"/>
+    <resourcesList name="sm4_sm_status" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm4_sm_status"/>
+    <resourcesList name="sm5_sm_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm5_sm_act"/>
+    <resourcesList name="sm5_sm_control" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm5_sm_control"/>
+    <resourcesList name="sm5_sm_len" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm5_sm_len"/>
+    <resourcesList name="sm5_sm_pdi_ctr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm5_sm_pdi_ctr"/>
+    <resourcesList name="sm5_sm_p_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm5_sm_p_start_adr"/>
+    <resourcesList name="sm5_sm_status" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm5_sm_status"/>
+    <resourcesList name="sm6_sm_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm6_sm_act"/>
+    <resourcesList name="sm6_sm_control" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm6_sm_control"/>
+    <resourcesList name="sm6_sm_len" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm6_sm_len"/>
+    <resourcesList name="sm6_sm_pdi_ctr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm6_sm_pdi_ctr"/>
+    <resourcesList name="sm6_sm_p_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm6_sm_p_start_adr"/>
+    <resourcesList name="sm6_sm_status" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm6_sm_status"/>
+    <resourcesList name="sm7_sm_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm7_sm_act"/>
+    <resourcesList name="sm7_sm_control" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm7_sm_control"/>
+    <resourcesList name="sm7_sm_len" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm7_sm_len"/>
+    <resourcesList name="sm7_sm_pdi_ctr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm7_sm_pdi_ctr"/>
+    <resourcesList name="sm7_sm_p_start_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm7_sm_p_start_adr"/>
+    <resourcesList name="sm7_sm_status" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sm7_sm_status"/>
+    <resourcesList name="station_adr" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/station_adr"/>
+    <resourcesList name="station_alias" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/station_alias"/>
+    <resourcesList name="status" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/status"/>
+    <resourcesList name="sync_latch_config" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sync_latch_config"/>
+    <resourcesList name="sync_manager" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/sync_manager"/>
+    <resourcesList name="type" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/type"/>
+    <resourcesList name="wd_count_pdata" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/wd_count_pdata"/>
+    <resourcesList name="wd_count_pdi" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/wd_count_pdi"/>
+    <resourcesList name="wd_divide" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/wd_divide"/>
+    <resourcesList name="wd_stat_pdata" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/wd_stat_pdata"/>
+    <resourcesList name="wd_time_pdata" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/wd_time_pdata"/>
+    <resourcesList name="wd_time_pdi" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/wd_time_pdi"/>
+    <resourcesList name="wr_reg_enable" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/wr_reg_enable"/>
+    <resourcesList name="wr_reg_protect" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/wr_reg_protect"/>
+    <resourcesList name="p0_link" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p0_link"/>
+    <resourcesList name="p0_rx_clk" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p0_rx_clk"/>
+    <resourcesList name="p0_rx_dv" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p0_rx_dv"/>
+    <resourcesList name="p0_rxd0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p0_rxd0"/>
+    <resourcesList name="p0_rxd1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p0_rxd1"/>
+    <resourcesList name="p0_rxd2" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p0_rxd2"/>
+    <resourcesList name="p0_rxd3" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p0_rxd3"/>
+    <resourcesList name="p0_rx_err" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p0_rx_err"/>
+    <resourcesList name="p0_tx_clk" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p0_tx_clk"/>
+    <resourcesList name="latchin0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_latchin0"/>
+    <resourcesList name="mdio" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_mdio"/>
+    <resourcesList name="mclk" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_mclk"/>
+    <resourcesList name="p0_txd0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p0_txd0"/>
+    <resourcesList name="p0_txd1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p0_txd1"/>
+    <resourcesList name="p0_txd2" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p0_txd2"/>
+    <resourcesList name="p0_txd3" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p0_txd3"/>
+    <resourcesList name="p0_tx_ena" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p0_tx_ena"/>
+    <resourcesList name="p0_led_link_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p0_led_link_act"/>
+    <resourcesList name="sync0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_sync0"/>
+    <resourcesList name="phy_clk25" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_phy_clk25"/>
+    <resourcesList name="mdo" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_mdo"/>
+    <resourcesList name="mdio_data_ena" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_mdio_data_ena"/>
+    <resourcesList name="p1_link" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p1_link"/>
+    <resourcesList name="p1_rx_clk" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p1_rx_clk"/>
+    <resourcesList name="p1_rx_dv" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p1_rx_dv"/>
+    <resourcesList name="p1_rxd0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p1_rxd0"/>
+    <resourcesList name="p1_rxd1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p1_rxd1"/>
+    <resourcesList name="p1_rxd2" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p1_rxd2"/>
+    <resourcesList name="p1_rxd3" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p1_rxd3"/>
+    <resourcesList name="p1_rx_err" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p1_rx_err"/>
+    <resourcesList name="p1_tx_clk" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p1_tx_clk"/>
+    <resourcesList name="latchin1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_latchin1"/>
+    <resourcesList name="led_run" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_led_run"/>
+    <resourcesList name="led_state_run" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_led_state_run"/>
+    <resourcesList name="led_err" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_led_err"/>
+    <resourcesList name="phy_reset" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_phy_reset"/>
+    <resourcesList name="p1_txd0" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p1_txd0"/>
+    <resourcesList name="p1_txd1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p1_txd1"/>
+    <resourcesList name="p1_txd2" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p1_txd2"/>
+    <resourcesList name="p1_txd3" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p1_txd3"/>
+    <resourcesList name="p1_tx_ena" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p1_tx_ena"/>
+    <resourcesList name="p1_led_link_act" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_p1_led_link_act"/>
+    <resourcesList name="sync1" requiredResourceUri="http://resources/48.0.1/peripheral/ecat/0/ecat_sync1"/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="CON_CONP0" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0" value="0x00000000" toolTipHelpDescription="EtherCAT 0 Port 1 Control Register" defaultValue="0x00000000" addressOffset="0xfbff41b4" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="RXD0" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rxd0" value="0x00000000" toolTipHelpDescription="PORT0 Receive Input 0 Select" defaultValue="0x00000000" startPos="0" stopPos="1" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RXD0A is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RXD0B is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RXD0C is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RXD0D is selected"/>
+    </bitFields>
+    <bitFields name="RXD1" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rxd1" value="0x00000000" toolTipHelpDescription="Port0 Receive Input 1 Select" defaultValue="0x00000000" startPos="2" stopPos="3" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RXD1A is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RXD1B is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RXD1C is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RXD1D is selected"/>
+    </bitFields>
+    <bitFields name="RXD2" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rxd2" value="0x00000000" toolTipHelpDescription="Port0 Receive Input 2 Select" defaultValue="0x00000000" startPos="4" stopPos="5" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RXD2A is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RXD2B is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RXD2C is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RXD2D is selected"/>
+    </bitFields>
+    <bitFields name="RXD3" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rxd3" value="0x00000000" toolTipHelpDescription="Port0 Receive Input 3 Select" defaultValue="0x00000000" startPos="6" stopPos="7" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RXD3A is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RXD3B is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RXD3C is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RXD3D is selected"/>
+    </bitFields>
+    <bitFields name="RX_ERR" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rx_err" value="0x00000000" toolTipHelpDescription="Port0 MII RX ERROR Input Select" defaultValue="0x00000000" startPos="8" stopPos="9" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RX_ERRA is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RX_ERRB is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RX_ERRC is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RX_ERRD is selected"/>
+    </bitFields>
+    <bitFields name="RX_DV" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rx_dv" value="0x00000000" toolTipHelpDescription="Port0 MII RX DV Input Select" defaultValue="0x00000000" startPos="10" stopPos="11" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RX_DVA is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RX_DVB is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RX_DVC is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RX_DVD is selected"/>
+    </bitFields>
+    <bitFields name="RX_CLK" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rx_clk" value="0x00000000" toolTipHelpDescription="Port0 MII RX Clock Input Select" defaultValue="0x00000000" startPos="12" stopPos="13" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Clock input RX_CLKA"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Clock input RX_CLKB"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Clock input RX_CLKC"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Clock input RX_CLKD"/>
+    </bitFields>
+    <bitFields name="LINK" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/link" value="0x00000000" toolTipHelpDescription="Port0 PHY Link Input Select" defaultValue="0x00000000" startPos="16" stopPos="17" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="PHY LINKA"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="PHY LINKB"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="PHY LINKC"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="PHY LINKD"/>
+    </bitFields>
+    <bitFields name="TX_CLK" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/tx_clk" value="0x00000000" toolTipHelpDescription="Port0 MII TX Clock Input Select" defaultValue="0x00000000" startPos="28" stopPos="29" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Clock input TX_CLKA"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Clock input TX_CLKB"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Clock input TX_CLKC"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Clock input TX_CLKD"/>
+    </bitFields>
+    <bitFields name="TX_SHIFT" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/tx_shift" value="0x00000000" toolTipHelpDescription="Port0 Manual TX Shift configuration" defaultValue="0x00000000" startPos="30" stopPos="31" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="0 ns"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="10 ns"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="20 ns"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="30 ns"/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RX_CLK" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rx_clk" value="0x00000000" toolTipHelpDescription="Port0 MII RX Clock Input Select" defaultValue="0x00000000" startPos="12" stopPos="13" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Clock input RX_CLKA"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Clock input RX_CLKB"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Clock input RX_CLKC"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Clock input RX_CLKD"/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="CON_CON" URI="http://resources/48.0.1/peripheral/ecat/0/con_con" value="0x00000000" toolTipHelpDescription="EtherCAT 0 Control" defaultValue="0x00000000" addressOffset="0xfbff41b0" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="ECATRSTEN" URI="http://resources/48.0.1/peripheral/ecat/0/con_con/ecatrsten" value="0x00000000" toolTipHelpDescription="Enable EtherCAT Reset Request" defaultValue="0x00000000" startPos="0" stopPos="0" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Reset request by EtherCAT Master disabled"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Reset request by EtherCAT Master enabled"/>
+    </bitFields>
+    <bitFields name="LATCHIN0SEL" URI="http://resources/48.0.1/peripheral/ecat/0/con_con/latchin0sel" value="0x00000000" toolTipHelpDescription="LATCHIN0 Input Select" defaultValue="0x00000000" startPos="8" stopPos="9" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input LATCHIN0A is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input LATCHIN0B is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input LATCHIN0C is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input LATCHIN0D is selected"/>
+    </bitFields>
+    <bitFields name="LATCHIN0" URI="http://resources/48.0.1/peripheral/ecat/0/con_con/latchin0" value="0x00000000" toolTipHelpDescription="EtherCAT LATCH_IN0 Input Signal" defaultValue="0x00000000" startPos="11" stopPos="11" maxValue="1" minValue="0"/>
+    <bitFields name="LATCHIN1SEL" URI="http://resources/48.0.1/peripheral/ecat/0/con_con/latchin1sel" value="0x00000000" toolTipHelpDescription="LATCHIN1 Input Select" defaultValue="0x00000000" startPos="12" stopPos="13" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input LATCHIN1A is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input LATCHIN1B is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input LATCHIN1C is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input LATCHIN1D is selected"/>
+    </bitFields>
+    <bitFields name="LATCHIN1" URI="http://resources/48.0.1/peripheral/ecat/0/con_con/latchin1" value="0x00000000" toolTipHelpDescription="EtherCAT LATCH_IN1 Input Signal" defaultValue="0x00000000" startPos="15" stopPos="15" maxValue="1" minValue="0"/>
+    <bitFields name="PHYOFFSET" URI="http://resources/48.0.1/peripheral/ecat/0/con_con/phyoffset" value="0x00000000" toolTipHelpDescription="Ethernet PHY Address Offset" defaultValue="0x00000000" startPos="16" stopPos="20" accessPermission="rw" maxValue="31" minValue="0"/>
+    <bitFields name="MDIO" URI="http://resources/48.0.1/peripheral/ecat/0/con_con/mdio" value="0x00000000" toolTipHelpDescription="MDIO Input Select" defaultValue="0x00000000" startPos="22" stopPos="23" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input MDIA is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input MDIB is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input MDIC is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input MDID is selected"/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="LATCHIN0SEL" URI="http://resources/48.0.1/peripheral/ecat/0/con_con/latchin0sel" value="0x00000000" toolTipHelpDescription="LATCHIN0 Input Select" defaultValue="0x00000000" startPos="8" stopPos="9" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input LATCHIN0A is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input LATCHIN0B is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input LATCHIN0C is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input LATCHIN0D is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="CON_CONP1" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1" value="0x00000000" toolTipHelpDescription="EtherCAT 0 Port 1 Control Register" defaultValue="0x00000000" addressOffset="0xfbff41b8" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="RXD0" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rxd0" value="0x00000000" toolTipHelpDescription="Port1 Receive Input 0 Select" defaultValue="0x00000000" startPos="0" stopPos="1" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RXD0A is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RXD0B is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RXD0C is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RXD0D is selected"/>
+    </bitFields>
+    <bitFields name="RXD1" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rxd1" value="0x00000000" toolTipHelpDescription="Port1 Receive Input 1 Select" defaultValue="0x00000000" startPos="2" stopPos="3" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RXD1A is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RXD1B is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RXD1C is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RXD1D is selected"/>
+    </bitFields>
+    <bitFields name="RXD2" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rxd2" value="0x00000000" toolTipHelpDescription="Port1 Receive Input 2 Select" defaultValue="0x00000000" startPos="4" stopPos="5" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RXD2A is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RXD2B is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RXD2C is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RXD2D is selected"/>
+    </bitFields>
+    <bitFields name="RXD3" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rxd3" value="0x00000000" toolTipHelpDescription="Port1 Receive Input 3 Select" defaultValue="0x00000000" startPos="6" stopPos="7" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RXD3A is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RXD3B is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RXD3C is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RXD3D is selected"/>
+    </bitFields>
+    <bitFields name="RX_ERR" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rx_err" value="0x00000000" toolTipHelpDescription="Port1 MII RX ERROR Input Select" defaultValue="0x00000000" startPos="8" stopPos="9" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RX_ERRA is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RX_ERRB is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RX_ERRC is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RX_ERRD is selected"/>
+    </bitFields>
+    <bitFields name="RX_DV" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rx_dv" value="0x00000000" toolTipHelpDescription="Port1 MII RX DV Input Select" defaultValue="0x00000000" startPos="10" stopPos="11" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RX_DVA is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RX_DVB is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RX_DVC is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RX_DVD is selected"/>
+    </bitFields>
+    <bitFields name="RX_CLK" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rx_clk" value="0x00000000" toolTipHelpDescription="Port1 MII RX Clock Input Select" defaultValue="0x00000000" startPos="12" stopPos="13" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Clock input RX_CLKA"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Clock input RX_CLKB"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Clock input RX_CLKC"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Clock input RX_CLKD"/>
+    </bitFields>
+    <bitFields name="LINK" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/link" value="0x00000000" toolTipHelpDescription="Port1 PHY Link Input Select" defaultValue="0x00000000" startPos="16" stopPos="17" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="PHY LINKA"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="PHY LINKB"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="PHY LINKC"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="PHY LINKD"/>
+    </bitFields>
+    <bitFields name="TX_CLK" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/tx_clk" value="0x00000000" toolTipHelpDescription="Port1 MII TX Clock Input Select" defaultValue="0x00000000" startPos="28" stopPos="29" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Clock input TX_CLKA"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Clock input TX_CLKB"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Clock input TX_CLKC"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Clock input TX_CLKD"/>
+    </bitFields>
+    <bitFields name="TX_SHIFT" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/tx_shift" value="0x00000000" toolTipHelpDescription="Port1 Manual TX Shift configuration" defaultValue="0x00000000" startPos="30" stopPos="31" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="0 ns"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="10 ns"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="20 ns"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="30 ns"/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RX_ERR" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rx_err" value="0x00000000" toolTipHelpDescription="Port1 MII RX ERROR Input Select" defaultValue="0x00000000" startPos="8" stopPos="9" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RX_ERRA is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RX_ERRB is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RX_ERRC is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RX_ERRD is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RX_ERR" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rx_err" value="0x00000000" toolTipHelpDescription="Port0 MII RX ERROR Input Select" defaultValue="0x00000000" startPos="8" stopPos="9" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RX_ERRA is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RX_ERRB is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RX_ERRC is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RX_ERRD is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="LINK" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/link" value="0x00000000" toolTipHelpDescription="Port1 PHY Link Input Select" defaultValue="0x00000000" startPos="16" stopPos="17" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="PHY LINKA"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="PHY LINKB"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="PHY LINKC"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="PHY LINKD"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RX_CLK" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rx_clk" value="0x00000000" toolTipHelpDescription="Port1 MII RX Clock Input Select" defaultValue="0x00000000" startPos="12" stopPos="13" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Clock input RX_CLKA"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Clock input RX_CLKB"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Clock input RX_CLKC"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Clock input RX_CLKD"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="MDIO" URI="http://resources/48.0.1/peripheral/ecat/0/con_con/mdio" value="0x00000000" toolTipHelpDescription="MDIO Input Select" defaultValue="0x00000000" startPos="22" stopPos="23" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input MDIA is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input MDIB is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input MDIC is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input MDID is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TX_CLK" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/tx_clk" value="0x00000000" toolTipHelpDescription="Port1 MII TX Clock Input Select" defaultValue="0x00000000" startPos="28" stopPos="29" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Clock input TX_CLKA"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Clock input TX_CLKB"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Clock input TX_CLKC"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Clock input TX_CLKD"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RXD3" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rxd3" value="0x00000000" toolTipHelpDescription="Port0 Receive Input 3 Select" defaultValue="0x00000000" startPos="6" stopPos="7" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RXD3A is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RXD3B is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RXD3C is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RXD3D is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="LATCHIN1SEL" URI="http://resources/48.0.1/peripheral/ecat/0/con_con/latchin1sel" value="0x00000000" toolTipHelpDescription="LATCHIN1 Input Select" defaultValue="0x00000000" startPos="12" stopPos="13" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input LATCHIN1A is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input LATCHIN1B is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input LATCHIN1C is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input LATCHIN1D is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="LINK" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/link" value="0x00000000" toolTipHelpDescription="Port0 PHY Link Input Select" defaultValue="0x00000000" startPos="16" stopPos="17" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="PHY LINKA"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="PHY LINKB"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="PHY LINKC"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="PHY LINKD"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TX_CLK" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/tx_clk" value="0x00000000" toolTipHelpDescription="Port0 MII TX Clock Input Select" defaultValue="0x00000000" startPos="28" stopPos="29" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Clock input TX_CLKA"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Clock input TX_CLKB"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Clock input TX_CLKC"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Clock input TX_CLKD"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RXD1" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rxd1" value="0x00000000" toolTipHelpDescription="Port0 Receive Input 1 Select" defaultValue="0x00000000" startPos="2" stopPos="3" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RXD1A is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RXD1B is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RXD1C is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RXD1D is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RXD2" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rxd2" value="0x00000000" toolTipHelpDescription="Port0 Receive Input 2 Select" defaultValue="0x00000000" startPos="4" stopPos="5" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RXD2A is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RXD2B is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RXD2C is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RXD2D is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RXD0" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rxd0" value="0x00000000" toolTipHelpDescription="PORT0 Receive Input 0 Select" defaultValue="0x00000000" startPos="0" stopPos="1" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RXD0A is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RXD0B is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RXD0C is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RXD0D is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RX_DV" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp0/rx_dv" value="0x00000000" toolTipHelpDescription="Port0 MII RX DV Input Select" defaultValue="0x00000000" startPos="10" stopPos="11" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RX_DVA is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RX_DVB is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RX_DVC is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RX_DVD is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RXD3" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rxd3" value="0x00000000" toolTipHelpDescription="Port1 Receive Input 3 Select" defaultValue="0x00000000" startPos="6" stopPos="7" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RXD3A is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RXD3B is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RXD3C is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RXD3D is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RXD2" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rxd2" value="0x00000000" toolTipHelpDescription="Port1 Receive Input 2 Select" defaultValue="0x00000000" startPos="4" stopPos="5" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RXD2A is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RXD2B is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RXD2C is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RXD2D is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RXD1" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rxd1" value="0x00000000" toolTipHelpDescription="Port1 Receive Input 1 Select" defaultValue="0x00000000" startPos="2" stopPos="3" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RXD1A is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RXD1B is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RXD1C is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RXD1D is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RX_DV" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rx_dv" value="0x00000000" toolTipHelpDescription="Port1 MII RX DV Input Select" defaultValue="0x00000000" startPos="10" stopPos="11" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RX_DVA is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RX_DVB is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RX_DVC is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RX_DVD is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RXD0" URI="http://resources/48.0.1/peripheral/ecat/0/con_conp1/rxd0" value="0x00000000" toolTipHelpDescription="Port1 Receive Input 0 Select" defaultValue="0x00000000" startPos="0" stopPos="1" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Data input RXD0A is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Data input RXD0B is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Data input RXD0C is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Data input RXD0D is selected"/>
+  </provided>
+  <addressBlock offset="0x0" size="0x010000" usage="registers"/>
+</ResourceModel:Peripheral>

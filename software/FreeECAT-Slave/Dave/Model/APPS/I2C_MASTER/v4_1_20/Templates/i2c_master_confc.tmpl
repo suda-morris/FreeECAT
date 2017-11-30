@@ -1,0 +1,1252 @@
+package Model.APPS.I2C_MASTER.v4_1_20.Templates;
+
+import Model.APPS.I2C_MASTER.v4_1_20.I2C_MASTER
+
+out.print("""
+/**
+ * @cond
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) 2015-2016, Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * To improve the quality of the software, users are encouraged to share modifications, enhancements or bug fixes
+ * with Infineon Technologies AG (dave@infineon.com).
+ ***********************************************************************************************************************
+ *
+ * Change History
+ * --------------
+ *
+ * 2015-02-16:
+ *     - Initial version<br>
+ *
+ * 2015-04-06:
+ *     - Optimized generation of config code<br>
+ *
+ * 2015-07-29:
+ *     - Added DMA, direct mode support<br>
+ * @endcond
+ *
+ */
+
+/***********************************************************************************************************************
+ * HEADER FILES
+ **********************************************************************************************************************/
+#include "i2c_master.h"	
+#if (UC_FAMILY == XMC1)
+#include "xmc_scu.h"
+#endif
+/**********************************************************************************************************************
+* DATA STRUCTURES
+**********************************************************************************************************************/
+/*
+ * Function implements the data transmission. It is called from the transmit interrupt service handler.
+ * Function pushes data to the output block and releases control. It is called again when the previous data is
+ * transmitted. When transmit FIFO is used, the function sets the trigger limit based on the size of data to be
+ * transmitted. This makes sure that the CPU usage is optimum.
+ *
+ * I2C_MASTER_t * pointer to the I2C_MASTER APP instance handle
+ *
+ */
+void I2C_MASTER_TransmitHandler(I2C_MASTER_t * const handle);
+
+/*
+ * Function implements the data reception. It is called from the receive interrupt service handler.
+ * Function reads data from the receive block and updates the user's buffer. It is called again when the data is
+ * received again. When receive FIFO is used, the function sets the trigger limit based on the size of data to be
+ * received. This makes sure that the CPU usage is optimum.
+ *
+ * I2C_MASTER_t * pointer to the I2C_MASTER APP instance handle
+ *
+ */
+void I2C_MASTER_ReceiveHandler(I2C_MASTER_t * const handle);
+""");
+
+List MappedUri 		= null
+List sdapinUri 		= null
+List sclpinUri 		= null
+List ErrInterrupt_Uri = null
+List TxInterrupt_Uri = null
+List RxInterrupt_Uri = null
+List tx_dma_uri = null
+List rx_dma_uri = null
+List tx_dlr_uri = null
+List rx_dlr_uri = null
+
+String appInst      = null
+String UnitInst 	= null
+String ChannelInst 	= null
+String sdaPortNo 	= null
+String sdaPinNo 	= null
+String sclPortNo 	= null
+String sclPinNo 	= null
+String Tx_node = null
+String Rx_node = null
+String Err_node = null
+String dma_tx_module = null
+String dma_rx_module = null
+String dma_tx_channel = null
+String dma_rx_channel = null
+String dlr_tx_channel = null
+String dlr_rx_channel = null
+String dma_sr_tx
+String dma_sr_rx
+
+List I2C_Proto_Events = ["XMC_I2C_CH_EVENT_NACK", "XMC_I2C_CH_EVENT_ARBITRATION_LOST","XMC_I2C_CH_EVENT_ERROR","XMC_I2C_CH_EVENT_ACK"]
+
+for (Object i2cInst : appInstancesList )
+{
+	appInst   = i2cInst.getInstanceLabel()
+	MappedUri = i2cInst.hwres_usic_channel.getSolverUri()
+	
+	tx_dma_uri = i2cInst.hwres_tx_dma_channel.getSolverUri()
+	rx_dma_uri = i2cInst.hwres_rx_dma_channel.getSolverUri()
+	tx_dlr_uri = i2cInst.hwres_tx_dma_dlr.getSolverUri()
+	rx_dlr_uri = i2cInst.hwres_rx_dma_dlr.getSolverUri()
+	
+	/*Extract DMA configuration from the URI*/
+	if((tx_dma_uri != null) && (tx_dlr_uri != null))
+	{
+	  /*Extract DMA module number from the URI*/
+	  dma_tx_module = tx_dma_uri[3]
+	  if(dma_tx_module == "dma8")
+	  {
+		  dma_tx_module = "0"
+	  }
+	  else
+	  {
+		  dma_tx_module = "1"
+	  }
+	  dma_tx_channel = tx_dma_uri[6]
+	  /*Extract DLR channel from the URI*/
+	  dlr_tx_channel = tx_dlr_uri[6]
+	  /*Read service request used for the transmit event*/
+	  dma_sr_tx = i2cInst.hwres_usic_channel.getRegValue("inpr","inpr_pinp")
+	  /* dummy read for tbctr in dma mode */
+	  i2cInst.hwres_usic_channel.getRegValue("tbctr","tbctr_size")
+	  i2cInst.hwres_usic_channel.getRegValue("tbctr","tbctr_dptr")
+	}
+
+	if((rx_dma_uri != null) && (rx_dlr_uri != null))
+	{
+	  /*Extract DMA module number from the URI*/
+	  dma_rx_module = rx_dma_uri[3]
+	  if(dma_rx_module == "dma8")
+	  {
+		  dma_rx_module = "0"
+	  }
+	  else
+	  {
+		  dma_rx_module = "1"
+	  }
+	  dma_rx_channel = rx_dma_uri[6]
+	  /*Extract DLR channel from the URI*/
+	  dlr_rx_channel = rx_dlr_uri[6]
+	  /*Read service request used for the receive event*/
+	  dma_sr_rx = i2cInst.hwres_usic_channel.getRegValue("inpr","inpr_rinp")
+	  /* dummy read for rbctr in dma mode */
+	  i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_size")
+	}
+	
+	TxInterrupt_Uri = i2cInst.hwres_nvic_node_i2c_tx.getSolverUri();
+	RxInterrupt_Uri = i2cInst.hwres_nvic_node_i2c_rx.getSolverUri();
+	
+	if(i2cInst.gcombo_tx_mode.value == "Direct")
+	{
+      if((i2cInst.gcheck_nack.value == true) || (i2cInst.gcheck_arbitration.value == true) || (i2cInst.gcheck_error.value == true))
+      {
+	    ErrInterrupt_Uri = i2cInst.hwres_nvic_node_i2c_error.getSolverUri();
+      }
+	}
+	
+	if(MappedUri != null)
+	{
+		UnitInst 	= MappedUri[4]
+		ChannelInst = MappedUri[6]
+		if(TxInterrupt_Uri != null)
+		{
+			Tx_node = TxInterrupt_Uri[-1]
+		}
+		if(RxInterrupt_Uri != null)
+		{
+			Rx_node = RxInterrupt_Uri[-1]
+		}
+		if((ErrInterrupt_Uri != null) && (i2cInst.gcombo_tx_mode.value == "Direct"))
+		{
+			Err_node = ErrInterrupt_Uri[-1]
+			i2cInst.hwres_nvic_node_i2c_error.getRegValue("","iser_setena")
+		}
+		sdapinUri 	= i2cInst.hwres_i2c_sda.getSolverUri()
+		if(sdapinUri != null)
+		{
+			sdaPortNo 	= sdapinUri[4]
+			sdaPinNo 	= sdapinUri[6]
+		}
+		sclpinUri	= i2cInst.hwres_i2c_scl.getSolverUri()
+		if(sclpinUri != null)
+		{
+			sclPortNo 	= sclpinUri[4]
+			sclPinNo 	= sclpinUri[6]
+		}
+		
+		boolean ORing_needed = false
+		boolean ccr_ORing_needed = false
+		boolean temp_rxfifo_operator_needed = false
+		int temp_step = i2cInst.gint_stepVal.value
+		int temp_pdiv = i2cInst.gint_pdivVal.value + 1
+		
+		int temp_inpr_inp  = (i2cInst.hwres_usic_channel.getRegValue("","inpr_tsinp") << 0) +
+							 (i2cInst.hwres_usic_channel.getRegValue("","inpr_tbinp") << 4) +
+							 (i2cInst.hwres_usic_channel.getRegValue("","inpr_rinp") << 8) +
+							 (i2cInst.hwres_usic_channel.getRegValue("","inpr_ainp") << 12) +
+							 (i2cInst.hwres_usic_channel.getRegValue("","inpr_pinp") << 16)
+							 
+		int temp_tbctr_inp = (i2cInst.hwres_usic_channel.getRegValue("","tbctr_stbinp") << 16) +
+							 (i2cInst.hwres_usic_channel.getRegValue("","tbctr_atbinp") << 19)
+							 
+		int temp_rbctr_inp = (i2cInst.hwres_usic_channel.getRegValue("","rbctr_srbinp") << 16) +
+							 (i2cInst.hwres_usic_channel.getRegValue("","rbctr_arbinp") << 19)
+							 
+		i2cInst.hwres_nvic_node_i2c_tx.getRegValue("","iser_setena")
+		i2cInst.hwres_nvic_node_i2c_rx.getRegValue("","iser_setena")
+		
+		i2cInst.hwres_i2c_sda.getRegValue("hwsel","hwsel_hw")
+		i2cInst.hwres_i2c_scl.getRegValue("hwsel","hwsel_hw")
+		i2cInst.hwres_i2c_sda.getRegValue("pdisc","pdisc_pdis")
+		i2cInst.hwres_i2c_scl.getRegValue("pdisc","pdisc_pdis")
+		i2cInst.hwres_usic_channel.getRegValue("DX3CR","dx3cr_dsel")
+		i2cInst.hwres_usic_channel.getRegValue("DX4CR","dx4cr_dsel")
+		i2cInst.hwres_usic_channel.getRegValue("DX5CR","dx5cr_dsel")
+						 
+out.print("""
+void ${appInst}_init(void);
+#if (I2C_MASTER_DMA_TX_ENABLED == 1)
+void ${appInst}_dma_tx_handler(XMC_DMA_CH_EVENT_t event);
+#endif
+#if (I2C_MASTER_DMA_RX_ENABLED == 1)
+void ${appInst}_dma_rx_handler(XMC_DMA_CH_EVENT_t event);
+#endif""");
+if(i2cInst.gcombo_tx_mode.value == "DMA")
+{
+out.print("""
+XMC_DMA_CH_CONFIG_t ${appInst}_dma_ch_tx_config =
+{
+  .src_transfer_width = XMC_DMA_CH_TRANSFER_WIDTH_8,
+  .dst_transfer_width = XMC_DMA_CH_TRANSFER_WIDTH_8,
+  .src_address_count_mode = XMC_DMA_CH_ADDRESS_COUNT_MODE_INCREMENT,
+  .dst_address_count_mode = XMC_DMA_CH_ADDRESS_COUNT_MODE_NO_CHANGE,
+  .src_burst_length = XMC_DMA_CH_BURST_LENGTH_8,
+  .dst_burst_length = XMC_DMA_CH_BURST_LENGTH_1,
+  .transfer_flow = XMC_DMA_CH_TRANSFER_FLOW_M2P_DMA,
+  .transfer_type = XMC_DMA_CH_TRANSFER_TYPE_SINGLE_BLOCK,
+  .dst_handshaking = XMC_DMA_CH_DST_HANDSHAKING_HARDWARE,
+  .dst_peripheral_request = DMA_PERIPHERAL_REQUEST(${i2cInst.hwres_tx_dma_channel.getRegValue("cfgh", "cfgh_dest_per")}, ${i2cInst.hwres_tx_dma_dlr.getRegValue("dlr", "srsel_rs")}),
+  .enable_interrupt = true
+};
+
+const I2C_MASTER_DMA_CONFIG_t ${appInst}_dma_tx_config =
+{
+  .dma_ch_config = &${appInst}_dma_ch_tx_config,
+  .global_dma    = &${i2cInst.appres_global_dma.getInstanceLabel()},
+  .dma_channel   = ${dma_tx_channel}
+};""");
+}
+
+if(i2cInst.gcombo_rx_mode.value == "DMA")
+{
+out.print("""
+XMC_DMA_CH_CONFIG_t ${appInst}_dma_ch_rx_config =
+{
+  .src_transfer_width = XMC_DMA_CH_TRANSFER_WIDTH_8,
+  .dst_transfer_width = XMC_DMA_CH_TRANSFER_WIDTH_8,
+  .src_address_count_mode = XMC_DMA_CH_ADDRESS_COUNT_MODE_NO_CHANGE,
+  .dst_address_count_mode = XMC_DMA_CH_ADDRESS_COUNT_MODE_INCREMENT,
+  .src_burst_length = XMC_DMA_CH_BURST_LENGTH_1,
+  .dst_burst_length = XMC_DMA_CH_BURST_LENGTH_8,
+  .transfer_flow = XMC_DMA_CH_TRANSFER_FLOW_P2M_DMA,
+  .transfer_type = XMC_DMA_CH_TRANSFER_TYPE_SINGLE_BLOCK,
+  .src_handshaking = XMC_DMA_CH_SRC_HANDSHAKING_HARDWARE,
+  .src_peripheral_request = DMA_PERIPHERAL_REQUEST(${i2cInst.hwres_rx_dma_channel.getRegValue("cfgh", "cfgh_src_per")}, ${i2cInst.hwres_rx_dma_dlr.getRegValue("dlr", "srsel_rs")}),
+  .enable_interrupt = true
+};
+const I2C_MASTER_DMA_CONFIG_t ${appInst}_dma_rx_config =
+{
+  .dma_ch_config = &${appInst}_dma_ch_rx_config,
+  .global_dma    = &${i2cInst.appres_global_dma.getInstanceLabel()},
+  .dma_channel   = ${dma_rx_channel}
+};""");
+}
+
+out.print("""
+const XMC_I2C_CH_CONFIG_t ${appInst}_channel_config =
+{
+  .baudrate = (uint32_t)(${i2cInst.gint_desiredbaudrate.value * 1000}U),
+  .address  = ${i2cInst.ginteger_ownaddress.value}
+};
+
+const I2C_MASTER_CONFIG_t ${appInst}_config =
+{
+  .brg_config = &${appInst}_channel_config,""");
+/*Transmit mode DMA configuration*/
+if(i2cInst.gcombo_tx_mode.value == "DMA")
+{
+  out.print("""\n  .transmit_dma_config = &${appInst}_dma_tx_config,""")
+}
+/*Receive mode DMA configuration*/
+if(i2cInst.gcombo_rx_mode.value == "DMA")
+{
+  out.print("""\n  .receive_dma_config = &${appInst}_dma_rx_config,""")
+}
+out.print("""\n  .fptr_i2c_config = ${appInst}_init,""");
+
+if((i2cInst.gcheck_end_of_tx_callback.value == true) && (i2cInst.gstring_end_of_tx_callback.value != ""))
+{
+out.print("""
+  .tx_cbhandler = ${i2cInst.gstring_end_of_tx_callback.value},""");
+}
+else
+{
+out.print("""
+  .tx_cbhandler = NULL,""");
+}
+if((i2cInst.gcheck_end_of_rx_callback.value == true) && (i2cInst.gstring_end_of_rx_callback.value != ""))
+{
+out.print("""
+  .rx_cbhandler = ${i2cInst.gstring_end_of_rx_callback.value},""");
+}
+else
+{
+out.print("""
+  .rx_cbhandler = NULL,""");
+}
+if((i2cInst.gcheck_nack.value == true) && (i2cInst.gstring_nack.value != ""))
+{
+out.print("""
+  .nack_cbhandler = ${i2cInst.gstring_nack.value},""");
+}
+else
+{
+out.print("""
+  .nack_cbhandler = NULL,""");
+}
+if((i2cInst.gcheck_arbitration.value == true) && (i2cInst.gstring_arbitration.value != ""))
+{
+out.print("""
+  .arbitration_cbhandler = ${i2cInst.gstring_arbitration.value},""");
+}
+else
+{
+out.print("""
+  .arbitration_cbhandler = NULL,""");
+}
+if((i2cInst.gcheck_error.value == true) && (i2cInst.gstring_error.value != ""))
+{
+out.print("""
+  .error_cbhandler = ${i2cInst.gstring_error.value},""");
+}
+else
+{
+out.print("""
+  .error_cbhandler = NULL,""");
+}
+if(daveEnv.project.selectedDevice.deviceId.family == "XMC4")
+{
+out.print("""
+  .transmit_mode = ${["I2C_MASTER_TRANSFER_MODE_INTERRUPT",
+					  "I2C_MASTER_TRANSFER_MODE_DMA",
+					  "I2C_MASTER_TRANSFER_MODE_DIRECT"
+					 ][i2cInst.gcombo_tx_mode.options.indexOf(i2cInst.gcombo_tx_mode.value)]},
+  .receive_mode = ${["I2C_MASTER_TRANSFER_MODE_INTERRUPT",
+					  "I2C_MASTER_TRANSFER_MODE_DMA",
+					  "I2C_MASTER_TRANSFER_MODE_DIRECT"
+					 ][i2cInst.gcombo_rx_mode.options.indexOf(i2cInst.gcombo_rx_mode.value)]},""")
+}
+else
+{
+	out.print("""
+  .transmit_mode = ${["I2C_MASTER_TRANSFER_MODE_INTERRUPT",
+					  "I2C_MASTER_TRANSFER_MODE_DIRECT"
+					 ][i2cInst.gcombo_tx_mode.options.indexOf(i2cInst.gcombo_tx_mode.value)]},
+  .receive_mode = ${["I2C_MASTER_TRANSFER_MODE_INTERRUPT",
+					  "I2C_MASTER_TRANSFER_MODE_DIRECT"
+					 ][i2cInst.gcombo_rx_mode.options.indexOf(i2cInst.gcombo_rx_mode.value)]},""")
+}				 
+if((i2cInst.gcheck_txfifo.value == true) && (i2cInst.gcombo_tx_mode.value != "DMA"))
+{
+out.print("""
+  .txFIFO_size = ${
+int index = i2cInst.hwres_usic_channel.getRegValue("tbctr","tbctr_size")
+					 ["XMC_USIC_CH_FIFO_DISABLED",
+					"XMC_USIC_CH_FIFO_SIZE_2WORDS",
+					"XMC_USIC_CH_FIFO_SIZE_4WORDS",
+					"XMC_USIC_CH_FIFO_SIZE_8WORDS",
+					"XMC_USIC_CH_FIFO_SIZE_16WORDS",
+					"XMC_USIC_CH_FIFO_SIZE_32WORDS",
+					"XMC_USIC_CH_FIFO_SIZE_64WORDS"
+				   ][index]},
+ """);
+}
+else if (i2cInst.gcombo_tx_mode.value != "DMA")
+{
+out.print("""  .txFIFO_size    = XMC_USIC_CH_FIFO_DISABLED,
+ """);
+}
+if((i2cInst.gcheck_rxfifo.value == true) && (i2cInst.gcombo_rx_mode.value != "DMA"))
+{
+out.print("""
+  .rxFIFO_size = ${
+int index = i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_size")
+					 ["XMC_USIC_CH_FIFO_DISABLED",
+					"XMC_USIC_CH_FIFO_SIZE_2WORDS",
+					"XMC_USIC_CH_FIFO_SIZE_4WORDS",
+					"XMC_USIC_CH_FIFO_SIZE_8WORDS",
+					"XMC_USIC_CH_FIFO_SIZE_16WORDS",
+					"XMC_USIC_CH_FIFO_SIZE_32WORDS",
+					"XMC_USIC_CH_FIFO_SIZE_64WORDS",
+				   ][index]}
+  """);
+}
+else if(i2cInst.gcombo_rx_mode.value != "DMA")
+{
+out.print(""" .rxFIFO_size    = XMC_USIC_CH_FIFO_DISABLED
+""");
+}
+out.print("""
+};
+I2C_MASTER_RUNTIME_t ${appInst}_runtime =
+{
+""");
+
+if(i2cInst.gcheck_txfifo.value == true)
+{
+out.print("""  .tx_ack_sr = 0x${i2cInst.hwres_usic_channel.getRegValue("tbctr","tbctr_stbinp")}U,""");
+}
+else
+{
+out.print("""  .tx_ack_sr = 0x${i2cInst.hwres_usic_channel.getRegValue("inpr","inpr_tbinp")}U,""");
+}
+out.print("""
+  .tx_busy = false,
+""");
+if(i2cInst.gcheck_rxfifo.value == true)
+{
+out.print("""  .rx_sr = 0x${i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_srbinp")}U,""");
+}
+else
+{
+out.print("""  .rx_sr = 0x${i2cInst.hwres_usic_channel.getRegValue("inpr","inpr_rinp")}U,""");
+}
+out.print("""
+  .rx_busy = false,
+  .bus_acquired = false
+};
+
+I2C_MASTER_t ${i2cInst.getInstanceLabel()} =
+{
+  .channel = XMC_I2C${UnitInst}_CH${ChannelInst},
+  .config = &${appInst}_config,
+  .runtime = &${appInst}_runtime
+};
+
+void ${appInst}_init(void)
+{
+ """);
+ if((i2cInst.gcheck_arbitration.value == true) || (i2cInst.gcheck_error.value == true) || (i2cInst.gcheck_nack.value == true) || (i2cInst.gcombo_tx_mode.value == "DMA"))
+{
+out.print("""
+  const uint32_t enabled_protocol_events = (uint32_t)(""");
+if(i2cInst.gcombo_tx_mode.value == "DMA")
+{
+	if(ORing_needed)
+	{
+		out.print(""" | \n""");
+	}
+out.print("""${I2C_Proto_Events.get(3)}""");
+	ORing_needed = true
+}
+if(i2cInst.gcheck_nack.value == true)
+{
+	if(ORing_needed)
+	{
+		out.print(""" | \n""");
+	}
+out.print("""${I2C_Proto_Events.get(0)}""");
+	ORing_needed = true
+}
+if(i2cInst.gcheck_arbitration.value == true)
+{
+	if(ORing_needed)
+	{
+		out.print(""" | \n""");
+	}
+out.print("""								${I2C_Proto_Events.get(1)}""");
+	ORing_needed = true
+}
+if(i2cInst.gcheck_error.value == true)
+{
+	if(ORing_needed)
+	{
+		out.print(""" | \n""");
+	}
+out.print("""								${I2C_Proto_Events.get(2)}""");
+	ORing_needed = true
+}
+
+if(ORing_needed == false)
+{
+	out.print("""0""");
+}
+out.print("""); \n""");
+}
+  
+if((i2cInst.hwres_usic_channel.getRegValue("ccr","ccr_rsien") == 1) ||
+	  (i2cInst.hwres_usic_channel.getRegValue("ccr","ccr_dlien") == 1) ||
+	  (i2cInst.hwres_usic_channel.getRegValue("ccr","ccr_tsien") == 1) ||
+	  (i2cInst.hwres_usic_channel.getRegValue("ccr","ccr_tbien") == 1) ||
+	  (i2cInst.hwres_usic_channel.getRegValue("ccr","ccr_rien") == 1) ||
+	  (i2cInst.hwres_usic_channel.getRegValue("ccr","ccr_aien") == 1))
+{
+out.print("""
+  const uint32_t enabled_channel_events = (uint32_t)(""");
+if(i2cInst.hwres_usic_channel.getRegValue("","ccr_rsien") == 1)
+{
+	if(ccr_ORing_needed == true)
+	{
+		out.print(""" | \n""");
+	}
+	out.print("""XMC_USIC_CH_EVENT_RECEIVE_START""");
+	ccr_ORing_needed = true
+}
+if(i2cInst.hwres_usic_channel.getRegValue("","ccr_dlien") == 1)
+{
+	if(ccr_ORing_needed == true)
+	{
+		out.print(""" | \n""");
+	}
+	out.print("""XMC_USIC_CH_EVENT_DATA_LOST""");
+	ccr_ORing_needed = true
+}
+if(i2cInst.hwres_usic_channel.getRegValue("","ccr_tsien") == 1)
+{
+	if(ccr_ORing_needed == true)
+	{
+		out.print(""" | \n""");
+	}
+	out.print("""XMC_USIC_CH_EVENT_TRANSMIT_SHIFT""");
+	ccr_ORing_needed = true
+}
+if(i2cInst.hwres_usic_channel.getRegValue("","ccr_tbien") == 1)
+{
+	if(ccr_ORing_needed == true)
+	{
+		out.print(""" | \n""");
+	}
+	out.print("""XMC_USIC_CH_EVENT_TRANSMIT_BUFFER""");
+	ccr_ORing_needed = true
+}
+if(i2cInst.hwres_usic_channel.getRegValue("","ccr_rien") == 1)
+{
+	if(ccr_ORing_needed == true)
+	{
+		out.print(""" | \n""");
+	}
+	out.print("""XMC_USIC_CH_EVENT_STANDARD_RECEIVE""");
+	ccr_ORing_needed = true
+}
+if(i2cInst.hwres_usic_channel.getRegValue("","ccr_aien") == 1)
+{
+	if(ccr_ORing_needed == true)
+	{
+		out.print(""" | \n""");
+	}
+	out.print("""XMC_USIC_CH_EVENT_ALTERNATIVE_RECEIVE""");
+	ccr_ORing_needed = true
+}
+if(ccr_ORing_needed == false)
+{
+	out.print("""0""");
+}
+out.print(""");\n""");
+}
+  
+if((i2cInst.hwres_usic_channel.getRegValue("tbctr","tbctr_stbien") == 1) ||
+   (i2cInst.hwres_usic_channel.getRegValue("tbctr","tbctr_tberien") == 1))
+{
+out.print("""
+  const uint32_t tx_fifo_events = (uint32_t)(""");
+if(i2cInst.hwres_usic_channel.getRegValue("tbctr","tbctr_tberien") == 1)
+{
+out.print("""XMC_USIC_CH_TXFIFO_EVENT_CONF_ERROR""");
+out.print(""");""");
+}
+else
+{
+out.print("""0);""");
+}
+}
+
+if((i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_arbien") == 1) ||
+	(i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_srbien") == 1) ||
+	(i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_rberien") == 1))
+{
+	out.print("""
+  const uint32_t rx_fifo_events = (uint32_t)(""");
+if(i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_arbien") == 1)
+{
+	  out.print("""XMC_USIC_CH_RXFIFO_EVENT_CONF_ALTERNATE""");
+  temp_rxfifo_operator_needed = true
+}
+if(i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_srbien") == 1)
+{
+  if(temp_rxfifo_operator_needed == true)
+  {
+	out.print(""" | """);
+  }
+  temp_rxfifo_operator_needed = true
+  out.print("""XMC_USIC_CH_RXFIFO_EVENT_CONF_STANDARD""");
+}
+if(i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_rberien") == 1)
+{
+  if(temp_rxfifo_operator_needed == true)
+  {
+	out.print(""" | """);
+  }
+  temp_rxfifo_operator_needed = true
+  out.print("""XMC_USIC_CH_RXFIFO_EVENT_CONF_ERROR""");
+}
+if(temp_rxfifo_operator_needed == true)
+{
+  out.print(""");""");
+}
+else
+{
+  out.print("""0);""");
+}
+}
+out.print("""
+  const XMC_GPIO_CONFIG_t ${appInst}_sda_pin_config   =
+  { """);
+   int gpio_mode_index = 0
+   if(i2cInst.gcheck_pinconfig.value == true)
+   {
+	if(i2cInst.hwres_i2c_sda.getRegValue("","iocr_oe") == 1)
+	{
+		gpio_mode_index = (10 * i2cInst.gcombo_sda_char.options.indexOf(i2cInst.gcombo_sda_char.value)) +
+							   i2cInst.hwres_i2c_sda.getRegValue("iocr","iocr_pcr")
+	
+out.print("""
+	.mode = ${["XMC_GPIO_MODE_OUTPUT_PUSH_PULL",
+			   "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT1",
+			   "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT2",
+			   "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT3",
+			   "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT4",
+			   "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT5",
+			   "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT6",
+			   "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT7",
+			   "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT8",
+			   "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT9",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT1",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT2",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT3",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT4",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT5",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT6",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT7",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT8",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT9"
+			  ][gpio_mode_index]},""");
+	}
+	}
+	else
+	{
+	if(i2cInst.hwres_i2c_sda.getRegValue("","iocr_oe") == 1)
+	{
+		gpio_mode_index = i2cInst.hwres_i2c_sda.getRegValue("iocr","iocr_pcr")
+	
+		out.print("""
+	.mode = ${[	   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN",
+				   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT1",
+				   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT2",
+				   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT3",
+					"XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT4",
+				   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT5",
+				   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT6",
+				   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT7",
+				   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT8",
+				   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT9"
+				 ][gpio_mode_index]},""");
+	}
+	}
+	out.print("""
+	.output_level   = XMC_GPIO_OUTPUT_LEVEL_HIGH,""");
+
+	if((i2cInst.gcheck_pinconfig.value == true) && (daveEnv.project.selectedDevice.deviceId.family == 'XMC4'))
+	{
+		if(i2cInst.gcombo_sda_drive.value != "Don't Care")
+		{
+out.print("""
+	.output_strength = ${["Don't Care",
+						"XMC_GPIO_OUTPUT_STRENGTH_MEDIUM",
+						"XMC_GPIO_OUTPUT_STRENGTH_WEAK",
+						"XMC_GPIO_OUTPUT_STRENGTH_STRONG_SOFT_EDGE",
+						"XMC_GPIO_OUTPUT_STRENGTH_STRONG_SLOW_EDGE",
+						"XMC_GPIO_OUTPUT_STRENGTH_STRONG_SHARP_EDGE",
+						"XMC_GPIO_OUTPUT_STRENGTH_STRONG_MEDIUM_EDGE",
+					   ][i2cInst.gcombo_sda_drive.options.indexOf(i2cInst.gcombo_sda_drive.value)]} """);
+		}
+	}
+	else if((i2cInst.gcheck_pinconfig.value == false) && (daveEnv.project.selectedDevice.deviceId.family == 'XMC4'))
+	{
+		out.print("""
+	.output_strength = XMC_GPIO_OUTPUT_STRENGTH_STRONG_SHARP_EDGE""");
+	}
+out.print("""
+  }; """);
+
+out.print("""
+  const XMC_GPIO_CONFIG_t ${appInst}_scl_pin_config   =
+  { """);
+   if(i2cInst.gcheck_pinconfig.value == true)
+   {
+	if(i2cInst.hwres_i2c_scl.getRegValue("","iocr_oe") == 1)
+	{
+		gpio_mode_index = (10 * i2cInst.gcombo_scl_char.options.indexOf(i2cInst.gcombo_scl_char.value)) +
+							   i2cInst.hwres_i2c_scl.getRegValue("IOCR","iocr_pcr")
+out.print("""
+	.mode = ${["XMC_GPIO_MODE_OUTPUT_PUSH_PULL",
+			   "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT1",
+			   "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT2",
+			   "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT3",
+			   "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT4",
+			   "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT5",
+			   "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT6",
+			   "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT7",
+			   "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT8",
+			   "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT9",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT1",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT2",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT3",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT4",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT5",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT6",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT7",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT8",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT9"
+			   ][gpio_mode_index]},""");
+	}
+	}
+	else
+	{
+	if(i2cInst.hwres_i2c_scl.getRegValue("","iocr_oe") == 1)
+	{
+		gpio_mode_index = i2cInst.hwres_i2c_scl.getRegValue("IOCR","iocr_pcr")
+	 out.print("""
+	.mode = ${["XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT1",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT2",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT3",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT4",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT5",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT6",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT7",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT8",
+			   "XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT9"
+			  ][gpio_mode_index]},""");
+	}
+	}
+	out.print("""
+	.output_level  = XMC_GPIO_OUTPUT_LEVEL_HIGH,""");
+
+	if((i2cInst.gcheck_pinconfig.value == true) && (daveEnv.project.selectedDevice.deviceId.family == 'XMC4'))
+	{
+		if(i2cInst.gcombo_scl_drive.value != "Don't Care")
+		{
+out.print("""
+	.output_strength = ${["Don't Care",
+						"XMC_GPIO_OUTPUT_STRENGTH_MEDIUM",
+						"XMC_GPIO_OUTPUT_STRENGTH_WEAK",
+						"XMC_GPIO_OUTPUT_STRENGTH_STRONG_SOFT_EDGE",
+						"XMC_GPIO_OUTPUT_STRENGTH_STRONG_SLOW_EDGE",
+						"XMC_GPIO_OUTPUT_STRENGTH_STRONG_SHARP_EDGE",
+						"XMC_GPIO_OUTPUT_STRENGTH_STRONG_MEDIUM_EDGE",
+					  ][i2cInst.gcombo_scl_drive.options.indexOf(i2cInst.gcombo_scl_drive.value)]} """);
+		}
+	}
+	else if((i2cInst.gcheck_pinconfig.value == false) && (daveEnv.project.selectedDevice.deviceId.family == 'XMC4'))
+	{
+		out.print("""
+	.output_strength = XMC_GPIO_OUTPUT_STRENGTH_STRONG_SHARP_EDGE""");
+	}
+out.print("""
+  }; """);
+
+ if(i2cInst.gcombo_tx_mode.value == "DMA")
+ {
+   out.print("""
+  GLOBAL_DMA_Init(&${i2cInst.appres_global_dma.getInstanceLabel()});
+  XMC_DMA_CH_Init(XMC_DMA${dma_tx_module}, ${dma_tx_channel}, &${appInst}_dma_ch_tx_config);
+  XMC_DMA_CH_EnableEvent(XMC_DMA${dma_tx_module},  ${dma_tx_channel}, XMC_DMA_CH_EVENT_TRANSFER_COMPLETE);
+""")
+ }
+ if(i2cInst.gcombo_rx_mode.value == "DMA")
+ {
+   /*Initialize DMA module only if the transmit DMA module is different from receive DMA module
+	* or
+	* Initialize if transmit mode does not use DMA */
+   if(((i2cInst.gcombo_tx_mode.value == "DMA") && (dma_rx_module != dma_tx_module)) ||
+	   (i2cInst.gcombo_tx_mode.value != "DMA"))
+   {
+	 out.print("""
+     GLOBAL_DMA_Init(&${i2cInst.appres_global_dma.getInstanceLabel()});""")
+   }
+   out.print("""
+  XMC_DMA_CH_Init(XMC_DMA${dma_rx_module}, ${dma_rx_channel}, &${appInst}_dma_ch_rx_config);
+  XMC_DMA_CH_EnableEvent(XMC_DMA${dma_rx_module},  ${dma_rx_channel}, XMC_DMA_CH_EVENT_TRANSFER_COMPLETE);
+""")
+ }
+
+out.print("""
+  XMC_I2C_CH_Init(XMC_I2C${UnitInst}_CH${ChannelInst}, &${appInst}_channel_config);
+
+  XMC_USIC_CH_SetInputSource(XMC_I2C${UnitInst}_CH${ChannelInst}, XMC_USIC_CH_INPUT_DX0, ${i2cInst.hwres_usic_channel.getRegValue("dx0cr","dx0cr_dsel")});
+  XMC_USIC_CH_SetInputSource(XMC_I2C${UnitInst}_CH${ChannelInst}, XMC_USIC_CH_INPUT_DX1, ${i2cInst.hwres_usic_channel.getRegValue("dx1cr","dx1cr_dsel")});
+""");
+if(daveEnv.project.selectedDevice.deviceId.family == "XMC1")
+{
+out.print("""
+  XMC_USIC_CH_SetInputSource(XMC_I2C${UnitInst}_CH${ChannelInst}, XMC_USIC_CH_INPUT_DX3, ${i2cInst.hwres_usic_channel.getRegValue("dx3cr","dx3cr_dsel")}U);
+  XMC_USIC_CH_SetInputSource(XMC_I2C${UnitInst}_CH${ChannelInst}, XMC_USIC_CH_INPUT_DX4, ${i2cInst.hwres_usic_channel.getRegValue("dx4cr","dx4cr_dsel")}U);
+  XMC_USIC_CH_SetInputSource(XMC_I2C${UnitInst}_CH${ChannelInst}, XMC_USIC_CH_INPUT_DX5, ${i2cInst.hwres_usic_channel.getRegValue("dx5cr","dx5cr_dsel")}U);""");
+}
+  if((i2cInst.gcheck_txfifo.value == true) && (i2cInst.gcombo_tx_mode.value != "DMA"))
+  {
+  out.print("""
+  /* configure i2c tx fifo */
+  XMC_USIC_CH_TXFIFO_Configure(XMC_I2C${UnitInst}_CH${ChannelInst},
+							   ${i2cInst.hwres_usic_channel.getRegValue("tbctr","tbctr_dptr")},
+							   ${
+int index = i2cInst.hwres_usic_channel.getRegValue("tbctr","tbctr_size")
+								["XMC_USIC_CH_FIFO_DISABLED",
+								  "XMC_USIC_CH_FIFO_SIZE_2WORDS",
+								  "XMC_USIC_CH_FIFO_SIZE_4WORDS",
+								  "XMC_USIC_CH_FIFO_SIZE_8WORDS",
+								  "XMC_USIC_CH_FIFO_SIZE_16WORDS",
+								  "XMC_USIC_CH_FIFO_SIZE_32WORDS",
+								  "XMC_USIC_CH_FIFO_SIZE_64WORDS"
+								 ][index]},
+							   (uint32_t)${1});""");
+						   
+  if((i2cInst.hwres_usic_channel.getRegValue("tbctr","tbctr_stbien") == 1))
+  {
+  out.print("""
+  XMC_USIC_CH_TXFIFO_SetInterruptNodePointer(XMC_I2C${UnitInst}_CH${ChannelInst},
+											   XMC_USIC_CH_TXFIFO_INTERRUPT_NODE_POINTER_STANDARD,
+											 ((uint32_t)${i2cInst.hwres_usic_channel.getRegValue("tbctr","tbctr_stbinp")}));""");
+  }
+  if((i2cInst.hwres_usic_channel.getRegValue("tbctr","tbctr_tberien") == 1))
+  {
+  out.print("""
+  XMC_USIC_CH_TXFIFO_SetInterruptNodePointer(XMC_I2C${UnitInst}_CH${ChannelInst},
+											   XMC_USIC_CH_TXFIFO_INTERRUPT_NODE_POINTER_ALTERNATE,
+											((uint32_t)${i2cInst.hwres_usic_channel.getRegValue("tbctr","tbctr_atbinp")}));""");
+  }
+  if((i2cInst.hwres_usic_channel.getRegValue("tbctr","tbctr_stbien") == 1) ||
+	 (i2cInst.hwres_usic_channel.getRegValue("tbctr","tbctr_tberien") == 1))
+  {
+  out.print("""
+  XMC_USIC_CH_TXFIFO_EnableEvent(XMC_I2C${UnitInst}_CH${ChannelInst}, tx_fifo_events);""");
+  }
+  }
+
+  if((i2cInst.gcheck_rxfifo.value == true) && (i2cInst.gcombo_rx_mode.value != "DMA"))
+  {
+  out.print("""
+  /* configure i2c rx fifo */
+  XMC_USIC_CH_RXFIFO_Configure(XMC_I2C${UnitInst}_CH${ChannelInst},
+							   ${i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_dptr")},
+							   ${
+int index = i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_size")
+								 ["XMC_USIC_CH_FIFO_DISABLED",
+								  "XMC_USIC_CH_FIFO_SIZE_2WORDS",
+								  "XMC_USIC_CH_FIFO_SIZE_4WORDS",
+								  "XMC_USIC_CH_FIFO_SIZE_8WORDS",
+								  "XMC_USIC_CH_FIFO_SIZE_16WORDS",
+								  "XMC_USIC_CH_FIFO_SIZE_32WORDS",
+								  "XMC_USIC_CH_FIFO_SIZE_64WORDS",
+								 ][index]},
+								(uint32_t)(${((i2cInst.gcombo_i2c_rx_fifosize.value.toInteger()) - 1 ) }));""");
+						   
+  if((i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_srbien") == 1))
+  {
+  out.print("""
+  XMC_USIC_CH_RXFIFO_SetInterruptNodePointer(XMC_I2C${UnitInst}_CH${ChannelInst},
+											   XMC_USIC_CH_RXFIFO_INTERRUPT_NODE_POINTER_STANDARD,
+											  ((uint32_t)0x${i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_srbinp")}));""");
+  }
+  if(((i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_arbien") == 1) ||
+	 (i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_rberien") == 1)))
+  {
+  out.print("""
+  XMC_USIC_CH_RXFIFO_SetInterruptNodePointer(XMC_I2C${UnitInst}_CH${ChannelInst},
+											   XMC_USIC_CH_RXFIFO_INTERRUPT_NODE_POINTER_ALTERNATE,
+											  ((uint32_t)0x${i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_arbinp")}));""");
+  }
+  if((i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_arbien") == 1) ||
+	 (i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_srbien") == 1) ||
+	 (i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_rberien") == 1))
+  {
+  out.print("""
+  XMC_USIC_CH_RXFIFO_EnableEvent(XMC_I2C${UnitInst}_CH${ChannelInst}, rx_fifo_events);""");
+  }
+  }
+  /* Interrupt configurations */
+if(i2cInst.gcombo_tx_mode.value == "Direct") 
+{
+  if((i2cInst.hwres_usic_channel.getRegValue("ccr","ccr_tsien") == 1))
+  {
+  out.print("""
+   XMC_USIC_CH_SetInterruptNodePointer(XMC_I2C${UnitInst}_CH${ChannelInst},
+									   XMC_USIC_CH_INTERRUPT_NODE_POINTER_TRANSMIT_SHIFT,
+										((uint32_t)${i2cInst.hwres_usic_channel.getRegValue("inpr","inpr_tsinp")}));""");
+  }
+  if((i2cInst.hwres_usic_channel.getRegValue("ccr","ccr_tbien") == 1) || (i2cInst.hwres_usic_channel.getRegValue("ccr","ccr_rsien") == 1))
+  {
+  out.print("""
+  XMC_USIC_CH_SetInterruptNodePointer(XMC_I2C${UnitInst}_CH${ChannelInst},
+									  XMC_USIC_CH_INTERRUPT_NODE_POINTER_TRANSMIT_BUFFER,
+									   ((uint32_t)${i2cInst.hwres_usic_channel.getRegValue("inpr","inpr_tbinp")}));""");
+  }
+}
+
+if (i2cInst.gcombo_rx_mode.value == "DMA")
+{
+ out.print("""
+  XMC_USIC_CH_SetInterruptNodePointer(XMC_I2C${UnitInst}_CH${ChannelInst},
+									  XMC_USIC_CH_INTERRUPT_NODE_POINTER_TRANSMIT_BUFFER,
+									   ((uint32_t)${i2cInst.hwres_usic_channel.getRegValue("inpr","inpr_pinp")}));""");
+}
+
+if(i2cInst.gcombo_rx_mode.value != "Direct")
+{
+  if((i2cInst.hwres_usic_channel.getRegValue("ccr","ccr_rien") == 1))
+  {
+  out.print("""
+  XMC_USIC_CH_SetInterruptNodePointer(XMC_I2C${UnitInst}_CH${ChannelInst},
+									  XMC_USIC_CH_INTERRUPT_NODE_POINTER_RECEIVE,
+									   ((uint32_t)${i2cInst.hwres_usic_channel.getRegValue("inpr","inpr_rinp")}));""");
+  }
+  if((i2cInst.hwres_usic_channel.getRegValue("ccr","ccr_aien") == 1))
+  {
+  out.print("""
+  XMC_USIC_CH_SetInterruptNodePointer(XMC_I2C${UnitInst}_CH${ChannelInst},
+									  XMC_USIC_CH_INTERRUPT_NODE_POINTER_ALTERNATE_RECEIVE,
+									   ((uint32_t)${i2cInst.hwres_usic_channel.getRegValue("inpr","inpr_ainp")}));""");
+  }
+}
+  if(((i2cInst.hwres_usic_channel.getRegValue("ccr","ccr_dlien") == 1) || (i2cInst.gcombo_tx_mode.value != "Direct") ||
+	 ((i2cInst.gcheck_arbitration.value == true) || (i2cInst.gcheck_error.value == true) || (i2cInst.gcheck_nack.value == true))))
+  {
+  out.print("""
+  XMC_USIC_CH_SetInterruptNodePointer(XMC_I2C${UnitInst}_CH${ChannelInst},
+									  XMC_USIC_CH_INTERRUPT_NODE_POINTER_PROTOCOL,
+									   ((uint32_t)${i2cInst.hwres_usic_channel.getRegValue("inpr","inpr_pinp")}));""");
+  }
+
+
+  if((i2cInst.gcheck_arbitration.value == true) || (i2cInst.gcheck_error.value == true) || (i2cInst.gcheck_nack.value == true) || (i2cInst.gcombo_tx_mode.value == "DMA"))
+  {
+	out.print("""
+  XMC_I2C_CH_EnableEvent(XMC_I2C${UnitInst}_CH${ChannelInst}, enabled_protocol_events);""");
+  }
+
+  if((i2cInst.hwres_usic_channel.getRegValue("ccr","ccr_rsien") == 1) ||
+	  (i2cInst.hwres_usic_channel.getRegValue("ccr","ccr_dlien") == 1) ||
+	  (i2cInst.hwres_usic_channel.getRegValue("ccr","ccr_tsien") == 1) ||
+	  (i2cInst.hwres_usic_channel.getRegValue("ccr","ccr_tbien") == 1) ||
+	  (i2cInst.hwres_usic_channel.getRegValue("ccr","ccr_rien") == 1) ||
+	  (i2cInst.hwres_usic_channel.getRegValue("ccr","ccr_aien") == 1))
+  {
+  out.print("""
+  XMC_USIC_CH_EnableEvent(XMC_I2C${UnitInst}_CH${ChannelInst}, enabled_channel_events);""");
+  }
+  out.print("""
+  XMC_I2C_CH_Start(XMC_I2C${UnitInst}_CH${ChannelInst});
+
+  XMC_GPIO_Init((XMC_GPIO_PORT_t *)PORT${sdaPortNo}_BASE, (uint8_t)${sdaPinNo}, &${appInst}_sda_pin_config);
+  XMC_GPIO_Init((XMC_GPIO_PORT_t *)PORT${sclPortNo}_BASE, (uint8_t)${sclPinNo}, &${appInst}_scl_pin_config);
+""");
+
+/* Dummy read for inctr in interrupt mode */
+i2cInst.hwres_nvic_node_i2c_tx.getRegValue("intcr","intcr_insel")
+i2cInst.hwres_nvic_node_i2c_rx.getRegValue("intcr","intcr_insel")
+
+if(daveEnv.project.selectedDevice.deviceId.family == "XMC1")
+{
+	
+if(i2cInst.gcombo_tx_mode.value == "Interrupt")
+{
+out.print("""
+  NVIC_SetPriority((IRQn_Type)${Tx_node}, ${i2cInst.ginterruptprio_tx.priorityValue});""");
+if(daveEnv.project.selectedDevice.deviceId.series == "4")
+{
+	if (i2cInst.gcheck_txfifo.value == true && i2cInst.gcheck_txfifo.enabled == true)
+	{
+      out.print("""
+  XMC_SCU_SetInterruptControl(${Tx_node}, XMC_SCU_IRQCTRL_USIC${UnitInst}_SR${i2cInst.hwres_usic_channel.getRegValue("tbctr","tbctr_stbinp")}_IRQ${Tx_node});""");
+	}
+	else
+	{
+      out.print("""
+  XMC_SCU_SetInterruptControl(${Tx_node}, XMC_SCU_IRQCTRL_USIC${UnitInst}_SR${i2cInst.hwres_usic_channel.getRegValue("inpr","inpr_tbinp")}_IRQ${Tx_node});""");
+	}
+}
+
+out.print("""
+  NVIC_EnableIRQ((IRQn_Type)${Tx_node});""");
+}
+
+if(i2cInst.gcombo_rx_mode.value == "Interrupt")
+{
+out.print("""
+  NVIC_SetPriority((IRQn_Type)${Rx_node}, ${i2cInst.ginterruptprio_rx.priorityValue});""");
+if(daveEnv.project.selectedDevice.deviceId.series == "4")
+{
+  if (i2cInst.gcheck_rxfifo.value == true && i2cInst.gcheck_rxfifo.enabled == true)
+  {
+    out.print("""
+  XMC_SCU_SetInterruptControl(${Rx_node}, XMC_SCU_IRQCTRL_USIC${UnitInst}_SR${i2cInst.hwres_usic_channel.getRegValue("rbctr","rbctr_srbinp")}_IRQ${Rx_node});""");
+  }
+  else
+  {
+    out.print("""
+  XMC_SCU_SetInterruptControl(${Rx_node}, XMC_SCU_IRQCTRL_USIC${UnitInst}_SR${i2cInst.hwres_usic_channel.getRegValue("inpr","inpr_rinp")}_IRQ${Rx_node});""");
+  }
+}
+out.print("""
+  NVIC_EnableIRQ((IRQn_Type)${Rx_node});""");
+}
+if(i2cInst.gcombo_tx_mode.value == "Direct")
+{
+if((i2cInst.gcheck_nack.value == true) || (i2cInst.gcheck_arbitration.value == true) || (i2cInst.gcheck_error.value == true))
+{
+out.print("""
+  NVIC_SetPriority((IRQn_Type)${Err_node}, ${i2cInst.ginterruptprio_error.priorityValue});""");
+out.print("""
+  NVIC_EnableIRQ((IRQn_Type)${Err_node});""");
+}
+if(daveEnv.project.selectedDevice.deviceId.series == "4")
+{
+  out.print("""
+  XMC_SCU_SetInterruptControl(${Err_node}, XMC_SCU_IRQCTRL_USIC${UnitInst}_SR${i2cInst.hwres_usic_channel.getRegValue("inpr","inpr_pinp")}_IRQ${Err_node});""");
+}
+}
+}
+else
+{
+if(i2cInst.gcombo_tx_mode.value == "Interrupt")
+{
+out.print("""/* Tx interrupt priority settings */""");
+out.print("""
+  NVIC_SetPriority((IRQn_Type)${Tx_node}, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),${i2cInst.ginterruptprio_tx.priorityValue},${i2cInst.ginterruptprio_tx.subPriorityValue}));""");
+out.print("""
+  NVIC_EnableIRQ((IRQn_Type)${Tx_node});""");
+}
+if(i2cInst.gcombo_rx_mode.value == "Interrupt")
+{
+out.print("""/* Rx interrupt priority settings */""");
+out.print("""
+  NVIC_SetPriority((IRQn_Type)${Rx_node}, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),${i2cInst.ginterruptprio_rx.priorityValue},${i2cInst.ginterruptprio_rx.subPriorityValue}));""");
+out.print("""
+  NVIC_EnableIRQ((IRQn_Type)${Rx_node});""");
+}
+if(i2cInst.gcombo_tx_mode.value == "Direct")
+{
+if((i2cInst.gcheck_nack.value == true) || (i2cInst.gcheck_arbitration.value == true) || (i2cInst.gcheck_error.value == true))
+{
+out.print("""/* Error interrupt priority settings */""");
+out.print("""
+  NVIC_SetPriority((IRQn_Type)${Err_node}, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),${i2cInst.ginterruptprio_error.priorityValue},${i2cInst.ginterruptprio_error.subPriorityValue}));""");
+out.print("""
+  NVIC_EnableIRQ((IRQn_Type)${Err_node});
+""");
+}
+}
+}
+
+/*DMA callback registration for receive mode*/
+if(i2cInst.gcombo_rx_mode.value == "DMA")
+{
+  out.print("""
+  /*Register transfer complete event handler*/
+  XMC_DMA_CH_SetEventHandler(XMC_DMA${dma_rx_module}, ${dma_rx_channel}, ${appInst}_dma_rx_handler);""")
+}
+
+/*DMA callback registration for transmit mode*/
+if(i2cInst.gcombo_tx_mode.value == "DMA")
+{
+  out.print("""
+  /* Register transfer complete event handler */
+  XMC_DMA_CH_SetEventHandler(XMC_DMA${dma_tx_module}, ${dma_tx_channel}, ${appInst}_dma_tx_handler);
+  """)
+}
+out.print("""}""");
+
+if(i2cInst.gcombo_tx_mode.value == "Interrupt")
+{
+out.print("""
+/*Transmit ISR*/
+void ${appInst}_TX_HANDLER()
+{
+  I2C_MASTER_TransmitHandler(&${appInst});
+}""");
+}
+
+if(i2cInst.gcombo_rx_mode.value == "Interrupt")
+{
+out.print("""
+/*Receive ISR*/
+void ${appInst}_RX_HANDLER()
+{
+  I2C_MASTER_ReceiveHandler(&${appInst});
+}
+""");
+}
+
+if(i2cInst.gcombo_tx_mode.value == "Direct")
+{
+if((i2cInst.gcheck_nack.value == true) || (i2cInst.gcheck_arbitration.value == true) || (i2cInst.gcheck_error.value == true))
+{
+out.print("""
+void ${appInst}_ERR_HANDLER()
+{
+  I2C_MASTER_ProtocolHandler(&${appInst});
+}
+""");
+}
+}
+
+/*Transmit mode DMA transfer complete handler*/
+if(i2cInst.gcombo_tx_mode.value == "DMA")
+{
+  out.print("""
+void ${appInst}_dma_tx_handler(XMC_DMA_CH_EVENT_t event)
+{
+  if(event == XMC_DMA_CH_EVENT_TRANSFER_COMPLETE)
+  {""")
+  if(i2cInst.gcombo_rx_mode.value == "DMA")
+  {
+	out.print("""
+	if(${appInst}.runtime->direction == I2C_MASTER_DIRECTION_RECEIVE)
+	{
+		if(${appInst}.runtime->rx_dma_data_count > 1U)
+		{
+			XMC_I2C_CH_MasterReceiveNack(${appInst}.channel);
+			while((XMC_I2C_CH_GetStatusFlag(${appInst}.channel) & (XMC_I2C_CH_STATUS_FLAG_RECEIVE_INDICATION |XMC_I2C_CH_STATUS_FLAG_ALTERNATIVE_RECEIVE_INDICATION)) == 0U)
+			{
+	
+			}
+		}
+
+	}""")
+  }
+  out.print("""
+    ${appInst}.runtime->tx_busy = false;""")
+  	
+  if(i2cInst.gcheck_end_of_tx_callback.value == true)
+  {
+	out.print("""
+    ${i2cInst.gstring_end_of_tx_callback.value}();
+""")
+  }
+out.print("""
+  }
+}
+""")
+}
+
+/*Receive mode DMA transfer complete handler*/
+if(i2cInst.gcombo_rx_mode.value == "DMA")
+{
+  out.print("""
+void ${appInst}_dma_rx_handler(XMC_DMA_CH_EVENT_t event)
+{  
+  if(event == XMC_DMA_CH_EVENT_TRANSFER_COMPLETE)
+  {""")
+    if(i2cInst.gcombo_tx_mode.value != "DMA")
+    {
+		out.print("""
+		${appInst}.runtime->rx_dma_data_index++;
+		if(${appInst}.runtime->rx_dma_data_index < ${appInst}.runtime->rx_dma_data_count)
+		{
+			if((${appInst}.runtime->rx_dma_data_index + 1) == ${appInst}.runtime->rx_dma_data_count)
+			{	//send nak
+				XMC_I2C_CH_MasterReceiveNack(${appInst}.channel);
+			}
+			else
+			{
+				//send ack
+				XMC_I2C_CH_MasterReceiveAck(${appInst}.channel);
+			}
+			while((XMC_I2C_CH_GetStatusFlag(${appInst}.channel) & (XMC_I2C_CH_STATUS_FLAG_RECEIVE_INDICATION |XMC_I2C_CH_STATUS_FLAG_ALTERNATIVE_RECEIVE_INDICATION)) == 0U)
+			{
+			  /* wait for ACK */
+			}
+	
+	
+			XMC_DMA_CH_Enable(${appInst}.config->receive_dma_config->global_dma->dma, ${appInst}.config->receive_dma_config->dma_channel);
+		}
+		else
+		{
+  			${appInst}.runtime->rx_dma_data_index = 0;
+			${appInst}.runtime->rx_busy = false;""")
+  			if(i2cInst.gcheck_end_of_rx_callback.value == true)
+			{
+				out.print("""
+		    ${i2cInst.gstring_end_of_rx_callback.value}();""");
+			}
+		out.print("""
+        }""")
+  		
+    }  
+    else
+    {
+	out.print("""
+      ${appInst}.runtime->rx_dma_data_index = 0;
+      ${appInst}.runtime->rx_busy = false;""")
+		
+   if(i2cInst.gcheck_end_of_rx_callback.value == true)
+	{
+	out.print("""
+      ${i2cInst.gstring_end_of_rx_callback.value}();""");
+	}
+    }
+out.print("""
+  }""");	
+   
+out.print("""  
+}""");
+}
+}
+}

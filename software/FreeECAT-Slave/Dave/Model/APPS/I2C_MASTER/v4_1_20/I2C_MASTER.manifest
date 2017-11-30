@@ -1,0 +1,713 @@
+package Model.APPS.I2C_MASTER.v4_1_20;
+
+/*
+Copyright (c) 2015-2017, Infineon Technologies AG
+All rights reserved.                       
+                                           
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
+following conditions are met:  
+                                                                            
+Redistributions of source code must retain the above copyright notice, this list of conditions and the following
+disclaimer.                       
+ 
+Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following
+disclaimer in the documentation and/or other materials provided with the distribution.                      
+ 
+Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+products derived from this software without specific prior written permission.                                          
+                                                                            
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.                                                 
+                                                                            
+To improve the quality of the software, users are encouraged to share modifications, enhancements or bug fixes with 
+Infineon Technologies AG: dave@infineon.com. */
+
+/*************** Revision History **************************************************************
+ Version       Date        Description //Retain this format
+
+  4.0.0       16-Feb-2015   Initial version for DAVE v4
+  4.0.1       20-Feb-2015   Documentation updated
+  4.0.2       06-Apr-2015   Review comments fixed
+  4.1.2       19-Jun-2015   AbortTransmit and AbortReceive API return type modified  
+  4.1.4       08-Jul-2015   Documentation updated
+  4.1.6       09-Oct-2015   DMA mode, direct mode support added
+  4.1.8       21-Oct-2015   APP Instance label can be edited now in DMA mode
+  4.1.10      15-Dec-2015   Support added for XMC4300
+  4.1.12      06-Apr-2016   Added configuration for DX3,DX4 and DX5 input multiplexers 
+                            for XMC1 family.
+  4.1.14      04-Jul-2016   Pad signals are exposed to user for external connection with other APPs
+  4.1.16      29-Jul-2016   Documentation of DMA and interrupt functions added in the help document
+  4.1.18      18-Aug-2016   Documentation of slave address formatting improved
+  4.1.20      19-Jan-2017   Avoid unintended interrupts when filling FIFO  
+***********************************************************************************************/
+  
+// Import statements
+import ifx.davex.app.manifest.*
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
+class  I2C_MASTER extends I2C_MASTER_GUI {
+
+ // Note  : I2C_MASTER properties are mandatory and important
+ // Begin : I2C_MASTER property section
+ def version            = '4.1.20'
+ 
+ def categoriesDescription = ["Communication/General Purpose"]
+
+ // Minimum DAVE version required for the App
+ def minDaveVersion           = '4.0.0'
+ 
+ // Keywords to search in Apps selection view
+ def keywords      = ['Simple I2C',
+					  'Communication',
+					  'I2C',
+					  'USIC',
+					  'Serial',
+					  'all'
+					 ]
+ 
+ def softwareIDs  = [
+
+	                     "XMC4.8.*.*.*":"1.0.0",
+		                 "XMC4.7.*.*.*":"1.0.0",
+		                 "XMC4.5.*.*.*":"1.0.0",
+		                 "XMC4.4.*.*.*":"1.0.0",
+						 "XMC4.3.*.*.*":"1.0.0",
+		                 "XMC4.2.*.*.*":"1.0.0",
+		                 "XMC4.1.*.*.*":"1.0.0",
+						 "XMC1.4.*.*.*":"1.0.0",
+						 "XMC1.3.*.*.*":"1.0.0",
+						 "XMC1.2.*.*.*":"1.0.0",
+						 "XMC1.1.*.*.*":"1.0.0"
+	                ]
+
+
+ def singleton     = false
+ def initProvider  = true
+ def deprecated    = false
+ def sharable      = false
+
+ // App short description
+ def description = "Configures a USIC channel to perform transfer & receive operations using I2C protocol."
+ 
+ // End   : I2C_MASTER property section
+ 
+ // Begin : User variable section
+ 
+
+ MVirtualResourceGroup hwres_usic_channel
+ MVirtualResourceGroup hwres_nvic_node_i2c_tx
+ MVirtualResourceGroup hwres_nvic_node_i2c_rx
+ MVirtualResourceGroup hwres_nvic_node_i2c_error
+ MVirtualResourceGroup hwres_i2c_sda
+ MVirtualResourceGroup hwres_i2c_scl
+ 
+ MVirtualResourceGroup hwres_tx_dma_channel
+ MVirtualResourceGroup hwres_rx_dma_channel
+ MVirtualResourceGroup hwres_tx_dma_dlr
+ MVirtualResourceGroup hwres_rx_dma_dlr
+ 
+ MVirtualSignal vs_dma_interrupt_tx             /*Signal representing the DMA transfer complete interrupt*/
+ MVirtualSignal vs_dma_interrupt_rx             /*Signal representing the DMA reception complete interrupt*/
+ MVirtualSignal vs_src_trigger_dlr_rx_in        /*Signal representing DLR connection for DMA receive trigger*/
+ MVirtualSignal vs_dst_trigger_dlr_tx_in        /*Signal representing DLR connection for DMA transmit trigger*/
+ MVirtualSignal vs_src_trigger_dlr_rx_out       /*Signal output from the DLR to be connected to the DMA channel*/
+ MVirtualSignal vs_dst_trigger_dlr_tx_out       /*Signal output from the DLR to be connected to the DMA channel*/
+ MVirtualSignal vs_dma_ch_dst_req_tx            /*Signal representing DMA channel destination peripheral request (tx)*/
+ MVirtualSignal vs_dma_ch_src_req_rx            /*Signal representing DMA channel source peripheral request (rx)*/
+ MVirtualSignalRA vsra_gpdma_interrupt          /*Virtual signal from the GLOBAL_DMA APP for transmit mode*/
+
+ 
+ MVirtualSignal vs_i2c_sdapad
+ MVirtualSignal vs_i2c_sclpad
+ MVirtualSignal vs_i2c_dout0
+ MVirtualSignal vs_i2c_dx0ins
+ MVirtualSignal vs_i2c_dx1ins
+ MVirtualSignal vs_i2c_clkout
+ 
+ MVirtualSignal vs_i2c_std_tx_int
+ MVirtualSignal vs_i2c_std_rx_int
+ MVirtualSignal vs_i2c_alt_rx_int
+
+ MVirtualSignal vs_i2c_fifo_tx_int
+ MVirtualSignal vs_i2c_fifo_rx_int
+ MVirtualSignal vs_i2c_fifo_alt_rx_int
+
+ MVirtualSignal vs_i2c_proto_specfic_int
+ 
+ MVirtualSignal vs_i2c_tx_int
+ MVirtualSignal vs_i2c_rx_int
+ MVirtualSignal vs_i2c_error_int
+ 
+ MRequiredApp appres_clk_xmc1
+ MRequiredApp appres_clk_xmc4
+ MRequiredApp appres_cpu
+ MRequiredApp appres_global_dma
+
+ 
+ SolverVariable sv_dma_modules = SolverVariable()  /*Solver variable with the list of DMA modules DMA0 and DMA1*/
+ 
+ GFloat gfloat_peripheralclock = GFloat(widgetName:"gfloat_peripheralclock")
+ /* To save the optimized final step value which is used to configure the baud_rate handle in template  */
+ GInteger gint_stepVal         = GInteger(widgetName:"gint_stepVal")
+ /* To save the optimized pdiv value which is used to configure the baud_rate handle in template  */
+ GInteger gint_pdivVal         = GInteger(widgetName:"gint_pdivVal")
+ /* To return the final step, pdiv & real baud rate after calculations */
+ GCombo gcombo_tempbaud        = GCombo(widgetName:"gcombo_tempbaud")
+ /* To extract the Pad class */
+ GString gcombo_temppadclass   = GString(widgetName:"gcombo_temppadclass")
+	 
+ // End   : User variable section
+
+ // I2C_MASTER Constructor
+ public I2C_MASTER(DaveEnv daveEnv) {
+	 
+	 String family = daveEnv.project.selectedDevice.deviceId.family
+	 String series = daveEnv.project.selectedDevice.deviceId.series
+	 String fn_regexp = ~/^[^\d\W]\w*\Z/
+
+	 MF IsInterruptMode_Enabled = 	MF({
+										 if((gcombo_tx_mode.value == "Interrupt") || (gcombo_rx_mode.value == "Interrupt"))
+										 {
+											 true
+										 }
+										 else
+										 {
+											 false
+										 }},Boolean)
+
+	 MF IsTxInterruptMode_Enabled = MF({
+										 if(gcombo_tx_mode.value == "Interrupt")
+										 {
+											 true
+										 }
+										 else
+										 {
+											 false
+										 }},Boolean)
+
+	 MF IsRxInterruptMode_Enabled = MF({
+										 if(gcombo_rx_mode.value == "Interrupt")
+										 {
+											 true
+										 }
+										 else
+										 {
+											 false
+										 }},Boolean)
+
+	 /* Check DMA option is selected or not and family is XMC4 or not */
+	 MF IsDMA_Enabled = MF({
+							  if(((gcombo_tx_mode.value == "DMA") || (gcombo_rx_mode.value == "DMA")) && (family == 'XMC4'))
+							  {
+							   true
+							  }
+							  else
+							  {
+							   false
+							  }},Boolean)
+	 
+	 MF IsTxDMA_Enabled = MF({
+		                      if((gcombo_tx_mode.value == "DMA") && (family == 'XMC4'))
+		 					  {
+							    true
+		 					  } 
+							  else
+							  {
+							    false
+							  }},Boolean)
+	 
+	 MF IsRxDMA_Enabled = MF({
+							  if((gcombo_rx_mode.value == "DMA") && (family == 'XMC4'))
+							  {
+							    true
+							  }
+							  else
+							  {
+							    false
+							  }},Boolean)
+
+	 MF IS_TX_FIFO_ENABLE =        MF({(gcheck_txfifo.value == true) && (gcombo_tx_mode.value != "DMA")},Boolean)
+	 MF IS_TX_FIFO_DISABLE =        MF({(gcheck_txfifo.value == false) || (gcombo_tx_mode.value == "DMA")},Boolean)
+	 MF IS_RX_FIFO_ENABLE =        MF({(gcheck_rxfifo.value == true) && (gcombo_rx_mode.value != "DMA")},Boolean)
+	 MF IS_RX_FIFO_DISABLE =        MF({(gcheck_rxfifo.value == false) || (gcombo_rx_mode.value == "DMA")},Boolean)
+	 
+	 MF TX_DIRECTMODE_FIFOENABLE  = MF({(gcheck_txfifo.value == true) && (gcombo_tx_mode.value == "Direct")},Boolean)
+	 MF TX_DIRECTMODE_FIFODISABLE = MF({(gcheck_txfifo.value == false) && (gcombo_tx_mode.value == "Direct")},Boolean)
+	 MF RX_DIRECTMODE_FIFOENABLE  = MF({(gcheck_rxfifo.value == true) && (gcombo_rx_mode.value == "Direct")},Boolean)
+	 MF RX_DIRECTMODE_FIFODISABLE = MF({(gcheck_rxfifo.value == false) && (gcombo_tx_mode.value == "Direct")},Boolean)
+
+	 MF TXFIFOENABLE  = MF({(gcheck_txfifo.value == true)},Boolean)
+	 MF TXFIFODISABLE = MF({(gcheck_txfifo.value == false)}, Boolean)
+
+	 MF RXFIFOENABLE  = MF({(gcheck_rxfifo.value == true)},Boolean)
+	 MF RXFIFODISABLE = MF({(gcheck_rxfifo.value == false)}, Boolean)
+
+	 
+	 MF PINCONFIGENABLE = MF({((gcheck_pinconfig.value == true)&& (family == 'XMC4'))}, Boolean)
+	 MF SPEED_CLASS1    = MF({
+		 						if(gcombo_sda_drive.value == "Weak" || gcombo_sda_drive.value == "Medium" || 
+								   gcombo_sda_drive.value == "Don't Care") 
+								 {
+									 ['A1', 'A1+', 'A2']
+								 }
+								 else if (gcombo_sda_drive.value == "Strong Slow Edge") 
+								 {
+									 ['A1+']
+								 }
+								 else if (gcombo_sda_drive.value == "Strong Soft Edge") 
+								 {
+									 ['A1+', 'A2']
+								 }
+								 else 
+								 {
+									 ['A2']
+								 }
+	 							}, List)
+	 MF SPEED_CLASS2    = MF({
+								 if(gcombo_scl_drive.value == "Weak" || gcombo_scl_drive.value == "Medium" || 
+									gcombo_scl_drive.value == "Don't Care")
+								 {
+									 ['A1', 'A1+', 'A2']
+								 }
+								 else if (gcombo_scl_drive.value == "Strong Slow Edge")
+								 {
+									 ['A1+']
+								 }
+								 else if (gcombo_scl_drive.value == "Strong Soft Edge")
+								 {
+									 ['A1+', 'A2']
+								 }
+								 else
+								 {
+									 ['A2']
+								 }
+								}, List)
+	 
+	 if(family == 'XMC4')
+	 {
+		 appres_clk_xmc4 =  MRequiredApp("CLOCK_XMC4", "CLOCK_XMC4", RSHARABLE, "4.0.2")
+		 appres_cpu = MRequiredApp("CPU_CTRL_XMC4", "CPU APP", RSHARABLE, "4.0.2")
+		 // consume GLOBAL_DMA APP if DMA mode is selected for tx / rx
+		 appres_global_dma = MRequiredApp("GLOBAL_DMA","GLOBAL_DMA",RSHARABLE, "4.0.2", IsDMA_Enabled)
+	 }
+	 else if(family == 'XMC1')
+	 {
+		 appres_clk_xmc1 =  MRequiredApp("CLOCK_XMC1", "CLOCK_XMC1", RSHARABLE, "4.0.2")
+		 appres_cpu = MRequiredApp("CPU_CTRL_XMC1", "CPU APP", RSHARABLE, "4.0.2")
+		 ginterruptprio_tx.subPriorityVisible = false
+		 ginterruptprio_rx.subPriorityVisible = false
+		 ginterruptprio_error.subPriorityVisible = false
+	 }
+	 
+	 /* -------------- Hardware resource consumption -------------------------------- */
+	 hwres_i2c_sda = MVirtualResourceGroup("SDA",["port","p","*","pad","*"])
+	 hwres_i2c_scl = MVirtualResourceGroup("SCL",["port","p","*","pad","*"])
+	 
+	 hwres_usic_channel =  MVirtualResourceGroup("Channel", ["peripheral", "usic", "*", "channel", "*"])
+	 
+	 /* consume NVIC nodes */
+	 hwres_nvic_node_i2c_tx = MVirtualResourceGroup("NVIC Node Tx", ["peripheral", "cpu", "0", "nvic", "interrupt", "*"], MF({
+										 								(gcombo_tx_mode.value == "Interrupt")},Boolean))
+	 hwres_nvic_node_i2c_rx = MVirtualResourceGroup("NVIC Node Rx", ["peripheral", "cpu", "0", "nvic", "interrupt", "*"], MF({
+										 								(gcombo_rx_mode.value == "Interrupt")},Boolean))
+	 hwres_nvic_node_i2c_error = MVirtualResourceGroup("NVIC Node Error", ["peripheral", "cpu", "0", "nvic", "interrupt", "*"], MF({
+										 								((gcheck_nack.value == true) ||
+																		 (gcheck_arbitration.value == true) ||
+																		 (gcheck_error.value == true)) && 
+																	 	((gcombo_tx_mode.value == "Direct"))
+																		 },Boolean))
+	 
+	 hwres_tx_dma_channel = MVirtualResourceGroup("DMA channel Tx", ["peripheral", sv_dma_modules, "0", "ch", "*"], IsTxDMA_Enabled)
+	 hwres_rx_dma_channel = MVirtualResourceGroup("DMA channel Rx", ["peripheral", sv_dma_modules, "0", "ch", "*"], IsRxDMA_Enabled)
+	 hwres_tx_dma_dlr = MVirtualResourceGroup("DLR channel Tx", ["peripheral", "dlr", "0", "ch", "*"], IsTxDMA_Enabled)
+	 hwres_rx_dma_dlr = MVirtualResourceGroup("DLR channel Rx", ["peripheral", "dlr", "0", "ch", "*"], IsRxDMA_Enabled)
+	 
+	 addRegisterBitFieldConstraint( hwres_usic_channel, "tbctr_size", MF({[0]}, List), MF({!(gcheck_txfifo.value)}, Boolean))
+	 addRegisterBitFieldConstraint( hwres_usic_channel, "rbctr_size", MF({[0]}, List), MF({!(gcheck_rxfifo.value)}, Boolean))
+	 addRegisterBitFieldConstraint( hwres_usic_channel, "tbctr_size", MF({[gcombo_i2c_tx_fifosize.options.indexOf(gcombo_i2c_tx_fifosize.value) + 1]}, List), MF({(gcheck_txfifo.value)}, Boolean))
+	 addRegisterBitFieldConstraint( hwres_usic_channel, "rbctr_size", MF({[gcombo_i2c_rx_fifosize.options.indexOf(gcombo_i2c_rx_fifosize.value) + 1]}, List), MF({(gcheck_rxfifo.value)}, Boolean))
+
+	 addResourcePropertyConstraint(hwres_i2c_sda, "speed_class of rg_property", SPEED_CLASS1, PINCONFIGENABLE)
+	 addResourcePropertyConstraint(hwres_i2c_scl, "speed_class of rg_property", SPEED_CLASS2, PINCONFIGENABLE)
+	 
+
+	 
+	 if((family+series == 'XMC45') || (family+series == 'XMC48') ||(family+series == 'XMC47'))
+	 {
+	   addUriElementRangeConstraint(sv_dma_modules, ["dma8", "dma4"])
+	 }
+	 else
+	 {
+	   addUriElementRangeConstraint(sv_dma_modules, ["dma8"])
+	 }
+	 
+	 /* -------------- APP IO Signals -------------------------------- */
+	 @AddPin
+	 vs_i2c_sdapad = MVirtualSignal(hwres_i2c_sda,"sda_pin","pad",true,true)
+	 
+	 @AddPin
+	 vs_i2c_sclpad = MVirtualSignal(hwres_i2c_scl,"scl_pin","pad",true,true)
+	 
+	 vs_i2c_dout0  = MVirtualSignal(hwres_usic_channel, "tx pin", "dout0", true, false)
+	 vs_i2c_dx0ins = MVirtualSignal(hwres_usic_channel, "rx pin", "dx0ins", true, false)
+	 vs_i2c_dx1ins = MVirtualSignal(hwres_usic_channel, "clockin", "dx1ins", true, false)
+	 vs_i2c_clkout = MVirtualSignal(hwres_usic_channel, "clockout", "sclkout", true, false)
+	 
+
+	 vs_i2c_tx_int    		  =  MVirtualSignal( hwres_nvic_node_i2c_tx, "sr_transmit", "signal_in", MF({
+										 								(gcombo_tx_mode.value == "Interrupt")},Boolean), false)
+	 vs_i2c_rx_int   		  =  MVirtualSignal( hwres_nvic_node_i2c_rx, "sr_receive", "signal_in", MF({
+										 								(gcombo_rx_mode.value == "Interrupt")},Boolean), false)
+	 vs_i2c_error_int         =  MVirtualSignal( hwres_nvic_node_i2c_error, "sr_protocol_events", "signal_in", MF({
+										 								((gcheck_nack.value == true) ||
+																		 (gcheck_arbitration.value == true) ||
+																		 (gcheck_error.value == true))	 
+																		 },Boolean), false)
+	 
+	 /*	If Direct mode is selected, the signals are exposed externally.  */
+	 vs_i2c_std_tx_int        =  MVirtualSignal( hwres_usic_channel, "event_transmit_buffer","transmit_buffer_int", IS_TX_FIFO_DISABLE, MF({((gcombo_tx_mode.value == "Direct") && (gcheck_txfifo.value == false))}, Boolean))
+	 vs_i2c_std_rx_int        =  MVirtualSignal( hwres_usic_channel, "event_std_receive", "standard_receive_int", IS_RX_FIFO_DISABLE, MF({((gcombo_rx_mode.value == "Direct") && (gcheck_rxfifo.value == false))}, Boolean))
+	 vs_i2c_alt_rx_int        =  MVirtualSignal( hwres_usic_channel, "event_alt_receive",  "alternate_receive_int", IS_RX_FIFO_DISABLE, MF({((gcombo_rx_mode.value == "Direct") && (gcheck_rxfifo.value == false))}, Boolean))
+
+	 vs_i2c_fifo_tx_int       =  MVirtualSignal( hwres_usic_channel, "event_fifo_transmit","standard_transmit_buffer_int", IS_TX_FIFO_ENABLE, MF({((gcombo_tx_mode.value == "Direct") && (gcheck_txfifo.value))}, Boolean))
+	 vs_i2c_fifo_rx_int       =  MVirtualSignal( hwres_usic_channel, "event_fifo_std_receive", "standard_receive_buffer_int", IS_RX_FIFO_ENABLE, MF({((gcombo_rx_mode.value == "Direct") && (gcheck_rxfifo.value))}, Boolean))
+	 vs_i2c_fifo_alt_rx_int   =  MVirtualSignal( hwres_usic_channel, "event_fifo_alt_receive", "alternate_receive_buffer_int", IS_RX_FIFO_ENABLE, MF({((gcombo_rx_mode.value == "Direct") && (gcheck_rxfifo.value))}, Boolean))
+	 
+	 vs_i2c_proto_specfic_int =  MVirtualSignal( hwres_usic_channel, "event_protocol", "protocol_specific_int", true, false)
+	 
+	 vs_dma_interrupt_tx       =  MVirtualSignal( hwres_tx_dma_channel, "DMA Transfer complete event", "dma_int", IsTxDMA_Enabled, false)
+	 vs_dma_interrupt_rx       =  MVirtualSignal( hwres_rx_dma_channel, "DMA Transfer complete event", "dma_int", IsRxDMA_Enabled, false)
+	 vs_src_trigger_dlr_rx_in  =  MVirtualSignal( hwres_rx_dma_dlr, "source_trigger","in", IsRxDMA_Enabled, false)
+	 vs_dst_trigger_dlr_tx_in  =  MVirtualSignal( hwres_tx_dma_dlr, "destination_trigger","in", IsTxDMA_Enabled, false)
+	 vs_src_trigger_dlr_rx_out =  MVirtualSignal( hwres_rx_dma_dlr, "dlr_out", "out", IsRxDMA_Enabled, false)
+	 vs_dst_trigger_dlr_tx_out =  MVirtualSignal( hwres_tx_dma_dlr, "dlr_out", "out", IsTxDMA_Enabled, false)
+	 vs_dma_ch_dst_req_tx      =  MVirtualSignal( hwres_tx_dma_channel, "Destination request", "dest_req", IsTxDMA_Enabled, false)
+	 vs_dma_ch_src_req_rx      =  MVirtualSignal( hwres_rx_dma_channel, "Source request", "src_req", IsRxDMA_Enabled, false)
+	 if(family == 'XMC4')
+	 {
+	   vsra_gpdma_interrupt      =  MVirtualSignalRA( appres_global_dma, "interrupt_dma")
+	 }
+ 
+
+
+	 /* ---------------- APP IO Connections -------------------------- */
+	 addConnectionConstraint( vs_i2c_dout0, vs_i2c_sdapad)
+	 addConnectionConstraint( vs_i2c_sdapad, vs_i2c_dx0ins)
+	 addConnectionConstraint( vs_i2c_clkout, vs_i2c_sclpad)
+	 addConnectionConstraint( vs_i2c_sclpad, vs_i2c_dx1ins)
+	 
+	 /* Connect standard transmit interrupt to transmit interrupt */
+	 addConnectionConstraint(vs_i2c_std_tx_int, vs_i2c_tx_int, MF({(gcombo_tx_mode.value == "Interrupt")&& (gcheck_txfifo.value == false)},Boolean))
+	 
+	 /* Connect standard receive interrupt to receive interrupt */
+	 addConnectionConstraint(vs_i2c_std_rx_int, vs_i2c_rx_int, MF({(gcombo_rx_mode.value == "Interrupt")&& (gcheck_rxfifo.value == false)},Boolean))
+	 
+	 /* Connect alternate receive interrupt to receive interrupt */
+	 addConnectionConstraint(vs_i2c_alt_rx_int, vs_i2c_rx_int, MF({(gcombo_rx_mode.value == "Interrupt")&& (gcheck_rxfifo.value == false)},Boolean))
+	 
+	 /* Connect FIFO transmit interrupt to transmit interrupt */
+	 addConnectionConstraint(vs_i2c_fifo_tx_int, vs_i2c_tx_int, MF({(gcombo_tx_mode.value == "Interrupt")&& (gcheck_txfifo.value)},Boolean))
+	 
+	 /* Connect FIFO receive interrupt to receive interrupt */
+	 addConnectionConstraint(vs_i2c_fifo_rx_int, vs_i2c_rx_int, MF({(gcombo_rx_mode.value == "Interrupt")&& (gcheck_rxfifo.value)},Boolean))
+	 
+	 /* Connect FIFO alternate receive interrupt to receive interrupt */
+	 addConnectionConstraint(vs_i2c_fifo_alt_rx_int, vs_i2c_rx_int, MF({(gcombo_rx_mode.value == "Interrupt")&& (gcheck_rxfifo.value)},Boolean))
+	 
+	 /* Connect protocol specific interrupt to error interrupt */
+	 addConnectionConstraint(vs_i2c_proto_specfic_int, vs_i2c_error_int)
+	 
+	 if(family == 'XMC4')
+	 {	 
+	// addConnectionConstraint(vs_i2c_std_tx_int, vs_dst_trigger_dlr_tx_in, IsTxDMA_Enabled)
+	 addConnectionConstraint(vs_i2c_proto_specfic_int, vs_dst_trigger_dlr_tx_in, IsTxDMA_Enabled)
+	 addConnectionConstraint(vs_dma_interrupt_tx, vsra_gpdma_interrupt, IsTxDMA_Enabled)
+	 addConnectionConstraint(vs_dma_interrupt_rx, vsra_gpdma_interrupt, IsRxDMA_Enabled)
+	 addConnectionConstraint(vs_dst_trigger_dlr_tx_out, vs_dma_ch_dst_req_tx, IsTxDMA_Enabled)
+	 addConnectionConstraint(vs_i2c_std_rx_int, vs_src_trigger_dlr_rx_in, IsRxDMA_Enabled)
+	 addConnectionConstraint(vs_i2c_alt_rx_int, vs_src_trigger_dlr_rx_in, IsRxDMA_Enabled)
+	 addConnectionConstraint(vs_src_trigger_dlr_rx_out, vs_dma_ch_src_req_rx, IsRxDMA_Enabled)
+	 }
+	 
+	 if(family == 'XMC4')
+	 {
+		 /*DMA mode is available in XMC4x devices*/
+		 gcombo_tx_mode.options = ["Interrupt","DMA","Direct"]
+		 gcombo_rx_mode.options = ["Interrupt","DMA","Direct"]
+  
+		 /*Make interrupt subpriority configuration visible*/
+		 ginterruptprio_tx.subPriorityVisible = true
+		 ginterruptprio_rx.subPriorityVisible = true
+		 ginterruptprio_error.subPriorityVisible = true
+		 /*Set the default priority value to least priority*/
+		 ginterruptprio_tx.priorityValue = 63
+		 ginterruptprio_rx.priorityValue = 63
+		 ginterruptprio_error.priorityValue = 63
+	 }
+	 else
+	 {
+		 /*DMA mode is not available in XMC1x devices*/
+		 gcombo_tx_mode.options = ["Interrupt","Direct"]
+		 gcombo_rx_mode.options = ["Interrupt","Direct"]
+  
+		 /*Hide interrupt subpriority configuration*/
+		 ginterruptprio_tx.subPriorityVisible = false
+		 ginterruptprio_rx.subPriorityVisible = false
+		 ginterruptprio_error.subPriorityVisible = false
+		 /*Set the default priority and max priority value possible*/
+		 ginterruptprio_tx.priorityValue = 3
+		 ginterruptprio_rx.priorityValue = 3
+		 ginterruptprio_error.priorityValue = 3
+	 }
+	   
+	 /* Set max Priority and Sub-priority value for XMC4 */
+	 if(family == 'XMC4')
+	 {
+		 gfloat_peripheralclock.value = MF({
+											 Float temp = appres_clk_xmc4.getVal(["gfloat_peribusfreq", "value"]) as Float
+											 return temp
+										   }, Float)
+		 
+		 ginterruptprio_tx.maxPriority = MF({appres_cpu.getVal(["gint_maxInterruptPreemptPriority", "value"])}, Integer)
+		 
+		 ginterruptprio_rx.maxPriority = MF({appres_cpu.getVal(["gint_maxInterruptPreemptPriority", "value"])}, Integer)
+		 
+		 ginterruptprio_error.maxPriority = MF({appres_cpu.getVal(["gint_maxInterruptPreemptPriority", "value"])}, Integer)
+		 
+		 ginterruptprio_tx.maxSubPriority = MF({appres_cpu.getVal(["gint_maxInterruptSubPriority", "value"])}, Integer)
+		 ginterruptprio_rx.maxSubPriority = MF({appres_cpu.getVal(["gint_maxInterruptSubPriority", "value"])}, Integer)
+		 ginterruptprio_error.maxSubPriority = MF({appres_cpu.getVal(["gint_maxInterruptSubPriority", "value"])}, Integer)
+		 
+	 }
+	 /* Set max Priority value for XMC1 */
+	 else if(family == 'XMC1')
+	 {
+		 gfloat_peripheralclock.value = MF({
+											 Float temp = appres_clk_xmc1.getVal(["gfloat_mclkactfrq", "value"]) as Float
+											 return temp
+											}, Float)
+		 		 
+		 ginterruptprio_tx.priorityValue = 3
+		 ginterruptprio_tx.maxPriority = 3
+		 
+		 ginterruptprio_rx.priorityValue = 3
+		 ginterruptprio_rx.maxPriority = 3
+		 
+		 ginterruptprio_error.priorityValue = 3
+		 ginterruptprio_error.maxPriority = 3
+	 }
+	 
+	 /*Callback registration should be enabled only if the mode is not 'Direct'*/
+	 ggroup_transmit.enabled = MF({
+									if(gcombo_tx_mode.value != "Direct")
+									{
+									  true
+									}
+									else
+									{
+									  false
+									}},Boolean)
+	 
+	 ggroup_receive.enabled = MF({
+								  if(gcombo_rx_mode.value != "Direct")
+								  {
+								    true
+								  }
+								  else
+								  {
+								    false
+								  }},Boolean)
+	 
+	 ggroup_error_handling.enabled = MF({
+									      if((gcombo_tx_mode.value != "DMA") && (gcombo_rx_mode.value != "DMA"))
+									      {
+									        true
+									      }
+									      else
+									      {
+									        false
+									      }
+										},Boolean)
+	 
+	 gcheck_txfifo.enabled = MF({(gcombo_tx_mode.value != "DMA")},Boolean)
+	 gcheck_rxfifo.enabled = MF({(gcombo_rx_mode.value != "DMA")},Boolean)
+	 
+	 gcombo_i2c_tx_fifosize.enabled = IS_TX_FIFO_ENABLE
+	 gcombo_i2c_rx_fifosize.enabled = IS_RX_FIFO_ENABLE
+	 
+	 glabel_ownaddress.enabled = MF({(gcheck_multimaster.value == true)},Boolean)
+	 ginteger_ownaddress.enabled = MF({(gcheck_multimaster.value == true)},Boolean)
+	 
+	 ggroup_sdaconfig.visible = MF({(gcheck_pinconfig.value == true)},Boolean)
+	 ggroup_sclconfig.visible = MF({(gcheck_pinconfig.value == true)},Boolean)
+	 
+	 glabel_sda_char.enabled = MF({(gcheck_pinconfig.value == true)},Boolean)
+	 gcombo_sda_char.enabled = MF({(gcheck_pinconfig.value == true)},Boolean)
+	 glabel_sda_drive.enabled = PINCONFIGENABLE
+	 gcombo_sda_drive.enabled = PINCONFIGENABLE
+	 
+	 glabel_scl_char.enabled = MF({(gcheck_pinconfig.value == true)},Boolean)
+	 gcombo_scl_char.enabled = MF({(gcheck_pinconfig.value == true)},Boolean)
+	 glabel_scl_drive.enabled = PINCONFIGENABLE
+	 gcombo_scl_drive.enabled = PINCONFIGENABLE
+	 
+	
+	 gstring_end_of_tx_callback.enabled = MF({gcheck_end_of_tx_callback.value}, Boolean)
+	 gstring_end_of_rx_callback.enabled = MF({gcheck_end_of_rx_callback.value}, Boolean)
+	 gstring_nack.enabled = MF({gcheck_nack.value}, Boolean)
+	 gstring_arbitration.enabled = MF({gcheck_arbitration.value}, Boolean)
+	 gstring_error.enabled = MF({gcheck_error.value}, Boolean)
+	 
+	 /* Set visible property based on expression matches for tx_callback */
+	 gmessage_tx_callback.visible = MF({
+										 Matcher matcher_tx = (gstring_end_of_tx_callback.value =~ fn_regexp)
+										 Boolean ExpressionMatch_tx = !matcher_tx.matches()
+										 if(gcheck_end_of_tx_callback.value == true)
+										 { 
+											 return ExpressionMatch_tx
+										 } 
+										 else
+										 { 
+											 return false
+										 }
+										},Boolean)
+	 
+	 /* Set visible property based on expression matches for rx_callback */
+	 gmessage_rx_callback.visible = MF({
+										 Matcher matcher_rx = (gstring_end_of_rx_callback.value =~ fn_regexp)
+										 Boolean ExpressionMatch_rx = !matcher_rx.matches()
+										 if(gcheck_end_of_rx_callback.value == true)
+										 { 
+											 return ExpressionMatch_rx
+										 } 
+										 else
+										 { 
+											 return false
+										 }
+										},Boolean)
+	 
+	 /* Set visible property based on expression matches for nack_callback */
+	 gmessage_nack.visible = MF({
+								 Matcher matcher_nack = (gstring_nack.value =~ fn_regexp)
+								 Boolean ExpressionMatch_nack = !matcher_nack.matches()
+								 if(gcheck_nack.value == true)
+								 { 
+									 return ExpressionMatch_nack
+								 }
+								 else
+								 { 
+									 return false
+								 }
+								},Boolean)
+	 
+	 /* Set visible property based on expression matches for arbitrationlost_callback */
+	 gmessage_arbitration.visible = MF({
+										 Matcher matcher_arbitration = (gstring_arbitration.value =~ fn_regexp)
+										 Boolean ExpressionMatch_arbitration = !matcher_arbitration.matches()
+										 if(gcheck_arbitration.value == true)
+										 { 
+											 return ExpressionMatch_arbitration
+										 } 
+										 else
+										 { 
+											 return false
+										 }
+										},Boolean)
+	 
+	 /* Set visible property based on expression matches for error_callback */
+	 gmessage_error.visible = MF({
+									 Matcher matcher_error = (gstring_error.value =~ fn_regexp)
+									 Boolean ExpressionMatch_error = !matcher_error.matches()
+									 if(gcheck_error.value == true)
+									 { 
+										 return ExpressionMatch_error
+									 }
+									 else
+									 { 
+										 return false
+									 }
+								  },Boolean)
+
+	 gcombo_tempbaud.options = MF({
+									Integer peripheral_clock
+									Integer clock_divider
+									Integer pdiv
+									Integer pdiv_int
+									Integer pdiv_int_min
+									Integer pdiv_frac
+									Integer pdiv_frac_min
+									Integer clock_divider_min
+									Integer rate
+									Integer oversampling
+									Float calBaud
+							
+							 peripheral_clock = (gfloat_peripheralclock.value * 1000000 )/ 100;
+
+							rate = (gint_desiredbaudrate.value * 1000);
+							
+							if(rate <= 100000)
+							{
+								oversampling = 10
+							}
+							else
+							{
+								oversampling = 25
+							}
+
+							rate = rate / 100;
+							
+							clock_divider_min = 1;
+							pdiv_int_min = 1;
+							pdiv_frac_min = 0x3ff;
+							
+							for(clock_divider = 1; clock_divider < 1024; ++clock_divider)
+							{
+							  pdiv = ((peripheral_clock * clock_divider) / (rate * oversampling));
+							  pdiv_int = pdiv >> 10;
+							  pdiv_frac = pdiv & 0x3ff;
+
+							  if ((pdiv_int < 1024) && (pdiv_frac < pdiv_frac_min))
+							  {
+								  pdiv_frac_min = pdiv_frac;
+								  pdiv_int_min = pdiv_int;
+								  clock_divider_min = clock_divider;
+							  }
+							}
+							if(gint_desiredbaudrate.value <= 100)
+							{
+								calBaud = (gfloat_peripheralclock.value * 1000000 * clock_divider_min) / (1024 * 10 * pdiv_int_min)
+								// converting to KHz
+								calBaud = calBaud /1000
+							}
+							else
+							{
+								calBaud = (gfloat_peripheralclock.value * 1000000 * clock_divider_min) / (1024 * 25 * pdiv_int_min)
+								// converting to KHz
+								calBaud = calBaud /1000
+							}
+							return [calBaud, clock_divider_min, pdiv_int_min,""]
+								   
+						},List)
+
+	 gfloat_actualbaud.value = MF({gcombo_tempbaud.options.get(0)}, Float)
+	 gint_stepVal.value    = MF({gcombo_tempbaud.options.get(1).toInteger()}, Integer)
+	 gint_pdivVal.value    = MF({gcombo_tempbaud.options.get(2).toInteger()}, Integer)
+
+ }
+ 
+ // File Generation
+ def generateFiles(){
+	 copy("i2c_master.c", "i2c_master.c")
+	 copy("i2c_master.h", "i2c_master.h")
+	 generate("i2c_master_confc.tmpl", "i2c_master_conf.c")
+	 generate("i2c_master_confh.tmpl", "i2c_master_conf.h")
+	 generate("i2c_master_externh.tmpl", "i2c_master_extern.h")
+ }
+ 
+}

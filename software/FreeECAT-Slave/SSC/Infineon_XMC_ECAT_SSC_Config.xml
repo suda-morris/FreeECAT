@@ -1,0 +1,356 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSpy v2014 sp1 (http://www.altova.com) by Infineon Technologies AG (Infineon Technologies AG) -->
+<SscToolConfiguration SSCVersion="5.11" VendorID="#x0000034E" VendorName="Infineon Technologies" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="SscToolConfiguration.xsd">
+	<Configurations>
+		<Configuration Name="Infineon XMC EtherCAT Slave Sample" Version="1.0.1.0" Info="Shall be set if the Slave code executes on an XMC4800/XMC4300 device.">
+			<!-- Slave Information -->
+			<Setting CodeDefine="VENDOR_ID" Value="0x0000034E"/>
+			<Setting CodeDefine="VENDOR_NAME" Value="Infineon Technologies"/>
+			<Setting CodeDefine="PRODUCT_CODE" Value="0x00000000"/>
+			<Setting CodeDefine="REVISION_NUMBER" Value="0x0"/>
+			<Setting CodeDefine="SERIAL_NUMBER" Value="0x0"/>
+			<Setting CodeDefine="DEVICE_PROFILE_TYPE" Value="0x00001389"/>
+			<Setting CodeDefine="DEVICE_NAME" Value="XMC_ESC"/>
+			<Setting CodeDefine="DEVICE_HW_VERSION" Value="1.0"/>
+			<Setting CodeDefine="DEVICE_SW_VERSION" Value="5.11"/>
+			<!-- Generic -->
+			<Setting CodeDefine="SYSTEM_HEADER_FILE" Value="#include &lt;xmc_common.h&gt;">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="EXPLICIT_DEVICE_ID" Value="0">
+				<Flags Visible="True"/>
+			</Setting>
+			<Setting CodeDefine="ESC_SM_WD_SUPPORTED" Value="1">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="STATIC_OBJECT_DIC" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="ESC_EEPROM_ACCESS_SUPPORT" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<!-- Hardware -->
+			<Setting CodeDefine="EL9800_HW" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="MCI_HW" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="FC1100_HW" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="HW_ACCESS_FILE" Value="#include &quot;ECAT_SSC/xmc_eschw.h&quot;">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="CONTROLLER_16BIT" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="CONTROLLER_32BIT" Value="1">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="_PIC18" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="_PIC24" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="ESC_16BIT_ACCESS" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="ESC_32BIT_ACCESS" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="MBX_16BIT_ACCESS" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="BIG_ENDIAN_16BIT" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="BIG_ENDIAN_FORMAT" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="EXT_DEBUGER_INTERFACE" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="UC_SET_ECAT_LED" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="ESC_SUPPORT_ECAT_LED" Value="1">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="ESC_EEPROM_EMULATION" Value="1">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="CREATE_EEPROM_CONTENT" Value="1"/>
+			<Setting CodeDefine="ESC_EEPROM_SIZE" Value="0x800"/>
+			<Setting CodeDefine="EEPROM_READ_SIZE" Value="0x8">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="EEPROM_WRITE_SIZE" Value="0x2">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="ESC_CONFIG_DATA" Value="003c0000ff0100000000">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="MAKE_PTR_TO_ESC" Value="">
+				<Flags Visible="False"/>
+			</Setting>
+			<!-- EtherCAT State Machine -->
+			<Setting CodeDefine="BOOTSTRAPMODE_SUPPORTED" Value="0">
+				<Flags Visible="True"/>
+			</Setting>
+			<Setting CodeDefine="OP_PD_REQUIRED" Value="1">
+				<Flags Visible="False"/>
+			</Setting>
+			<!-- Synchronization -->
+			<Setting CodeDefine="AL_EVENT_ENABLED" Value="1">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="DC_SUPPORTED" Value="1">
+				<Flags Visible="True"/>
+			</Setting>
+			<Setting CodeDefine="MIN_PD_CYCLE_TIME" Value="0x1E848">
+				<Flags Visible="True"/>
+			</Setting>
+			<Setting CodeDefine="INTERRUPTS_SUPPORTED" Value="1">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="ECAT_TIMER_INT" Value="1">
+				<Flags Visible="False"/>
+			</Setting>
+			<!-- Application -->
+			<Setting CodeDefine="TEST_APPLICATION" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="EL9800_APPLICATION" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="SAMPLE_APPLICATION" Value="0"/>
+			<Setting CodeDefine="SAMPLE_APPLICATION_INTERFACE" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="APPLICATION_FILE" Value=""/>
+			<Setting CodeDefine="USE_DEFAULT_MAIN" Value="0">
+				<Flags Visible="False"/>
+			</Setting>
+			<!-- Mailbox -->
+			<Setting CodeDefine="FOE_SUPPORTED" Value="0"/>
+			<Setting CodeDefine="FOE_SAVE_FILES" Value="0"/>
+			<Setting CodeDefine="MAX_FILE_SIZE" Value="0x180"/>
+			<Setting CodeDefine="EOE_SUPPORTED" Value="0"/>
+			<Setting CodeDefine="DIAGNOSIS_SUPPORTED" Value="0"/>
+			<Setting CodeDefine="MAX_DIAG_MSG" Value="0x14"/>
+			<Setting CodeDefine="EMERGENCY_SUPPORTED" Value="0"/>
+			<Setting CodeDefine="MAX_EMERGENCIES" Value="0x1"/>
+			<!-- Compiler -->
+			<Setting CodeDefine="FALSE" Value="false">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="TRUE" Value="true">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="BOOL" Value="bool">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="UINT8" Value="uint8_t">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="UINT16" Value="uint16_t">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="UINT32" Value="uint32_t">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="USHORT" Value="uint16_t">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="INT8" Value="int8_t">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="INT16" Value="int16_t">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="INT32" Value="int32_t">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="CHAR" Value="char">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="UCHAR" Value="unsigned char">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="SIZEOF(x)" Value="sizeof(x)">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="HUGE" Value="">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="HMEMSET" Value="memset">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="HMEMCPY" Value="memcpy">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="HMEMCMP" Value="memcmp">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="ESCMEM" Value="">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="ESCMEMCPY" Value="memcpy">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="ESCMEMSET" Value="memset">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="ESCMBXMEMCPY" Value="memcpy">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="MBXMEM" Value="">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="MBXMEMCPY" Value="memcpy">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="MBXMEMCMP" Value="memcmp">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="MBXMEMSET" Value="memset">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="MBXSTRLEN" Value="strlen">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="MBXSTRCPY" Value="memcpy">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="OBJCONST" Value="const">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="VARCONST" Value="">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="VARVOLATILE" Value="volatile">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="OBJMEM" Value="">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="OBJTOMBXMEMCPY" Value="memcpy">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="OBJTOMBXSTRCPY" Value="memcpy">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="OBJMEMCPY" Value="memcpy">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="OBJSTRLEN" Value="strlen">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="OBJSTRCPY" Value="memcpy">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="MAKE_HUGE_PTR" Value="_mkhp">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="EMCYMEMCPY" Value="memcpy">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="EMCYMEMSET" Value="memset">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="EMCYMEM" Value="">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="MEMCPY" Value="memcpy">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="ALLOCMEM(size)" Value="malloc((size))">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="FREEMEM(pointer)" Value="free((pointer))">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="VARMEMSET" Value="memset">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="VARMEM" Value="">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="MEM_ADDR" Value="UINT32">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="GET_MEM_SIZE(ByteSize)" Value="(((ByteSize)+3) >> 2)">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="APPL_AllocMailboxBuffer(size)" Value="malloc((size))">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="APPL_FreeMailboxBuffer(pointer)" Value="free((pointer))">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="STRUCT_PACKED_START" Value="">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="STRUCT_PACKED_END" Value="">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="FILE_PACKED_START" Value="#pragma pack(1)">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="FILE_PACKED_END" Value="#pragma pack()">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="MBX_STRUCT_PACKED_START" Value="">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="MBX_STRUCT_PACKED_END" Value="">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="MBX_FILE_PACKED_START" Value="#pragma pack(1)">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="MBX_FILE_PACKED_END" Value="#pragma pack()">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="OBJ_STRUCT_PACKED_START" Value="">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="OBJ_STRUCT_PACKED_END" Value="">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="OBJ_DWORD_ALIGN" Value="1">
+				<Flags Visible="False"/>
+			</Setting>
+			<Setting CodeDefine="OBJ_WORD_ALIGN" Value="1">
+				<Flags Visible="False"/>
+			</Setting>
+			<ESI>
+				<Value>
+					<Descriptions>
+						<Groups>
+							<Group SortOrder="0">
+								<Type>Infineon slave</Type>
+								<Name LcId="1031">Infineon Slaves</Name>
+								<Name LcId="1033">Infineon Slaves</Name>
+							</Group>
+						</Groups>
+					</Descriptions>
+				</Value>
+				<!--Groups-->
+			</ESI>
+			<ESI Path="/EtherCATInfo/Descriptions/Devices/Device">
+				<Value>
+					<GroupType>Infineon slave</GroupType>
+				</Value>
+				<!--Device Group-->
+			</ESI>
+			<ESI Path="/EtherCATInfo/Vendor">
+				<Value>
+					<ImageData16x14>424D16050000000000003604000028000000100000000E0000000100080000000000E0000000C40E0000C40E0000000000000000000000000000000080000080000000808000800000008000800080800000C0C0C000C0DCC000F0CAA6000020400000206000002080000020A0000020C0000020E00000400000004020000040400000406000004080000040A0000040C0000040E00000600000006020000060400000606000006080000060A0000060C0000060E00000800000008020000080400000806000008080000080A0000080C0000080E00000A0000000A0200000A0400000A0600000A0800000A0A00000A0C00000A0E00000C0000000C0200000C0400000C0600000C0800000C0A00000C0C00000C0E00000E0000000E0200000E0400000E0600000E0800000E0A00000E0C00000E0E00040000000400020004000400040006000400080004000A0004000C0004000E00040200000402020004020400040206000402080004020A0004020C0004020E00040400000404020004040400040406000404080004040A0004040C0004040E00040600000406020004060400040606000406080004060A0004060C0004060E00040800000408020004080400040806000408080004080A0004080C0004080E00040A0000040A0200040A0400040A0600040A0800040A0A00040A0C00040A0E00040C0000040C0200040C0400040C0600040C0800040C0A00040C0C00040C0E00040E0000040E0200040E0400040E0600040E0800040E0A00040E0C00040E0E00080000000800020008000400080006000800080008000A0008000C0008000E00080200000802020008020400080206000802080008020A0008020C0008020E00080400000804020008040400080406000804080008040A0008040C0008040E00080600000806020008060400080606000806080008060A0008060C0008060E00080800000808020008080400080806000808080008080A0008080C0008080E00080A0000080A0200080A0400080A0600080A0800080A0A00080A0C00080A0E00080C0000080C0200080C0400080C0600080C0800080C0A00080C0C00080C0E00080E0000080E0200080E0400080E0600080E0800080E0A00080E0C00080E0E000C0000000C0002000C0004000C0006000C0008000C000A000C000C000C000E000C0200000C0202000C0204000C0206000C0208000C020A000C020C000C020E000C0400000C0402000C0404000C0406000C0408000C040A000C040C000C040E000C0600000C0602000C0604000C0606000C0608000C060A000C060C000C060E000C0800000C0802000C0804000C0806000C0808000C080A000C080C000C080E000C0A00000C0A02000C0A04000C0A06000C0A08000C0A0A000C0A0C000C0A0E000C0C00000C0C02000C0C04000C0C06000C0C08000C0C0A000F0FBFF00A4A0A000808080000000FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF69F9F9FA7A7A7E7EFEFFFFFFFFFEF4FEFFFFFFFFFFFFFFFFFFFEFF6FFEF97090909090909090909EC0909F6FF4FFFF4F4090909F409EB0909E2EB09FFEF97090909EB090909090909F6ECFFFFFFEFDAEFFFF609FFFFFFFFFFFFFFFFFFFFFFFFF6EFEFF6F6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</ImageData16x14>
+				</Value>
+			</ESI>
+		</Configuration>
+	</Configurations>
+</SscToolConfiguration>

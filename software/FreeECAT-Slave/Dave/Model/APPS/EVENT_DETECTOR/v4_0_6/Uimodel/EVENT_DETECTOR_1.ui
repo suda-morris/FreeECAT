@@ -1,0 +1,52 @@
+<p1:Tab  xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt" xmlns:p1="clr-namespace:com.ifx.davex.ui.controls.app" x:Class="e" layout="{x:Null}">
+	<p1:TabFolder bounds="5, 5, 659, 600">
+		<p1:GTab text="General settings" visible="true" enabled="true" widgetName="gtab_general_settings">
+			<p1:GTab.control>
+				<p1:Tab>
+					<p1:Tab.layout>
+						<GridLayout horizontalSpacing="10" verticalSpacing="10" numColumns="2"/>
+					</p1:Tab.layout>
+					  <p1:GImage visible="true" manifestObj="true" widgetName="gimage" path="doc/eru_etl.png">
+						<p1:GImage.layout>
+							<GridLayout/>
+						</p1:GImage.layout>
+						<p1:GImage.layoutData>
+							<GridData horizontalSpan="2" horizontalAlignment="CENTER" widthHint="641" heightHint="192"/>
+						</p1:GImage.layoutData>
+					  </p1:GImage>
+						<p1:GCheck text="Enable input A inversion" manifestObj="true" widgetName="gcheck_enable_input_a_inversion" description="This inverts the signal state">
+							<p1:GCheck.layoutData>
+								<GridData horizontalSpan="2"/>
+							</p1:GCheck.layoutData>
+						</p1:GCheck>
+						<p1:GCheck text="Enable input B inversion" manifestObj="true" widgetName="gcheck_enable_input_b_inversion" description="This inverts the signal state">
+							<p1:GCheck.layoutData>
+								<GridData horizontalSpan="2"/>
+							</p1:GCheck.layoutData>
+						</p1:GCheck>
+						<p1:GLabel text="Select source:" visible="true" widgetName="label_input_selection">
+							<p1:GLabel.layoutData>
+								<GridData widthHint="103"/>
+							</p1:GLabel.layoutData>
+						</p1:GLabel>
+						<p1:GCombo mandatory="(com.ifx.davex.ui.controls.util.AppUiConstants).FALSE" manifestObj="true" widgetName="gcombo_input_selection" options="A&#13;&#10;B&#13;&#10;A OR B&#13;&#10;A AND B&#13;&#10;" value="A" toolTipText="Allows individual input or logical combination of inputs for event generation" description="This enables user to supply individual inputs or logical combination of inputs for event generation">
+							<p1:GCombo.layoutData>
+								<GridData widthHint="91"/>
+							</p1:GCombo.layoutData>
+						</p1:GCombo>
+						<p1:GLabel text="Edge detector:" visible="true" widgetName="label_input_edge_detector"/>
+						<p1:GCombo mandatory="(com.ifx.davex.ui.controls.util.AppUiConstants).FALSE" manifestObj="true" widgetName="gcombo_input_edge_detector" options="Disabled&#13;&#10;Rising Edge&#13;&#10;Falling Edge&#13;&#10;Either Edge" value="Disabled" toolTipText="Converts the configured edge/s as event" description="Converts the configured edge/s as event">
+							<p1:GCombo.layoutData>
+								<GridData widthHint="91"/>
+							</p1:GCombo.layoutData>
+						</p1:GCombo>
+						<p1:GCheck text="Enable status flag autoclear" manifestObj="true" widgetName="gcheck_enable_status_flag_autoclear" toolTipText="The status flag is reset by the hardware if opposite edge is detected" description="By enabling this option the status flag is reset by the hardware if opposite edge is detected.  Otherwise status flag needs to be reset by software&#13;&#10;&#13;&#10;">
+							<p1:GCheck.layoutData>
+								<GridData horizontalSpan="2"/>
+							</p1:GCheck.layoutData>
+						</p1:GCheck>
+				</p1:Tab>
+			</p1:GTab.control>
+		</p1:GTab>
+	</p1:TabFolder>
+</p1:Tab>					

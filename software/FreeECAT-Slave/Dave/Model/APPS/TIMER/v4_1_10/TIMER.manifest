@@ -1,0 +1,287 @@
+package Model.APPS.TIMER.v4_1_10;
+
+/*
+ Copyright (c) 2015-2016, Infineon Technologies AG
+ All rights reserved.
+											
+ Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
+ following conditions are met:
+																			 
+ Redistributions of source code must retain the above copyright notice, this list of conditions and the following
+ disclaimer.
+  
+ Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following
+ disclaimer in the documentation and/or other materials provided with the distribution.
+  
+ Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ products derived from this software without specific prior written permission.
+																			 
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+																			 
+ To improve the quality of the software, users are encouraged to share modifications, enhancements or bug fixes with
+ Infineon Technologies AG: dave@infineon.com. */
+/*************** Revision History **********************************************
+Version     Date          Description
+
+4.0.0       16-Feb-2015   Initial version for DAVEv4<br>
+4.0.1       08-May-2015   1. Coding guidelines update for PR release<br>
+                          2. Timer_Stop() and TIMER_GetTime() are added<br>
+                          3. New parameter "shadow_mask" is added in APP config structure. 
+                             This can be used directly to enable the shadow transfer<br>
+                          4. Additional condition check for timer state is added in TIMER_SetTimeInterval() API<br>
+ 4.1.0      25-May-2015   1. API names changed<br>
+                             a. TIMER_AcknowledgeInterrupt() --> TIMER_ClearEvent()<br>
+ 4.1.2      20-Jun-2015   1. Update for PR release. 
+ 4.1.4      08-Jul-2015   1. Updated the help doc.<br>
+                          2. In UI, Time interval minimum value is updated to show only up to two decimals.
+ 4.1.6      08-Oct-2015   1. XMC14, XMC48, XMC47 device support added<br>
+                          2. Removed the invert_out signals from the CCU8 config structure while code generation.<br>
+ 4.1.8      18-Dec-2015   1. Added support for XMC4300 devices.<br>
+ 4.1.10     29-Jul-2016   1. Mandatory feature is added for the event signals.
+                             DAVE 4.3.2 onwards this feature is supported.<br>
+                          2. Time interval event is by default disabled.                                                   
+*******************************************************************************/
+/* Import statements */
+import ifx.davex.app.manifest.*
+
+class  TIMER extends TIMER_GUI {
+
+	/**
+	 * APP version
+	 * Format: a string with three digit separated by a dot.
+	 */
+	def version            = '4.1.10'
+	
+	/**
+	 * APP categories declaration. 
+	 * It is list of strings. Subcategories are separated by slash.
+	 * No limits on number of categories and subcategories depth.
+	 */
+    def categoriesDescription = ["General Purpose/Timed Signals"] 
+
+	/** 
+	 * Minimum DAVE version required for this APP.
+	 * 
+	 * It is string with three digit separated by a dot.
+	 */
+	def minDaveVersion           = '4.3.2'
+	
+	/** 
+	 * Keywords used by search feature in APPs selection view
+	 * 
+	 * It is a list of string.
+	 */
+	def keywords      = ['all','Timer','period','CCU','CCU8','CCU4']
+	
+	/** 
+	 * softwareIDs is used to declare which devices are compatible with this APP.
+	 * It is a map with key a string containing a pattern that shall match the SW id of
+	 * the device and as value the minimal version of the APP.
+	 */
+    def softwareIDs  = [
+		"XMC4.5.*.*.*":"1.0.0",
+		"XMC4.4.*.*.*":"1.0.0",
+		"XMC4.3.*.*.*":"1.0.0",
+		"XMC4.2.*.*.*":"1.0.0",
+		"XMC4.1.*.*.*":"1.0.0",
+		"XMC4.7.*.*.*":"1.0.0",
+		"XMC4.8.*.*.*":"1.0.0",
+		"XMC1.1.*.*.*":"1.0.0",
+		"XMC1.2.*.*.*":"1.0.0",
+		"XMC1.3.*.*.*":"1.0.0",
+		"XMC1.4.*.*.*":"1.0.0"
+        ]
+
+	/**
+	 * Singleton property:
+	 * When it is true the APP can be instantiated only once.
+	 */
+    def singleton     = false
+	/**
+	 * initProvider property
+	 * It shall be true to add a call to <APPName>_Init()
+	 */
+    def initProvider  = true
+	/**
+	 * Deprecated APP
+	 * Set it to true to indicate that the APP shall be not used for new projects.
+	 */
+    def deprecated    = false
+	/**
+	 * Sharable property.
+	 * It shall be true to allows multiple APPs to require the same instance of this APP.
+	 */
+    def sharable      = false
+
+	/**
+	 *  APP function description.
+	 */ 
+	def description = "Provides an accurate timer by using hardware CCU timer.\n This can be used as a trigger input to other peripherals or to create an event"
+	
+	/* End   : TIMER property section */
+	
+	/* Begin : User variable section */
+    MVirtualResourceGroup hwres_ccu4_cc4  /* Hardware resource of cc4 slice */
+    MVirtualResourceGroup hwres_ccu8_cc8  /* Hardware resource of cc8 slice */
+    MRequiredApp   app_global_ccu4  /* GLOBAL_CCU4 APP to enable the CCU4 module */
+    MRequiredApp   app_global_ccu8  /* GLOBAL_CCU8 APP to enable the CCU8 module */
+    MVirtualSignal vs_timer_ccu4_period_match_interrupt  /* Period match interrupt signal to connect with interrupt APP,
+                                                            while using CCU4 timer. TIMER APP generated the events for every period match. */
+    MVirtualSignal vs_timer_ccu8_period_match_interrupt  /* Period match interrupt signal to connect with interrupt APP, 
+                                                            while using CCU8 timer. TIMER APP generated the events for every period match. */
+    MVirtualSignal vs_timer_ccu4_global_enable  /* Input signal, connected with gloabl_enable signal of GLOBAL_CCU4 APP */
+    MVirtualSignal vs_timer_ccu8_global_enable  /* Input signal, connected with gloabl_enable signal of GLOBAL_CCU8 APP */
+    MVirtualSignalRA vs_global_ccu4_enable  /* Local reference to the global signal of GLOBAL_CCU4 APP */
+    MVirtualSignalRA vs_global_ccu8_enable  /* Local reference to the global signal of GLOBAL_CCU8 APP */
+
+    /* This holds input clock frequency to the CCU Timer. */
+    GFloat timer_clock_mhz    = GFloat();
+	/* This holds the prescaler value calculated. Used during code generation in templates. */
+    GInteger timer_prescaler  = GInteger();
+	/* This holds the period register value calculated. Used during code generation in templates. */
+	GInteger timer_period_reg = GInteger();
+	
+	/**
+	 *  Calculates the resolution of the timer in micro seconds interval
+	 *  Inputs :  clock     - clock frequency supplied to the module in MHz
+	 *            prescaler - Timer Prescaler value
+	 */
+	Double timer_resolution(clock,prescaler) {
+        Double actual_resolution = ((1 /clock) *  2.power(prescaler)); /* (1 << Prescaler.value); */
+        actual_resolution
+	}
+	/* End   : User variable section */
+
+	/* App Constructor */
+    public TIMER(DaveEnv daveEnv) {
+		
+	final Integer period_16bit_maxvalue = (2.power(16)-1); /* Maximum supported period register value */
+	final Integer prescaler_maxvalue    = 15 /* Maximum supported prescaler value */
+	final Integer prescaler_minvalue    = 0  /* Least supported prescaler value */
+	final Integer time_interval_maxvalue= 42949672 /* Maximum time interval supported (after considering the scaling in APP), in micro seconds */
+	final Float time_interval_minvalue  = 0.1 /* Minimum time interval supported, in micro seconds */
+	
+	String family = 'null' /* Used for conditional execution of code based on the microcontroller family, eg. xmc4 */
+    String series = 'null' /* Used for conditional execution of code based on the microcontroller series, eg. xmc45 */
+	String device = 'null' /* Used for conditional execution of code based on the microcontroller series, eg. xmc14.03 */
+	
+	family = daveEnv.project.selectedDevice.deviceId.family
+	series = daveEnv.project.selectedDevice.deviceId.series
+	device = daveEnv.project.selectedDevice.deviceId.device
+	
+    hwres_ccu4_cc4 = MVirtualResourceGroup("CC4 Timer", ["peripheral", "ccu4", "*", "cc4", "*"], MF({gcombo_timer_module.value == "CCU4"}, Boolean));
+    hwres_ccu8_cc8 = MVirtualResourceGroup("CC8 Timer", ["peripheral", "ccu8", "*", "cc8", "*"], MF({gcombo_timer_module.value == "CCU8"}, Boolean));
+    
+    app_global_ccu4 = MRequiredApp("GLOBAL_CCU4","GLOBAL_CCU4", RSHARABLE, "4.0.2", MF({gcombo_timer_module.value == "CCU4"}, Boolean));
+    app_global_ccu8 = MRequiredApp("GLOBAL_CCU8","GLOBAL_CCU8", RSHARABLE, "4.0.2", MF({gcombo_timer_module.value == "CCU8"}, Boolean));
+	
+    vs_timer_ccu4_global_enable = MVirtualSignal(hwres_ccu4_cc4, "global_enable", "global_signal", MF({gcombo_timer_module.value == "CCU4"}, Boolean), false)
+    vs_timer_ccu8_global_enable = MVirtualSignal(hwres_ccu8_cc8, "global_enable", "global_signal", MF({gcombo_timer_module.value == "CCU8"}, Boolean), false)
+            
+    vs_global_ccu4_enable = MVirtualSignalRA(app_global_ccu4, "vs_global_ccu4_globalsignal")
+    vs_global_ccu8_enable = MVirtualSignalRA(app_global_ccu8, "vs_global_ccu8_globalsignal")
+	
+    vs_timer_ccu4_period_match_interrupt = MVirtualSignal(hwres_ccu4_cc4, "event_time_interval", "pmus_omds", MF({(gcombo_timer_module.value == "CCU4") && (gcheck_period_match_interrupt.value)}, Boolean),
+		                                                                                                   MF({gcheck_period_match_interrupt.value}, Boolean),
+														  'Signal is not connected to any target signal. Use HW signal connections dialog to establish connection.')
+    vs_timer_ccu8_period_match_interrupt = MVirtualSignal(hwres_ccu8_cc8, "event_time_interval", "pmus_omds", MF({(gcombo_timer_module.value == "CCU8") && (gcheck_period_match_interrupt.value)}, Boolean),
+		                                                                                                   MF({gcheck_period_match_interrupt.value}, Boolean),
+														  'Signal is not connected to any target signal. Use HW signal connections dialog to establish connection.')        
+    
+	/* For XCM1100 and XMC1200 devices, only CCU4 module available. So option to select CCU8 is disabled */
+	if (((family+series) == 'XMC11') || ((family+series) == 'XMC12') || ((family+series+device) == 'XMC1403'))
+	{
+	  gcombo_timer_module.options   =  ["CCU4"]
+      gcombo_timer_module.value     =  "CCU4"
+      gcombo_timer_module.enabled   =  false
+	}
+	
+    timer_clock_mhz.value = MF({if(gcombo_timer_module.value == "CCU4")
+                                      return  app_global_ccu4.getVal(["gfloat_clkFreq", "value"])
+                                    else
+                                      return  app_global_ccu8.getVal(["gfloat_clkFreq", "value"])
+                                   }, Float)
+	
+   /* 
+    * In UI, least supporting timer interval is 0.1micro seconds. If clock frequency is > 10MHz minimum limit will be lesser value. 
+    * So hard coded the value.
+    */
+   gfloat_time_interval.minValue = MF({
+	                                    if (timer_clock_mhz.value < 10.0) {
+									      return ((Double)(1 / timer_clock_mhz.value)).round(2)
+									    } else {
+										  return ((Double)time_interval_minvalue).round(2)
+									    }
+									   }, Float); ; /* convert to usec */
+   /*
+    * Supported maximum time interval based on the input clock frequency.
+    */
+	gfloat_time_interval.maxValue = MF({Float res_max = (timer_resolution(timer_clock_mhz.value,prescaler_maxvalue) * period_16bit_maxvalue).round(0)
+									     if(res_max > time_interval_maxvalue) {
+									       res_max = time_interval_maxvalue
+									     }												   
+										return res_max
+									   },Float) ;
+   /*
+	* Based on the input clock frequency and input time interval least possible prescaler is calculated. So that error is less.
+	* This value is used during code generation in templates.
+	*/
+    timer_prescaler.value = MF({Integer prescaler = 0
+	                            Double Clock_Period_min = 0
+					            Double Clock_Period_max = 0
+				                for(prescaler = 0; prescaler <= prescaler_maxvalue; prescaler++)
+								{
+									Clock_Period_min = timer_resolution(timer_clock_mhz.value,prescaler);  /* convert to usec */
+									Clock_Period_max = Clock_Period_min * period_16bit_maxvalue;  /* convert to usec */
+									  
+								    if(gfloat_time_interval.value <= Clock_Period_max)
+	                                  break;
+								}
+								  							  
+	                            if(prescaler > prescaler_maxvalue) 
+	                            {
+	                               prescaler = prescaler_maxvalue;
+	                            }
+							    else if(prescaler < prescaler_minvalue)
+							    {
+							       prescaler = prescaler_minvalue;
+							    }
+							   
+	                            return prescaler
+	                           }, Integer);
+                       
+   /*
+	* Period register value for the selected time interval value.
+	* This value is used during code generation in templates.
+	*/
+	timer_period_reg.value = MF({
+		                             Integer period_val = (Integer)((Double)gfloat_time_interval.value / timer_resolution(timer_clock_mhz.value,timer_prescaler.value))
+									 
+									 if(period_val > 1)
+									 {
+									   period_val--;
+									 }
+								
+									 return period_val
+									 },Integer) /* Tper= <Period-Value> + 1; in ftclk */
+						
+    addConnectionConstraint(vs_global_ccu4_enable, vs_timer_ccu4_global_enable, MF({gcombo_timer_module.value == "CCU4"}, Boolean));
+    addConnectionConstraint(vs_global_ccu8_enable, vs_timer_ccu8_global_enable, MF({gcombo_timer_module.value == "CCU8"}, Boolean));
+    }
+    
+    
+    /* File Generation */
+    def generateFiles(){
+        copy("timer.c", "timer.c")
+        copy("timer.h", "timer.h")
+        generate("timer_confc.tmpl", "timer_conf.c")
+        generate("timer_confh.tmpl", "timer_conf.h")
+        generate("timer_externh.tmpl", "timer_extern.h")
+    }
+}

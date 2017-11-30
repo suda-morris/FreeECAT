@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ResourceModel:Peripheral xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" URI="http://resources/48.0.0/peripheral/eru/1" description="Event Request Unit 1" baseAddress="0x40044000">
+  <provided xsi:type="ResourceModel:ResourceGroup" name="1" URI="http://resources/48.0.0/peripheral/eru/1/ers_etl/1">
+    <resourcesList name="exicon" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exicon1"/>
+    <resourcesList name="exicon_ocs" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exicon1/ocs"/>
+    <resourcesList name="exicon_pe" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exicon1/pe"/>
+    <resourcesList name="exisel_exsxa" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exisel/exs1a"/>
+    <resourcesList name="exisel_exsxb" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exisel/exs1b"/>
+    <resourcesList name="a" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ers_etl1_a"/>
+    <resourcesList name="b" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ers_etl1_b"/>
+    <resourcesList name="tr" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ers_etl1_tr"/>
+    <resourcesList name="fl" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ers_etl1_fl"/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="EXISEL" URI="http://resources/48.0.0/peripheral/eru/1/exisel" value="0x00000000" toolTipHelpDescription="Event Input Select" defaultValue="0x00000000" addressOffset="0x00" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="EXS0A" URI="http://resources/48.0.0/peripheral/eru/1/exisel/exs0a" value="0x00000000" toolTipHelpDescription="Event Source Select for A0 (ERS0)" defaultValue="0x00000000" startPos="0" stopPos="1" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input ERU_0A0 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_0A1 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_0A2 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_0A3 is selected"/>
+    </bitFields>
+    <bitFields name="EXS0B" URI="http://resources/48.0.0/peripheral/eru/1/exisel/exs0b" value="0x00000000" toolTipHelpDescription="Event Source Select for B0 (ERS0)" defaultValue="0x00000000" startPos="2" stopPos="3" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input ERU_0B0 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_0B1 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_0B2 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_0B3 is selected"/>
+    </bitFields>
+    <bitFields name="EXS1A" URI="http://resources/48.0.0/peripheral/eru/1/exisel/exs1a" value="0x00000000" toolTipHelpDescription="Event Source Select for A1 (ERS1)" defaultValue="0x00000000" startPos="4" stopPos="5" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input ERU_1A0 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_1A1 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_1A2 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_1A3 is selected"/>
+    </bitFields>
+    <bitFields name="EXS1B" URI="http://resources/48.0.0/peripheral/eru/1/exisel/exs1b" value="0x00000000" toolTipHelpDescription="Event Source Select for B1 (ERS1)" defaultValue="0x00000000" startPos="6" stopPos="7" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input ERU_1B0 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_1B1 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_1B2 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_1B3 is selected"/>
+    </bitFields>
+    <bitFields name="EXS2A" URI="http://resources/48.0.0/peripheral/eru/1/exisel/exs2a" value="0x00000000" toolTipHelpDescription="Event Source Select for A2 (ERS2)" defaultValue="0x00000000" startPos="8" stopPos="9" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input ERU_2A0 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_2A1 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_2A2 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_2A3 is selected"/>
+    </bitFields>
+    <bitFields name="EXS2B" URI="http://resources/48.0.0/peripheral/eru/1/exisel/exs2b" value="0x00000000" toolTipHelpDescription="Event Source Select for B2 (ERS2)" defaultValue="0x00000000" startPos="10" stopPos="11" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input ERU_2B0 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_2B1 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_2B2 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_2B3 is selected"/>
+    </bitFields>
+    <bitFields name="EXS3A" URI="http://resources/48.0.0/peripheral/eru/1/exisel/exs3a" value="0x00000000" toolTipHelpDescription="Event Source Select for A3 (ERS3)" defaultValue="0x00000000" startPos="12" stopPos="13" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input ERU_3A0 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_3A1 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_3A2 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_3A3 is selected"/>
+    </bitFields>
+    <bitFields name="EXS3B" URI="http://resources/48.0.0/peripheral/eru/1/exisel/exs3b" value="0x00000000" toolTipHelpDescription="Event Source Select for B3 (ERS3)" defaultValue="0x00000000" startPos="14" stopPos="15" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input ERU_3B0 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_3B1 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_3B2 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_3B3 is selected"/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="EXS1B" URI="http://resources/48.0.0/peripheral/eru/1/exisel/exs1b" value="0x00000000" toolTipHelpDescription="Event Source Select for B1 (ERS1)" defaultValue="0x00000000" startPos="6" stopPos="7" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input ERU_1B0 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_1B1 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_1B2 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_1B3 is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="EXS1A" URI="http://resources/48.0.0/peripheral/eru/1/exisel/exs1a" value="0x00000000" toolTipHelpDescription="Event Source Select for A1 (ERS1)" defaultValue="0x00000000" startPos="4" stopPos="5" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input ERU_1A0 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_1A1 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_1A2 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_1A3 is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="EXICON1" URI="http://resources/48.0.0/peripheral/eru/1/exicon1" value="0x00000000" toolTipHelpDescription="Event Input Control" defaultValue="0x00000000" addressOffset="0x14" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="PE" URI="http://resources/48.0.0/peripheral/eru/1/exicon1/pe" value="0x00000000" toolTipHelpDescription="Output Trigger Pulse Enable for ETLx" defaultValue="0x00000000" startPos="0" stopPos="0" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The trigger pulse generation is disabled"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The trigger pulse generation is enabled"/>
+    </bitFields>
+    <bitFields name="LD" URI="http://resources/48.0.0/peripheral/eru/1/exicon1/ld" value="0x00000000" toolTipHelpDescription="Rebuild Level Detection for Status Flag for ETLx" defaultValue="0x00000000" startPos="1" stopPos="1" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The status flag FL is not cleared by hardware and is used as &quot;sticky&quot; bit. Once set, it is not influenced by any edge until it becomes cleared by software."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The status flag FL rebuilds a level detection of the desired event. It becomes automatically set with a rising edge if RE = 1 or with a falling edge if FE = 1. It becomes automatically cleared with a rising edge if RE = 0 or with a falling edge if FE = 0."/>
+    </bitFields>
+    <bitFields name="RE" URI="http://resources/48.0.0/peripheral/eru/1/exicon1/re" value="0x00000000" toolTipHelpDescription="Rising Edge Detection Enable ETLx" defaultValue="0x00000000" startPos="2" stopPos="2" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="A rising edge is not considered as edge event"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="A rising edge is considered as edge event"/>
+    </bitFields>
+    <bitFields name="FE" URI="http://resources/48.0.0/peripheral/eru/1/exicon1/fe" value="0x00000000" toolTipHelpDescription="Falling Edge Detection Enable ETLx" defaultValue="0x00000000" startPos="3" stopPos="3" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="A falling edge is not considered as edge event"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="A falling edge is considered as edge event"/>
+    </bitFields>
+    <bitFields name="OCS" URI="http://resources/48.0.0/peripheral/eru/1/exicon1/ocs" value="0x00000000" toolTipHelpDescription="Output Channel Select for ETLx Output Trigger Pulse" defaultValue="0x00000000" startPos="4" stopPos="6" accessPermission="rw" maxValue="7" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="Trigger pulses are sent to OGU0"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="Trigger pulses are sent to OGU1"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="Trigger pulses are sent to OGU2"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="Trigger pulses are sent to OGU3"/>
+    </bitFields>
+    <bitFields name="FL" URI="http://resources/48.0.0/peripheral/eru/1/exicon1/fl" value="0x00000000" toolTipHelpDescription="Status Flag for ETLx" defaultValue="0x00000000" startPos="7" stopPos="7" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The enabled edge event has not been detected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The enabled edge event has been detected"/>
+    </bitFields>
+    <bitFields name="SS" URI="http://resources/48.0.0/peripheral/eru/1/exicon1/ss" value="0x00000000" toolTipHelpDescription="Input Source Select for ERSx" defaultValue="0x00000000" startPos="8" stopPos="9" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input A without additional combination"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input B without additional combination"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input A OR input B"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input A AND input B"/>
+    </bitFields>
+    <bitFields name="NA" URI="http://resources/48.0.0/peripheral/eru/1/exicon1/na" value="0x00000000" toolTipHelpDescription="Input A Negation Select for ERSx" defaultValue="0x00000000" startPos="10" stopPos="10" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Input A is used directly"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Input A is inverted"/>
+    </bitFields>
+    <bitFields name="NB" URI="http://resources/48.0.0/peripheral/eru/1/exicon1/nb" value="0x00000000" toolTipHelpDescription="Input B Negation Select for ERSx" defaultValue="0x00000000" startPos="11" stopPos="11" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Input B is used directly"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Input B is inverted"/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="OCS" URI="http://resources/48.0.0/peripheral/eru/1/exicon1/ocs" value="0x00000000" toolTipHelpDescription="Output Channel Select for ETLx Output Trigger Pulse" defaultValue="0x00000000" startPos="4" stopPos="6" accessPermission="rw" maxValue="7" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="Trigger pulses are sent to OGU0"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="Trigger pulses are sent to OGU1"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="Trigger pulses are sent to OGU2"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="Trigger pulses are sent to OGU3"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PE" URI="http://resources/48.0.0/peripheral/eru/1/exicon1/pe" value="0x00000000" toolTipHelpDescription="Output Trigger Pulse Enable for ETLx" defaultValue="0x00000000" startPos="0" stopPos="0" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The trigger pulse generation is disabled"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The trigger pulse generation is enabled"/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="0" URI="http://resources/48.0.0/peripheral/eru/1/ogu/0">
+    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/EVENT_GENERATOR/v4_1_14/EVENT_GENERATOR_1.app#//@hwResources.0"/>
+    <resourcesList name="exocon" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exocon0"/>
+    <resourcesList name="exocon_ipen0" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exocon0/ipen0"/>
+    <resourcesList name="exocon_ipen1" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exocon0/ipen1"/>
+    <resourcesList name="exocon_ipen2" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exocon0/ipen2"/>
+    <resourcesList name="exocon_ipen3" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exocon0/ipen3"/>
+    <resourcesList name="exocon_iss" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exocon0/iss"/>
+    <resourcesList name="trin" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ogu0_trin"/>
+    <resourcesList name="pdin" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ogu0_pdin"/>
+    <resourcesList name="pdout" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ogu0_pdout"/>
+    <resourcesList name="iout" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ogu0_iout"/>
+    <resourcesList name="gout" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ogu0_gout"/>
+    <resourcesList name="tout" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ogu0_tout"/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="EXOCON0" URI="http://resources/48.0.0/peripheral/eru/1/exocon0" value="0x00000008" toolTipHelpDescription="Event Output Trigger Control" defaultValue="0x00000008" addressOffset="0x20" resetValue="0x00000008" resetMask="0xFFFFFFFF">
+    <bitFields name="ISS" URI="http://resources/48.0.0/peripheral/eru/1/exocon0/iss" value="0x00000000" toolTipHelpDescription="Internal Trigger Source Selection" defaultValue="0x00000000" startPos="0" stopPos="1" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="The peripheral trigger function is disabled"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_OGUy1 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_OGUy2 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_OGUy3 is selected"/>
+    </bitFields>
+    <bitFields name="GEEN" URI="http://resources/48.0.0/peripheral/eru/1/exocon0/geen" value="0x00000000" toolTipHelpDescription="Gating Event Enable" defaultValue="0x00000000" startPos="2" stopPos="2" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The event detection is disabled"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The event detection is enabled"/>
+    </bitFields>
+    <bitFields name="PDR" URI="http://resources/48.0.0/peripheral/eru/1/exocon0/pdr" value="0x00000001" toolTipHelpDescription="Pattern Detection Result Flag" defaultValue="0x00000001" startPos="3" stopPos="3" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="A pattern miss is detected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="A pattern match is detected"/>
+    </bitFields>
+    <bitFields name="GP" URI="http://resources/48.0.0/peripheral/eru/1/exocon0/gp" value="0x00000000" toolTipHelpDescription="Gating Selection for Pattern Detection Result" defaultValue="0x00000000" startPos="4" stopPos="5" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="ERU_GOUTy is always disabled and ERU_IOUTy can not be activated"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="ERU_GOUTy is always enabled and ERU_IOUTy becomes activated with each activation of ERU_TOUTy"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="ERU_GOUTy is equal to ERU_PDOUTy and ERU_IOUTy becomes activated with an activation of ERU_TOUTy while the desired pattern is detected (pattern match PDR = 1)"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="ERU_GOUTy is inverted to ERU_PDOUTy and ERU_IOUTy becomes activated with an activation of ERU_TOUTy while the desired pattern is not detected (pattern miss PDR = 0)"/>
+    </bitFields>
+    <bitFields name="IPEN0" URI="http://resources/48.0.0/peripheral/eru/1/exocon0/ipen0" value="0x00000000" toolTipHelpDescription="Pattern Detection Enable for ETL0" defaultValue="0x00000000" startPos="12" stopPos="12" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Flag EXICONx.FL is excluded from the pattern detection"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Flag EXICONx.FL is included in the pattern detection"/>
+    </bitFields>
+    <bitFields name="IPEN1" URI="http://resources/48.0.0/peripheral/eru/1/exocon0/ipen1" value="0x00000000" toolTipHelpDescription="Pattern Detection Enable for ETL1" defaultValue="0x00000000" startPos="13" stopPos="13" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Flag EXICONx.FL is excluded from the pattern detection"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Flag EXICONx.FL is included in the pattern detection"/>
+    </bitFields>
+    <bitFields name="IPEN2" URI="http://resources/48.0.0/peripheral/eru/1/exocon0/ipen2" value="0x00000000" toolTipHelpDescription="Pattern Detection Enable for ETL2" defaultValue="0x00000000" startPos="14" stopPos="14" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Flag EXICONx.FL is excluded from the pattern detection"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Flag EXICONx.FL is included in the pattern detection"/>
+    </bitFields>
+    <bitFields name="IPEN3" URI="http://resources/48.0.0/peripheral/eru/1/exocon0/ipen3" value="0x00000000" toolTipHelpDescription="Pattern Detection Enable for ETL3" defaultValue="0x00000000" startPos="15" stopPos="15" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Flag EXICONx.FL is excluded from the pattern detection"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Flag EXICONx.FL is included in the pattern detection"/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ISS" URI="http://resources/48.0.0/peripheral/eru/1/exocon0/iss" value="0x00000000" toolTipHelpDescription="Internal Trigger Source Selection" defaultValue="0x00000000" startPos="0" stopPos="1" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="The peripheral trigger function is disabled"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_OGUy1 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_OGUy2 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_OGUy3 is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="IPEN1" URI="http://resources/48.0.0/peripheral/eru/1/exocon0/ipen1" value="0x00000000" toolTipHelpDescription="Pattern Detection Enable for ETL1" defaultValue="0x00000000" startPos="13" stopPos="13" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Flag EXICONx.FL is excluded from the pattern detection"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Flag EXICONx.FL is included in the pattern detection"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="IPEN2" URI="http://resources/48.0.0/peripheral/eru/1/exocon0/ipen2" value="0x00000000" toolTipHelpDescription="Pattern Detection Enable for ETL2" defaultValue="0x00000000" startPos="14" stopPos="14" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Flag EXICONx.FL is excluded from the pattern detection"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Flag EXICONx.FL is included in the pattern detection"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="IPEN0" URI="http://resources/48.0.0/peripheral/eru/1/exocon0/ipen0" value="0x00000000" toolTipHelpDescription="Pattern Detection Enable for ETL0" defaultValue="0x00000000" startPos="12" stopPos="12" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Flag EXICONx.FL is excluded from the pattern detection"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Flag EXICONx.FL is included in the pattern detection"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="IPEN3" URI="http://resources/48.0.0/peripheral/eru/1/exocon0/ipen3" value="0x00000000" toolTipHelpDescription="Pattern Detection Enable for ETL3" defaultValue="0x00000000" startPos="15" stopPos="15" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Flag EXICONx.FL is excluded from the pattern detection"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Flag EXICONx.FL is included in the pattern detection"/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="0" URI="http://resources/48.0.0/peripheral/eru/1/ers_etl/0">
+    <resourcesList name="exicon" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exicon0"/>
+    <resourcesList name="exicon_ocs" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exicon0/ocs"/>
+    <resourcesList name="exicon_pe" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exicon0/pe"/>
+    <resourcesList name="exisel_exsxa" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exisel/exs0a"/>
+    <resourcesList name="exisel_exsxb" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exisel/exs0b"/>
+    <resourcesList name="a" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ers_etl0_a"/>
+    <resourcesList name="b" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ers_etl0_b"/>
+    <resourcesList name="tr" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ers_etl0_tr"/>
+    <resourcesList name="fl" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ers_etl0_fl"/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="EXICON0" URI="http://resources/48.0.0/peripheral/eru/1/exicon0" value="0x00000000" toolTipHelpDescription="Event Input Control" defaultValue="0x00000000" addressOffset="0x10" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="PE" URI="http://resources/48.0.0/peripheral/eru/1/exicon0/pe" value="0x00000000" toolTipHelpDescription="Output Trigger Pulse Enable for ETLx" defaultValue="0x00000000" startPos="0" stopPos="0" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The trigger pulse generation is disabled"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The trigger pulse generation is enabled"/>
+    </bitFields>
+    <bitFields name="LD" URI="http://resources/48.0.0/peripheral/eru/1/exicon0/ld" value="0x00000000" toolTipHelpDescription="Rebuild Level Detection for Status Flag for ETLx" defaultValue="0x00000000" startPos="1" stopPos="1" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The status flag FL is not cleared by hardware and is used as &quot;sticky&quot; bit. Once set, it is not influenced by any edge until it becomes cleared by software."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The status flag FL rebuilds a level detection of the desired event. It becomes automatically set with a rising edge if RE = 1 or with a falling edge if FE = 1. It becomes automatically cleared with a rising edge if RE = 0 or with a falling edge if FE = 0."/>
+    </bitFields>
+    <bitFields name="RE" URI="http://resources/48.0.0/peripheral/eru/1/exicon0/re" value="0x00000000" toolTipHelpDescription="Rising Edge Detection Enable ETLx" defaultValue="0x00000000" startPos="2" stopPos="2" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="A rising edge is not considered as edge event"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="A rising edge is considered as edge event"/>
+    </bitFields>
+    <bitFields name="FE" URI="http://resources/48.0.0/peripheral/eru/1/exicon0/fe" value="0x00000000" toolTipHelpDescription="Falling Edge Detection Enable ETLx" defaultValue="0x00000000" startPos="3" stopPos="3" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="A falling edge is not considered as edge event"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="A falling edge is considered as edge event"/>
+    </bitFields>
+    <bitFields name="OCS" URI="http://resources/48.0.0/peripheral/eru/1/exicon0/ocs" value="0x00000000" toolTipHelpDescription="Output Channel Select for ETLx Output Trigger Pulse" defaultValue="0x00000000" startPos="4" stopPos="6" accessPermission="rw" maxValue="7" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="Trigger pulses are sent to OGU0"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="Trigger pulses are sent to OGU1"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="Trigger pulses are sent to OGU2"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="Trigger pulses are sent to OGU3"/>
+    </bitFields>
+    <bitFields name="FL" URI="http://resources/48.0.0/peripheral/eru/1/exicon0/fl" value="0x00000000" toolTipHelpDescription="Status Flag for ETLx" defaultValue="0x00000000" startPos="7" stopPos="7" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The enabled edge event has not been detected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The enabled edge event has been detected"/>
+    </bitFields>
+    <bitFields name="SS" URI="http://resources/48.0.0/peripheral/eru/1/exicon0/ss" value="0x00000000" toolTipHelpDescription="Input Source Select for ERSx" defaultValue="0x00000000" startPos="8" stopPos="9" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input A without additional combination"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input B without additional combination"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input A OR input B"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input A AND input B"/>
+    </bitFields>
+    <bitFields name="NA" URI="http://resources/48.0.0/peripheral/eru/1/exicon0/na" value="0x00000000" toolTipHelpDescription="Input A Negation Select for ERSx" defaultValue="0x00000000" startPos="10" stopPos="10" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Input A is used directly"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Input A is inverted"/>
+    </bitFields>
+    <bitFields name="NB" URI="http://resources/48.0.0/peripheral/eru/1/exicon0/nb" value="0x00000000" toolTipHelpDescription="Input B Negation Select for ERSx" defaultValue="0x00000000" startPos="11" stopPos="11" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Input B is used directly"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Input B is inverted"/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PE" URI="http://resources/48.0.0/peripheral/eru/1/exicon0/pe" value="0x00000000" toolTipHelpDescription="Output Trigger Pulse Enable for ETLx" defaultValue="0x00000000" startPos="0" stopPos="0" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The trigger pulse generation is disabled"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The trigger pulse generation is enabled"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="EXS0B" URI="http://resources/48.0.0/peripheral/eru/1/exisel/exs0b" value="0x00000000" toolTipHelpDescription="Event Source Select for B0 (ERS0)" defaultValue="0x00000000" startPos="2" stopPos="3" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input ERU_0B0 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_0B1 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_0B2 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_0B3 is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="EXS0A" URI="http://resources/48.0.0/peripheral/eru/1/exisel/exs0a" value="0x00000000" toolTipHelpDescription="Event Source Select for A0 (ERS0)" defaultValue="0x00000000" startPos="0" stopPos="1" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input ERU_0A0 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_0A1 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_0A2 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_0A3 is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="OCS" URI="http://resources/48.0.0/peripheral/eru/1/exicon0/ocs" value="0x00000000" toolTipHelpDescription="Output Channel Select for ETLx Output Trigger Pulse" defaultValue="0x00000000" startPos="4" stopPos="6" accessPermission="rw" maxValue="7" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="Trigger pulses are sent to OGU0"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="Trigger pulses are sent to OGU1"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="Trigger pulses are sent to OGU2"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="Trigger pulses are sent to OGU3"/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="3" URI="http://resources/48.0.0/peripheral/eru/1/ogu/3">
+    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/EVENT_GENERATOR/v4_1_14/EVENT_GENERATOR_0.app#//@hwResources.0"/>
+    <resourcesList name="exocon" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exocon3"/>
+    <resourcesList name="exocon_ipen0" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exocon3/ipen0"/>
+    <resourcesList name="exocon_ipen1" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exocon3/ipen1"/>
+    <resourcesList name="exocon_ipen2" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exocon3/ipen2"/>
+    <resourcesList name="exocon_ipen3" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exocon3/ipen3"/>
+    <resourcesList name="exocon_iss" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exocon3/iss"/>
+    <resourcesList name="trin" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ogu3_trin"/>
+    <resourcesList name="pdin" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ogu3_pdin"/>
+    <resourcesList name="pdout" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ogu3_pdout"/>
+    <resourcesList name="iout" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ogu3_iout"/>
+    <resourcesList name="gout" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ogu3_gout"/>
+    <resourcesList name="tout" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ogu3_tout"/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="EXOCON3" URI="http://resources/48.0.0/peripheral/eru/1/exocon3" value="0x00000008" toolTipHelpDescription="Event Output Trigger Control" defaultValue="0x00000008" addressOffset="0x2c" resetValue="0x00000008" resetMask="0xFFFFFFFF">
+    <bitFields name="ISS" URI="http://resources/48.0.0/peripheral/eru/1/exocon3/iss" value="0x00000000" toolTipHelpDescription="Internal Trigger Source Selection" defaultValue="0x00000000" startPos="0" stopPos="1" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="The peripheral trigger function is disabled"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_OGUy1 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_OGUy2 is selected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_OGUy3 is selected"/>
+    </bitFields>
+    <bitFields name="GEEN" URI="http://resources/48.0.0/peripheral/eru/1/exocon3/geen" value="0x00000000" toolTipHelpDescription="Gating Event Enable" defaultValue="0x00000000" startPos="2" stopPos="2" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The event detection is disabled"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The event detection is enabled"/>
+    </bitFields>
+    <bitFields name="PDR" URI="http://resources/48.0.0/peripheral/eru/1/exocon3/pdr" value="0x00000001" toolTipHelpDescription="Pattern Detection Result Flag" defaultValue="0x00000001" startPos="3" stopPos="3" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="A pattern miss is detected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="A pattern match is detected"/>
+    </bitFields>
+    <bitFields name="GP" URI="http://resources/48.0.0/peripheral/eru/1/exocon3/gp" value="0x00000000" toolTipHelpDescription="Gating Selection for Pattern Detection Result" defaultValue="0x00000000" startPos="4" stopPos="5" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="ERU_GOUTy is always disabled and ERU_IOUTy can not be activated"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="ERU_GOUTy is always enabled and ERU_IOUTy becomes activated with each activation of ERU_TOUTy"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="ERU_GOUTy is equal to ERU_PDOUTy and ERU_IOUTy becomes activated with an activation of ERU_TOUTy while the desired pattern is detected (pattern match PDR = 1)"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="ERU_GOUTy is inverted to ERU_PDOUTy and ERU_IOUTy becomes activated with an activation of ERU_TOUTy while the desired pattern is not detected (pattern miss PDR = 0)"/>
+    </bitFields>
+    <bitFields name="IPEN0" URI="http://resources/48.0.0/peripheral/eru/1/exocon3/ipen0" value="0x00000000" toolTipHelpDescription="Pattern Detection Enable for ETL0" defaultValue="0x00000000" startPos="12" stopPos="12" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Flag EXICONx.FL is excluded from the pattern detection"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Flag EXICONx.FL is included in the pattern detection"/>
+    </bitFields>
+    <bitFields name="IPEN1" URI="http://resources/48.0.0/peripheral/eru/1/exocon3/ipen1" value="0x00000000" toolTipHelpDescription="Pattern Detection Enable for ETL1" defaultValue="0x00000000" startPos="13" stopPos="13" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Flag EXICONx.FL is excluded from the pattern detection"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Flag EXICONx.FL is included in the pattern detection"/>
+    </bitFields>
+    <bitFields name="IPEN2" URI="http://resources/48.0.0/peripheral/eru/1/exocon3/ipen2" value="0x00000000" toolTipHelpDescription="Pattern Detection Enable for ETL2" defaultValue="0x00000000" startPos="14" stopPos="14" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Flag EXICONx.FL is excluded from the pattern detection"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Flag EXICONx.FL is included in the pattern detection"/>
+    </bitFields>
+    <bitFields name="IPEN3" URI="http://resources/48.0.0/peripheral/eru/1/exocon3/ipen3" value="0x00000000" toolTipHelpDescription="Pattern Detection Enable for ETL3" defaultValue="0x00000000" startPos="15" stopPos="15" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Flag EXICONx.FL is excluded from the pattern detection"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Flag EXICONx.FL is included in the pattern detection"/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ISS" URI="http://resources/48.0.0/peripheral/eru/1/exocon3/iss" value="0x00000000" toolTipHelpDescription="Internal Trigger Source Selection" defaultValue="0x00000000" startPos="0" stopPos="1" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="The peripheral trigger function is disabled"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_OGUy1 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_OGUy2 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_OGUy3 is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="IPEN1" URI="http://resources/48.0.0/peripheral/eru/1/exocon3/ipen1" value="0x00000000" toolTipHelpDescription="Pattern Detection Enable for ETL1" defaultValue="0x00000000" startPos="13" stopPos="13" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Flag EXICONx.FL is excluded from the pattern detection"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Flag EXICONx.FL is included in the pattern detection"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="IPEN0" URI="http://resources/48.0.0/peripheral/eru/1/exocon3/ipen0" value="0x00000000" toolTipHelpDescription="Pattern Detection Enable for ETL0" defaultValue="0x00000000" startPos="12" stopPos="12" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Flag EXICONx.FL is excluded from the pattern detection"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Flag EXICONx.FL is included in the pattern detection"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="IPEN3" URI="http://resources/48.0.0/peripheral/eru/1/exocon3/ipen3" value="0x00000000" toolTipHelpDescription="Pattern Detection Enable for ETL3" defaultValue="0x00000000" startPos="15" stopPos="15" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Flag EXICONx.FL is excluded from the pattern detection"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Flag EXICONx.FL is included in the pattern detection"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="IPEN2" URI="http://resources/48.0.0/peripheral/eru/1/exocon3/ipen2" value="0x00000000" toolTipHelpDescription="Pattern Detection Enable for ETL2" defaultValue="0x00000000" startPos="14" stopPos="14" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Flag EXICONx.FL is excluded from the pattern detection"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Flag EXICONx.FL is included in the pattern detection"/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="2" URI="http://resources/48.0.0/peripheral/eru/1/ers_etl/2">
+    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/EVENT_DETECTOR/v4_0_6/EVENT_DETECTOR_0.app#//@hwResources.0"/>
+    <resourcesList name="exicon" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exicon2"/>
+    <resourcesList name="exicon_ocs" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exicon2/ocs"/>
+    <resourcesList name="exicon_pe" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exicon2/pe"/>
+    <resourcesList name="exisel_exsxa" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exisel/exs2a"/>
+    <resourcesList name="exisel_exsxb" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exisel/exs2b"/>
+    <resourcesList name="a" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ers_etl2_a"/>
+    <resourcesList name="b" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ers_etl2_b"/>
+    <resourcesList name="tr" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ers_etl2_tr"/>
+    <resourcesList name="fl" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ers_etl2_fl"/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="EXICON2" URI="http://resources/48.0.0/peripheral/eru/1/exicon2" value="0x00000000" toolTipHelpDescription="Event Input Control" defaultValue="0x00000000" addressOffset="0x18" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="PE" URI="http://resources/48.0.0/peripheral/eru/1/exicon2/pe" value="0x00000000" toolTipHelpDescription="Output Trigger Pulse Enable for ETLx" defaultValue="0x00000000" startPos="0" stopPos="0" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The trigger pulse generation is disabled"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The trigger pulse generation is enabled"/>
+    </bitFields>
+    <bitFields name="LD" URI="http://resources/48.0.0/peripheral/eru/1/exicon2/ld" value="0x00000000" toolTipHelpDescription="Rebuild Level Detection for Status Flag for ETLx" defaultValue="0x00000000" startPos="1" stopPos="1" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The status flag FL is not cleared by hardware and is used as &quot;sticky&quot; bit. Once set, it is not influenced by any edge until it becomes cleared by software."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The status flag FL rebuilds a level detection of the desired event. It becomes automatically set with a rising edge if RE = 1 or with a falling edge if FE = 1. It becomes automatically cleared with a rising edge if RE = 0 or with a falling edge if FE = 0."/>
+    </bitFields>
+    <bitFields name="RE" URI="http://resources/48.0.0/peripheral/eru/1/exicon2/re" value="0x00000000" toolTipHelpDescription="Rising Edge Detection Enable ETLx" defaultValue="0x00000000" startPos="2" stopPos="2" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="A rising edge is not considered as edge event"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="A rising edge is considered as edge event"/>
+    </bitFields>
+    <bitFields name="FE" URI="http://resources/48.0.0/peripheral/eru/1/exicon2/fe" value="0x00000000" toolTipHelpDescription="Falling Edge Detection Enable ETLx" defaultValue="0x00000000" startPos="3" stopPos="3" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="A falling edge is not considered as edge event"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="A falling edge is considered as edge event"/>
+    </bitFields>
+    <bitFields name="OCS" URI="http://resources/48.0.0/peripheral/eru/1/exicon2/ocs" value="0x00000000" toolTipHelpDescription="Output Channel Select for ETLx Output Trigger Pulse" defaultValue="0x00000000" startPos="4" stopPos="6" accessPermission="rw" maxValue="7" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="Trigger pulses are sent to OGU0"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="Trigger pulses are sent to OGU1"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="Trigger pulses are sent to OGU2"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="Trigger pulses are sent to OGU3"/>
+    </bitFields>
+    <bitFields name="FL" URI="http://resources/48.0.0/peripheral/eru/1/exicon2/fl" value="0x00000000" toolTipHelpDescription="Status Flag for ETLx" defaultValue="0x00000000" startPos="7" stopPos="7" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The enabled edge event has not been detected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The enabled edge event has been detected"/>
+    </bitFields>
+    <bitFields name="SS" URI="http://resources/48.0.0/peripheral/eru/1/exicon2/ss" value="0x00000000" toolTipHelpDescription="Input Source Select for ERSx" defaultValue="0x00000000" startPos="8" stopPos="9" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input A without additional combination"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input B without additional combination"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input A OR input B"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input A AND input B"/>
+    </bitFields>
+    <bitFields name="NA" URI="http://resources/48.0.0/peripheral/eru/1/exicon2/na" value="0x00000000" toolTipHelpDescription="Input A Negation Select for ERSx" defaultValue="0x00000000" startPos="10" stopPos="10" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Input A is used directly"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Input A is inverted"/>
+    </bitFields>
+    <bitFields name="NB" URI="http://resources/48.0.0/peripheral/eru/1/exicon2/nb" value="0x00000000" toolTipHelpDescription="Input B Negation Select for ERSx" defaultValue="0x00000000" startPos="11" stopPos="11" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Input B is used directly"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Input B is inverted"/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PE" URI="http://resources/48.0.0/peripheral/eru/1/exicon2/pe" value="0x00000000" toolTipHelpDescription="Output Trigger Pulse Enable for ETLx" defaultValue="0x00000000" startPos="0" stopPos="0" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The trigger pulse generation is disabled"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The trigger pulse generation is enabled"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="OCS" URI="http://resources/48.0.0/peripheral/eru/1/exicon2/ocs" value="0x00000000" toolTipHelpDescription="Output Channel Select for ETLx Output Trigger Pulse" defaultValue="0x00000000" startPos="4" stopPos="6" accessPermission="rw" maxValue="7" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="Trigger pulses are sent to OGU0"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="Trigger pulses are sent to OGU1"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="Trigger pulses are sent to OGU2"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="Trigger pulses are sent to OGU3"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="EXS2A" URI="http://resources/48.0.0/peripheral/eru/1/exisel/exs2a" value="0x00000000" toolTipHelpDescription="Event Source Select for A2 (ERS2)" defaultValue="0x00000000" startPos="8" stopPos="9" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input ERU_2A0 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_2A1 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_2A2 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_2A3 is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="EXS2B" URI="http://resources/48.0.0/peripheral/eru/1/exisel/exs2b" value="0x00000000" toolTipHelpDescription="Event Source Select for B2 (ERS2)" defaultValue="0x00000000" startPos="10" stopPos="11" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input ERU_2B0 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_2B1 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_2B2 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_2B3 is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="3" URI="http://resources/48.0.0/peripheral/eru/1/ers_etl/3">
+    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/EVENT_DETECTOR/v4_0_6/EVENT_DETECTOR_1.app#//@hwResources.0"/>
+    <resourcesList name="exicon" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exicon3"/>
+    <resourcesList name="exicon_ocs" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exicon3/ocs"/>
+    <resourcesList name="exicon_pe" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exicon3/pe"/>
+    <resourcesList name="exisel_exsxa" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exisel/exs3a"/>
+    <resourcesList name="exisel_exsxb" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/exisel/exs3b"/>
+    <resourcesList name="a" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ers_etl3_a"/>
+    <resourcesList name="b" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ers_etl3_b"/>
+    <resourcesList name="tr" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ers_etl3_tr"/>
+    <resourcesList name="fl" requiredResourceUri="http://resources/48.0.0/peripheral/eru/1/ers_etl3_fl"/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="EXICON3" URI="http://resources/48.0.0/peripheral/eru/1/exicon3" value="0x00000000" toolTipHelpDescription="Event Input Control" defaultValue="0x00000000" addressOffset="0x1c" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="PE" URI="http://resources/48.0.0/peripheral/eru/1/exicon3/pe" value="0x00000000" toolTipHelpDescription="Output Trigger Pulse Enable for ETLx" defaultValue="0x00000000" startPos="0" stopPos="0" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The trigger pulse generation is disabled"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The trigger pulse generation is enabled"/>
+    </bitFields>
+    <bitFields name="LD" URI="http://resources/48.0.0/peripheral/eru/1/exicon3/ld" value="0x00000000" toolTipHelpDescription="Rebuild Level Detection for Status Flag for ETLx" defaultValue="0x00000000" startPos="1" stopPos="1" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The status flag FL is not cleared by hardware and is used as &quot;sticky&quot; bit. Once set, it is not influenced by any edge until it becomes cleared by software."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The status flag FL rebuilds a level detection of the desired event. It becomes automatically set with a rising edge if RE = 1 or with a falling edge if FE = 1. It becomes automatically cleared with a rising edge if RE = 0 or with a falling edge if FE = 0."/>
+    </bitFields>
+    <bitFields name="RE" URI="http://resources/48.0.0/peripheral/eru/1/exicon3/re" value="0x00000000" toolTipHelpDescription="Rising Edge Detection Enable ETLx" defaultValue="0x00000000" startPos="2" stopPos="2" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="A rising edge is not considered as edge event"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="A rising edge is considered as edge event"/>
+    </bitFields>
+    <bitFields name="FE" URI="http://resources/48.0.0/peripheral/eru/1/exicon3/fe" value="0x00000000" toolTipHelpDescription="Falling Edge Detection Enable ETLx" defaultValue="0x00000000" startPos="3" stopPos="3" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="A falling edge is not considered as edge event"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="A falling edge is considered as edge event"/>
+    </bitFields>
+    <bitFields name="OCS" URI="http://resources/48.0.0/peripheral/eru/1/exicon3/ocs" value="0x00000000" toolTipHelpDescription="Output Channel Select for ETLx Output Trigger Pulse" defaultValue="0x00000000" startPos="4" stopPos="6" accessPermission="rw" maxValue="7" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="Trigger pulses are sent to OGU0"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="Trigger pulses are sent to OGU1"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="Trigger pulses are sent to OGU2"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="Trigger pulses are sent to OGU3"/>
+    </bitFields>
+    <bitFields name="FL" URI="http://resources/48.0.0/peripheral/eru/1/exicon3/fl" value="0x00000000" toolTipHelpDescription="Status Flag for ETLx" defaultValue="0x00000000" startPos="7" stopPos="7" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The enabled edge event has not been detected"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The enabled edge event has been detected"/>
+    </bitFields>
+    <bitFields name="SS" URI="http://resources/48.0.0/peripheral/eru/1/exicon3/ss" value="0x00000000" toolTipHelpDescription="Input Source Select for ERSx" defaultValue="0x00000000" startPos="8" stopPos="9" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input A without additional combination"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input B without additional combination"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input A OR input B"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input A AND input B"/>
+    </bitFields>
+    <bitFields name="NA" URI="http://resources/48.0.0/peripheral/eru/1/exicon3/na" value="0x00000000" toolTipHelpDescription="Input A Negation Select for ERSx" defaultValue="0x00000000" startPos="10" stopPos="10" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Input A is used directly"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Input A is inverted"/>
+    </bitFields>
+    <bitFields name="NB" URI="http://resources/48.0.0/peripheral/eru/1/exicon3/nb" value="0x00000000" toolTipHelpDescription="Input B Negation Select for ERSx" defaultValue="0x00000000" startPos="11" stopPos="11" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Input B is used directly"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Input B is inverted"/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="OCS" URI="http://resources/48.0.0/peripheral/eru/1/exicon3/ocs" value="0x00000000" toolTipHelpDescription="Output Channel Select for ETLx Output Trigger Pulse" defaultValue="0x00000000" startPos="4" stopPos="6" accessPermission="rw" maxValue="7" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="Trigger pulses are sent to OGU0"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="Trigger pulses are sent to OGU1"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="Trigger pulses are sent to OGU2"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="Trigger pulses are sent to OGU3"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PE" URI="http://resources/48.0.0/peripheral/eru/1/exicon3/pe" value="0x00000000" toolTipHelpDescription="Output Trigger Pulse Enable for ETLx" defaultValue="0x00000000" startPos="0" stopPos="0" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The trigger pulse generation is disabled"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The trigger pulse generation is enabled"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="EXS3A" URI="http://resources/48.0.0/peripheral/eru/1/exisel/exs3a" value="0x00000000" toolTipHelpDescription="Event Source Select for A3 (ERS3)" defaultValue="0x00000000" startPos="12" stopPos="13" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input ERU_3A0 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_3A1 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_3A2 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_3A3 is selected"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="EXS3B" URI="http://resources/48.0.0/peripheral/eru/1/exisel/exs3b" value="0x00000000" toolTipHelpDescription="Event Source Select for B3 (ERS3)" defaultValue="0x00000000" startPos="14" stopPos="15" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="Input ERU_3B0 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="Input ERU_3B1 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Input ERU_3B2 is selected"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Input ERU_3B3 is selected"/>
+  </provided>
+  <addressBlock offset="0x0" size="0x4000" usage="registers"/>
+</ResourceModel:Peripheral>

@@ -1,0 +1,28 @@
+package Model.APPS.E_EEPROM_XMC4.v4_0_14;
+
+// Import statements
+import ifx.davex.app.manifest.*
+
+abstract class E_EEPROM_XMC4_GUI extends AppManifest {
+
+    /* IMPORTANT NOTE: This is an auto generated file, please do not edit manually. */
+    /* User modifications in the GUI editor will be updated here automatically.     */
+    /* Manually editing the contents of this file will corrupt the APP SDK project. */
+
+	/* Begin : UI variable section */
+	 public GTab General_Settings_TAB;
+	 public GInteger gint_block_size;
+	 public GLabel glabel_block_size;
+	 public GGroup ggroup_memory_settings;
+
+	 public E_EEPROM_XMC4_GUI(DaveEnv daveEnv){
+
+	 General_Settings_TAB = GTab(widgetName:"General_Settings_TAB", text:"General Settings", enabled:true, visible:true)
+	 gint_block_size = GInteger(widgetName:"gint_block_size", value:2048, minValue:1, maxValue:8184, enabled:true, visible:true, isMandatoryValue:false)
+	 glabel_block_size = GLabel(widgetName:"glabel_block_size", text:"Data block size [Bytes]:", enabled:true, visible:true)
+	 ggroup_memory_settings = GGroup(widgetName:"ggroup_memory_settings", text:"Data Size", enabled:true, visible:true)
+
+
+	 }
+	/* End : UI variable section */
+}

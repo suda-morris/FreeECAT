@@ -1,0 +1,148 @@
+package Model.APPS.EVENT_DETECTOR.v4_0_6.Templates;
+
+import Model.APPS.EVENT_DETECTOR.v4_0_6.EVENT_DETECTOR
+
+out.print("""
+/**
+ * @cond
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) 2015, Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * To improve the quality of the software, users are encouraged to share modifications, enhancements or bug fixes
+ * with Infineon Technologies AG (dave@infineon.com).
+ ***********************************************************************************************************************
+ *
+ * Change History
+ * --------------
+ *
+ * 2015-02-16:
+ *     - Initial version<br>
+ *
+ * 2015-05-08:
+ *     - Comments updated<br>
+ *
+ * @endcond
+ *
+ */
+
+/***********************************************************************************************************************
+ * HEADER FILES
+ **********************************************************************************************************************/
+#include "event_detector.h"
+
+/***********************************************************************************************************************
+* DATA STRUCTURES
+***********************************************************************************************************************/
+""");
+/* Variable declaration */
+List MappedUri = null
+String appInst  = null
+String UnitInst = null
+String ChannelInst  = null
+/************************************************************************************
+ ***   Conversion of GUI Combo values into corresponding LLD Enumeration values   ***
+ ************************************************************************************/
+
+Map triggersource = [
+  'Disabled'     : 'XMC_ERU_ETL_EDGE_DETECTION_DISABLED',
+  'Rising Edge'  : 'XMC_ERU_ETL_EDGE_DETECTION_RISING',
+  'Falling Edge' : 'XMC_ERU_ETL_EDGE_DETECTION_FALLING',
+  'Either Edge'  : 'XMC_ERU_ETL_EDGE_DETECTION_RISING | XMC_ERU_ETL_EDGE_DETECTION_FALLING'
+]
+
+
+Map event_list = [
+	0 : 'XMC_ERU_ETL_SOURCE_A',
+	1 : 'XMC_ERU_ETL_SOURCE_B',
+	2 : 'XMC_ERU_ETL_SOURCE_A_OR_B',
+	3 : 'XMC_ERU_ETL_SOURCE_A_AND_B',
+	4 : 'XMC_ERU_ETL_SOURCE_NOT_A',
+	5 : 'XMC_ERU_ETL_SOURCE_B',
+	6 : 'XMC_ERU_ETL_SOURCE_NOT_A_OR_B',
+	7 : 'XMC_ERU_ETL_SOURCE_NOT_A_AND_B',
+	8 : 'XMC_ERU_ETL_SOURCE_A',
+	9 : 'XMC_ERU_ETL_SOURCE_NOT_B',
+	10 : 'XMC_ERU_ETL_SOURCE_A_OR_NOT_B',
+	11 : 'XMC_ERU_ETL_SOURCE_A_AND_NOT_B',
+	12 : 'XMC_ERU_ETL_SOURCE_NOT_A',
+	13 : 'XMC_ERU_ETL_SOURCE_NOT_B',
+	14 : 'XMC_ERU_ETL_SOURCE_NOT_A_OR_NOT_B',
+	15 : 'XMC_ERU_ETL_SOURCE_NOT_A_AND_NOT_B'
+	]
+
+/*To identify the number of instances created in the project*/
+for (Object appIns : appInstancesList ) {
+	appInst = appIns.getInstanceLabel()
+	MappedUri = appIns.hwres_eru_ers_etl.getSolverUri()
+	/* This is the GUI configurations made for EVENT_DETECTOR app Instance */
+	if (MappedUri != null) {
+		UnitInst = MappedUri[4]
+		ChannelInst = MappedUri[6]
+		Integer event_source = 0
+		
+		if(appIns.gcheck_enable_input_b_inversion.value)
+		{
+			event_source = 1 << 3
+		}
+		if(appIns.gcheck_enable_input_a_inversion.value)
+		{
+			event_source += 1 << 2
+		}
+		event_source += appIns.gcombo_input_selection.options.indexOf(appIns.gcombo_input_selection.value)
+
+		out.print("""
+/**
+ * @brief Contents entered via GUI
+ */
+const XMC_ERU_ETL_CONFIG_t ${appInst}_ETL_Config =
+{
+  .input_a = (uint32_t)XMC_ERU_ETL_INPUT_A${appIns.hwres_eru_ers_etl.getRegValue("exisel","exisel_exsxa")}, /* Event input selection for A(0-3) */
+  .input_b = (uint32_t)XMC_ERU_ETL_INPUT_B${appIns.hwres_eru_ers_etl.getRegValue("exisel","exisel_exsxb")}, /* Event input selection for B(0-3) */
+  .enable_output_trigger = (uint32_t)${appIns.hwres_eru_ers_etl.getRegValue("exicon","exicon_pe")},
+  .status_flag_mode = (XMC_ERU_ETL_STATUS_FLAG_MODE_t)${if(appIns.gcheck_enable_status_flag_autoclear.value == true) 'XMC_ERU_ETL_STATUS_FLAG_MODE_HWCTRL'
+                                                        else 'XMC_ERU_ETL_STATUS_FLAG_MODE_SWCTRL'}, /* enable the status flag 
+                                                                                                   auto clear for opposite edge */									 
+  .edge_detection = ${triggersource[appIns.gcombo_input_edge_detector.value]}, /* Select the edge/s to convert as event */
+  .output_trigger_channel = ${'XMC_ERU_ETL_OUTPUT_TRIGGER_CHANNEL'+appIns.hwres_eru_ers_etl.getRegValue("exicon","exicon_ocs")}, /* Select the source for event */
+  .source = ${event_list[event_source]}
+};
+
+
+EVENT_DETECTOR_t ${appInst} = 
+{
+  .eru       = XMC_ERU${UnitInst}, /* ERU module assigned */    
+  .channel   = ${ChannelInst}U,    /* ERU channel assigned(0-3) */
+  .config      = &${appInst}_ETL_Config, /* reference to hardware configuration */
+  .init_status = false /* Initialized status */
+};
+
+		""");
+	}
+	else {
+		out.print("""
+  /*ERU Channel NOT MAPPED FOR APP INSTANCE: ${appInst} */
+		""");
+	}
+}/* End of for loop */

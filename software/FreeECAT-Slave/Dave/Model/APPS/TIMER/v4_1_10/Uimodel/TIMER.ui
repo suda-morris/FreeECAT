@@ -1,0 +1,52 @@
+<p1:Tab  xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt" xmlns:p1="clr-namespace:com.ifx.davex.ui.controls.app" x:Class="e" layout="{x:Null}">
+	<p1:TabFolder bounds="5, 5, 500, 600">
+		<p1:GTab text="General Settings" visible="true" enabled="true" manifestObj="true" widgetName="gtab_general_settings">
+			<p1:GTab.control>
+				<p1:Tab widgetName="composite9">
+					<p1:Tab.layout>
+						<GridLayout numColumns="2" verticalSpacing="10" horizontalSpacing="10"/>
+					</p1:Tab.layout>
+					<p1:GLabel manifestObj="true" text="Select timer module:" visible="true" widgetName="glabel_timer_module">
+						<p1:GLabel.layoutData>
+							<GridData widthHint="114"/>
+						</p1:GLabel.layoutData>
+					</p1:GLabel>
+					<p1:GCombo description="Select the timer module to generate the events:&#13;&#10;&lt;ol&gt;&#13;&#10;&lt;li&gt;CCU4 : One slice from CCU4 module is used.&lt;/li&gt;&#13;&#10;&lt;li&gt;CCU8 : One slice from CCU8 module is used.&lt;/li&gt;&#13;&#10; &lt;/ol&gt;" mandatory="(com.ifx.davex.ui.controls.util.AppUiConstants).FALSE" manifestObj="true" options="CCU4&#13;&#10;CCU8" toolTipText="Select the timer module to generate the events." value="CCU4" widgetName="gcombo_timer_module">
+						<p1:GCombo.layoutData>
+							<GridData widthHint="91"/>
+						</p1:GCombo.layoutData>
+					</p1:GCombo>
+					<p1:GGroup text="Timer Settings" manifestObj="true" widgetName="ggroup_timer_settings">
+						<p1:GGroup.layoutData>
+							<GridData horizontalSpan="2" horizontalAlignment="FILL" grabExcessHorizontalSpace="true"/>
+						</p1:GGroup.layoutData>
+						<p1:GGroup.layout>
+							<GridLayout verticalSpacing="10" horizontalSpacing="10" numColumns="2"/>
+						</p1:GGroup.layout>
+						<p1:GLabel manifestObj="true" text="Time interval [usec]:" visible="true" widgetName="glabel_time_interval"/>
+						<p1:GFloat x:Style="BORDER" minValue="0.2" maxValue="4294967200" mandatory="(com.ifx.davex.ui.controls.util.AppUiConstants).FALSE" format="*,2" manifestObj="true" widgetName="gfloat_time_interval" value="1" toolTipText="Set the time interval to generate the events." description="Set the time interval to generate the events:&lt;br&gt;&#13;&#10;The App calculates the resolution of the timer based on the enetered time interval value. &#13;&#10;Then period value is calculated using the below formula:&lt;br&gt;&#13;&#10;&lt;pre&gt;   Period value = Time interval / Resolution">
+							<p1:GFloat.layoutData>
+								<GridData grabExcessHorizontalSpace="true" widthHint="85"/>
+							</p1:GFloat.layoutData>
+						</p1:GFloat>
+						<p1:GCheck description="Start the timer immediately after initialization:&lt;br&gt;&#13;&#10;&lt;b&gt;Note:&lt;/b&gt;&#13;&#10;For smaller time intervals (e.g: 1micro seconds or less), inside time interval ISR, if any other APP functionality is being used, ensure the other APP is initialized before TIMER APP." manifestObj="true" text="Start after initialization" toolTipText="" widgetName="gcheck_start_after_initilization" value="true">
+							<p1:GCheck.layoutData>
+								<GridData horizontalSpan="2"/>
+							</p1:GCheck.layoutData>
+						</p1:GCheck>
+					</p1:GGroup>
+				</p1:Tab>
+			</p1:GTab.control>
+		</p1:GTab>
+		<p1:GTab text="Event Settings" visible="true" enabled="true" manifestObj="true" widgetName="gtab_event_settings">
+			<p1:GTab.control>
+				<p1:Tab widgetName="composite_1">
+					<p1:Tab.layout>
+						<GridLayout verticalSpacing="10" horizontalSpacing="10"/>
+					</p1:Tab.layout>
+					<p1:GCheck description="Generate event for each time interval:&lt;br&gt;&#13;&#10;Enabling this option exposes the &quot;event_time_interval&quot; signal.&#13;&#10;The signal can be used to connect with other peripherals or interrupt.&#13;&#10;" manifestObj="true" text="Time interval event" toolTipText="Generate event for each time interval." widgetName="gcheck_period_match_interrupt"/>
+				</p1:Tab>
+			</p1:GTab.control>
+		</p1:GTab>
+	</p1:TabFolder>
+</p1:Tab>

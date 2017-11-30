@@ -1,0 +1,432 @@
+package Model.APPS.ECAT_SSC.v4_0_14.Templates;
+
+import Model.APPS.ECAT_SSC.v4_0_14.ECAT_SSC
+
+import java.nio.file.*
+
+
+def get_pin = { hwres -> return "P${hwres.getSolverUri()[4]}_${hwres.getSolverUri()[6]}"}
+def get_af  = { hwres -> return (hwres.getRegValue("IOCR", "iocr_oe").toInteger() + hwres.getRegValue("IOCR", "iocr_pcr").toInteger())}
+
+String[] PORT0_CTRL_RXD0 = ["XMC_ECAT_PORT0_CTRL_RXD0_P1_4", "XMC_ECAT_PORT0_CTRL_RXD0_P5_0", "XMC_ECAT_PORT0_CTRL_RXD0_P7_4"]
+String[] PORT0_CTRL_RXD1 = ["XMC_ECAT_PORT0_CTRL_RXD1_P1_5", "XMC_ECAT_PORT0_CTRL_RXD1_P5_1", "XMC_ECAT_PORT0_CTRL_RXD1_P7_5"]
+String[] PORT0_CTRL_RXD2 = ["XMC_ECAT_PORT0_CTRL_RXD2_P1_10", "XMC_ECAT_PORT0_CTRL_RXD2_P5_2", "XMC_ECAT_PORT0_CTRL_RXD2_P7_6"]
+String[] PORT0_CTRL_RXD3 = ["XMC_ECAT_PORT0_CTRL_RXD3_P1_11", "XMC_ECAT_PORT0_CTRL_RXD3_P5_7", "XMC_ECAT_PORT0_CTRL_RXD3_P7_7"]
+String[] PORT0_CTRL_RX_ERR = ["XMC_ECAT_PORT0_CTRL_RX_ERR_P4_0", "XMC_ECAT_PORT0_CTRL_RX_ERR_P2_6", "XMC_ECAT_PORT0_CTRL_RX_ERR_P7_9"]
+String[] PORT0_CTRL_RX_CLK = ["XMC_ECAT_PORT0_CTRL_RX_CLK_P1_1", "XMC_ECAT_PORT0_CTRL_RX_CLK_P5_4", "XMC_ECAT_PORT0_CTRL_RX_CLK_P7_10"]
+String[] PORT0_CTRL_RX_DV = ["XMC_ECAT_PORT0_CTRL_RX_DV_P1_9", "XMC_ECAT_PORT0_CTRL_RX_DV_P5_6", "XMC_ECAT_PORT0_CTRL_RX_DV_P7_11"]
+String[] PORT0_CTRL_LINK = ["XMC_ECAT_PORT0_CTRL_LINK_P4_1", "XMC_ECAT_PORT0_CTRL_LINK_P1_15", "XMC_ECAT_PORT0_CTRL_LINK_P9_10"]
+String[] PORT0_CTRL_TX_CLK = ["XMC_ECAT_PORT0_CTRL_TX_CLK_P1_0", "XMC_ECAT_PORT0_CTRL_TX_CLK_P5_5", "XMC_ECAT_PORT0_CTRL_TX_CLK_P9_1"]
+
+String[] PORT1_CTRL_RXD0 = ["XMC_ECAT_PORT1_CTRL_RXD0_P0_11", "XMC_ECAT_PORT1_CTRL_RXD0_P14_7", "XMC_ECAT_PORT1_CTRL_RXD0_P8_4"]
+String[] PORT1_CTRL_RXD1 = ["XMC_ECAT_PORT1_CTRL_RXD1_P0_6", "XMC_ECAT_PORT1_CTRL_RXD1_P14_12", "XMC_ECAT_PORT1_CTRL_RXD1_P8_5"]
+String[] PORT1_CTRL_RXD2 = ["XMC_ECAT_PORT1_CTRL_RXD2_P0_5", "XMC_ECAT_PORT1_CTRL_RXD2_P14_13", "XMC_ECAT_PORT1_CTRL_RXD2_P8_6"]
+String[] PORT1_CTRL_RXD3 = ["XMC_ECAT_PORT1_CTRL_RXD3_P0_4", "XMC_ECAT_PORT1_CTRL_RXD3_P14_14", "XMC_ECAT_PORT1_CTRL_RXD3_P8_7"]
+String[] PORT1_CTRL_RX_ERR = ["XMC_ECAT_PORT1_CTRL_RX_ERR_P3_5", "XMC_ECAT_PORT1_CTRL_RX_ERR_P15_2", "XMC_ECAT_PORT1_CTRL_RX_ERR_P8_9"]
+String[] PORT1_CTRL_RX_CLK = ["XMC_ECAT_PORT1_CTRL_RX_CLK_P0_1", "XMC_ECAT_PORT1_CTRL_RX_CLK_P14_6", "XMC_ECAT_PORT1_CTRL_RX_CLK_P8_10"]
+String[] PORT1_CTRL_RX_DV = ["XMC_ECAT_PORT1_CTRL_RX_DV_P0_9", "XMC_ECAT_PORT1_CTRL_RX_DV_P14_15", "XMC_ECAT_PORT1_CTRL_RX_DV_P8_11"]
+String[] PORT1_CTRL_LINK = ["XMC_ECAT_PORT1_CTRL_LINK_P3_4", "XMC_ECAT_PORT1_CTRL_LINK_P15_3", "XMC_ECAT_PORT1_CTRL_LINK_P9_11"]
+String[] PORT1_CTRL_TX_CLK = ["XMC_ECAT_PORT1_CTRL_TX_CLK_P0_10", "XMC_ECAT_PORT1_CTRL_TX_CLK_P5_9", "XMC_ECAT_PORT1_CTRL_TX_CLK_P9_0"]
+
+String[] PORT_CTRL_MDIO = ["XMC_ECAT_PORT_CTRL_MDIO_P0_12", "XMC_ECAT_PORT_CTRL_MDIO_P4_2", "XMC_ECAT_PORT_CTRL_MDIO_P9_7"]
+String[] PORT_CTRL_LATCHIN0 = ["XMC_ECAT_PORT_CTRL_LATCHIN0_P14_5", "XMC_ECAT_PORT_CTRL_LATCHIN0_9_0","XMC_ECAT_PORT_CTRL_LATCHIN0_ERU0_PDOUT0","XMC_ECAT_PORT_CTRL_LATCHIN0_ERU1_PDOUT0"]
+String[] PORT_CTRL_LATCHIN1 = ["XMC_ECAT_PORT_CTRL_LATCHIN1_P14_4", "XMC_ECAT_PORT_CTRL_LATCHIN1_9_1","XMC_ECAT_PORT_CTRL_LATCHIN1_ERU0_PDOUT1","XMC_ECAT_PORT_CTRL_LATCHIN1_ERU1_PDOUT1"]
+
+String[] output_mode = ["XMC_GPIO_MODE_INPUT_TRISTATE", 
+                        "XMC_GPIO_MODE_OUTPUT_PUSH_PULL",
+                        "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT1", 
+                        "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT2", 
+                        "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT3",
+                        "XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT4"]
+
+String[] hwsel = ["XMC_GPIO_HWCTRL_DISABLED",
+                "XMC_GPIO_HWCTRL_PERIPHERAL1",
+                "XMC_GPIO_HWCTRL_PERIPHERAL2"]
+
+
+  
+out.print("""
+/**
+ * @cond
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) 2016, Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * To improve the quality of the software, users are encouraged to share modifications, enhancements or bug fixes
+ * with Infineon Technologies AG (dave@infineon.com).
+ ***********************************************************************************************************************
+ *
+ * Change History
+ * --------------
+ *
+ * 2016-01-20:
+ *     - Initial version
+ *
+ * 2016-06-07:
+ *     - Fixed code generation error for project folder paths with spaces in between.
+ * @endcond
+ *
+ */
+
+/***********************************************************************************************************************
+ * HEADER FILES
+ **********************************************************************************************************************/
+#include <xmc_gpio.h>
+#include <xmc_ecat.h>
+#include "xmc_eschw.h"
+#include "SSC/Src/ecatappl.h"
+#include "SSC/Src/ecatslv.h"
+#include "../INTERRUPT/interrupt.h"
+
+""")
+
+for (Object ecat_ssc_inst : appInstancesList ) {
+	
+
+def scriptDir = new File(getClass().protectionDomain.codeSource.location.path.toString().replace("%20", " ")).getParentFile()
+def projectDir = scriptDir.getParentFile().getParentFile().getParentFile().getParentFile().getParentFile().getParentFile()
+
+println(Paths.get(scriptDir.path, "Infineon_XMC_ECAT_SSC_Config.xml").toString(), ecat_ssc_inst.MSG_INFORMATION)
+
+def folder = new File( Paths.get(projectDir.path, "SSC").toString() )
+println(Paths.get(folder.path, "Infineon_XMC_ECAT_SSC_Config.xml").toString(), ecat_ssc_inst.MSG_INFORMATION)
+
+if( !folder.exists() ) {
+  println("SSC folder created", ecat_ssc_inst.MSG_INFORMATION)
+  folder.mkdirs()
+}
+else {
+  println("SSC folder already existing", ecat_ssc_inst.MSG_INFORMATION)
+}
+
+try {
+  Files.copy(Paths.get(scriptDir.path, "Infineon_XMC_ECAT_SSC_Config.xml"), Paths.get(folder.path, "Infineon_XMC_ECAT_SSC_Config.xml"))
+  println("Infineon_XMC_ECAT_SSC_Config.xml copied", ecat_ssc_inst.MSG_INFORMATION)
+}
+catch (FileAlreadyExistsException e) {
+  println("Infineon_XMC_ECAT_SSC_Config.xml already existing", ecat_ssc_inst.MSG_INFORMATION)
+}
+
+try {
+  Files.copy(Paths.get(scriptDir.path, "XMC_ESC.xlsx"), Paths.get(folder.path, "XMC_ESC.xlsx"))
+  println("XMC_ESC.xlsx copied", ecat_ssc_inst.MSG_INFORMATION)
+}
+catch (FileAlreadyExistsException e) {
+  println("XMC_ESC.xlsx already existing", ecat_ssc_inst.MSG_INFORMATION)
+}
+
+out.println("/* PHY management interface signal definitions*/")
+if (ecat_ssc_inst.gcheck_enable_mdio.value == true) {
+out.println("#define ECAT_MDO              ${get_pin(ecat_ssc_inst.hwres_port_pad_mdio)}")
+out.println("#define ECAT_MCLK             ${get_pin(ecat_ssc_inst.hwres_port_pad_mdc)}")
+out.println("")
+}
+out.println("/* EtherCAT slave physical layer pin configurations */")
+out.println("#define ECAT_CLK25            ${get_pin(ecat_ssc_inst.hwres_port_pad_phy_clk25)}")
+out.println("#define ECAT_PHY_RESET        ${get_pin(ecat_ssc_inst.hwres_port_pad_phy_reset)}")
+out.println("#define ECAT_LED_RUN          ${get_pin(ecat_ssc_inst.hwres_port_pad_led_run)}")
+out.println("#define ECAT_LED_ERR          ${get_pin(ecat_ssc_inst.hwres_port_pad_led_err)}")
+out.println("")
+out.println("/* EtherCAT slave physical layer Port 0 pin configurations */")
+out.println("#define ECAT_P0_LINK_STATUS   ${get_pin(ecat_ssc_inst.hwres_port_pad_p0_link)}")
+out.println("#define ECAT_P0_LED_LINK_ACT  ${get_pin(ecat_ssc_inst.hwres_port_pad_led_link_act_p0)}")
+out.println("#define ECAT_P0_RXD3          ${get_pin(ecat_ssc_inst.hwres_port_pad_p0_rxd3)}")
+out.println("#define ECAT_P0_RXD2          ${get_pin(ecat_ssc_inst.hwres_port_pad_p0_rxd2)}")
+out.println("#define ECAT_P0_RXD1          ${get_pin(ecat_ssc_inst.hwres_port_pad_p0_rxd1)}")
+out.println("#define ECAT_P0_RXD0          ${get_pin(ecat_ssc_inst.hwres_port_pad_p0_rxd0)}")
+out.println("#define ECAT_P0_RX_DV         ${get_pin(ecat_ssc_inst.hwres_port_pad_p0_rx_dv)}")
+out.println("#define ECAT_P0_RX_CLK        ${get_pin(ecat_ssc_inst.hwres_port_pad_p0_rx_clk)}")
+out.println("#define ECAT_P0_RX_ERR        ${get_pin(ecat_ssc_inst.hwres_port_pad_p0_rx_err)}")
+out.println("#define ECAT_P0_TXD3          ${get_pin(ecat_ssc_inst.hwres_port_pad_p0_txd3)}")
+out.println("#define ECAT_P0_TXD2          ${get_pin(ecat_ssc_inst.hwres_port_pad_p0_txd2)}")
+out.println("#define ECAT_P0_TXD1          ${get_pin(ecat_ssc_inst.hwres_port_pad_p0_txd1)}")
+out.println("#define ECAT_P0_TXD0          ${get_pin(ecat_ssc_inst.hwres_port_pad_p0_txd0)}")
+out.println("#define ECAT_P0_TX_EN         ${get_pin(ecat_ssc_inst.hwres_port_pad_p0_tx_ena)}")
+out.println("#define ECAT_P0_TX_CLK        ${get_pin(ecat_ssc_inst.hwres_port_pad_p0_tx_clk)}")
+out.println("")
+out.println("/* EtherCAT slave physical layer Port 1 pin configurations */")
+out.println("#define ECAT_P1_LINK_STATUS   ${get_pin(ecat_ssc_inst.hwres_port_pad_p1_link)}")
+out.println("#define ECAT_P1_LED_LINK_ACT  ${get_pin(ecat_ssc_inst.hwres_port_pad_led_link_act_p1)}")
+out.println("#define ECAT_P1_RXD3          ${get_pin(ecat_ssc_inst.hwres_port_pad_p1_rxd3)}")
+out.println("#define ECAT_P1_RXD2          ${get_pin(ecat_ssc_inst.hwres_port_pad_p1_rxd2)}")
+out.println("#define ECAT_P1_RXD1          ${get_pin(ecat_ssc_inst.hwres_port_pad_p1_rxd1)}")
+out.println("#define ECAT_P1_RXD0          ${get_pin(ecat_ssc_inst.hwres_port_pad_p1_rxd0)}")
+out.println("#define ECAT_P1_RX_DV         ${get_pin(ecat_ssc_inst.hwres_port_pad_p1_rx_dv)}")
+out.println("#define ECAT_P1_RX_CLK        ${get_pin(ecat_ssc_inst.hwres_port_pad_p1_rx_clk)}")
+out.println("#define ECAT_P1_RX_ERR        ${get_pin(ecat_ssc_inst.hwres_port_pad_p1_rx_err)}")
+out.println("#define ECAT_P1_TXD3          ${get_pin(ecat_ssc_inst.hwres_port_pad_p1_txd3)}")
+out.println("#define ECAT_P1_TXD2          ${get_pin(ecat_ssc_inst.hwres_port_pad_p1_txd2)}")
+out.println("#define ECAT_P1_TXD1          ${get_pin(ecat_ssc_inst.hwres_port_pad_p1_txd1)}")
+out.println("#define ECAT_P1_TXD0          ${get_pin(ecat_ssc_inst.hwres_port_pad_p1_txd0)}")
+out.println("#define ECAT_P1_TX_EN         ${get_pin(ecat_ssc_inst.hwres_port_pad_p1_tx_ena)}")
+out.println("#define ECAT_P1_TX_CLK        ${get_pin(ecat_ssc_inst.hwres_port_pad_p1_tx_clk)}")
+out.println("")
+out.println("/* Maximum Sync Managers supported */")
+out.println("#define MAX_SYNC_MAN          (8U)")
+out.println("")
+out.println("/* Timer tick counter variable initialization */")
+out.println("static uint32_t ticks = 0U;");
+out.println("")
+out.println("/* Extern declarations for Beckhoff SSC functions and variables */")
+out.println("extern uint8_t aEepromData[];")
+out.println("extern UINT8 *pEEPROM;")
+out.println("extern UINT16 (* pAPPL_EEPROM_Reload)(void);")
+out.println("extern UINT16 (* pAPPL_EEPROM_Write)(UINT32 wordaddr);")
+out.println("")
+out.println("/* EtherCAT Beckhoff HW abstraction layer interface API to initialize XMC ESC */")
+out.println("UINT16 HW_Init(void)")
+out.println("{")
+out.println("  uint8_t i;")
+out.println("  XMC_ECAT_PORT_CTRL_t port_control;")
+out.println("  XMC_GPIO_CONFIG_t gpio_config;")
+out.println("")
+out.println("  /* EEPROM interface API registration */")
+out.println("  pEEPROM = &aEepromData[0U];")
+out.println("  pAPPL_EEPROM_Reload = HW_EepromReload;")
+out.println("  pAPPL_EEPROM_Write  = HW_EepromWrite;")
+out.println("")
+out.println("  /* EtherCAT slave physical layer pin settings */")
+out.println("  gpio_config.mode = XMC_GPIO_MODE_INPUT_TRISTATE;")
+out.println("  XMC_GPIO_Init(ECAT_P0_LINK_STATUS, &gpio_config);")
+out.println("  XMC_GPIO_Init(ECAT_P0_RXD3, &gpio_config);")
+out.println("  XMC_GPIO_Init(ECAT_P0_RXD2, &gpio_config);")
+out.println("  XMC_GPIO_Init(ECAT_P0_RXD1, &gpio_config);")
+out.println("  XMC_GPIO_Init(ECAT_P0_RXD0, &gpio_config);")
+out.println("  XMC_GPIO_Init(ECAT_P0_RX_DV, &gpio_config);")
+out.println("  XMC_GPIO_Init(ECAT_P0_RX_CLK, &gpio_config);")
+out.println("  XMC_GPIO_Init(ECAT_P0_RX_ERR, &gpio_config);")
+out.println("  XMC_GPIO_Init(ECAT_P0_TX_CLK, &gpio_config);")
+out.println("")
+out.println("  XMC_GPIO_Init(ECAT_P1_LINK_STATUS, &gpio_config);")
+out.println("  XMC_GPIO_Init(ECAT_P1_RXD3, &gpio_config);")
+out.println("  XMC_GPIO_Init(ECAT_P1_RXD2, &gpio_config);")
+out.println("  XMC_GPIO_Init(ECAT_P1_RXD1, &gpio_config);")
+out.println("  XMC_GPIO_Init(ECAT_P1_RXD0, &gpio_config);")
+out.println("  XMC_GPIO_Init(ECAT_P1_RX_DV, &gpio_config);")
+out.println("  XMC_GPIO_Init(ECAT_P1_RX_CLK, &gpio_config);")
+out.println("  XMC_GPIO_Init(ECAT_P1_RX_ERR, &gpio_config);")
+out.println("  XMC_GPIO_Init(ECAT_P1_TX_CLK, &gpio_config);")
+out.println("")
+out.println("  port_control.common.enable_rstreq = ${ecat_ssc_inst.gcheck_enable_reset_request.value ? "true" : "false"};")
+out.println("  port_control.common.mdio = ${PORT_CTRL_MDIO[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CON", "con_con_mdio").toInteger()]};")
+out.println("  port_control.common.phyaddr_offset = ${ecat_ssc_inst.ginteger_phy_offset.value};")
+out.println("  port_control.common.latch_input0 = ${PORT_CTRL_LATCHIN0[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CON", "con_con_latchin0sel").toInteger()]};")
+out.println("  port_control.common.latch_input1 = ${PORT_CTRL_LATCHIN1[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CON", "con_con_latchin1sel").toInteger()]};")
+out.println("  port_control.port0.rxd0 = ${PORT0_CTRL_RXD0[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CONP0", "con_conp0_rxd0").toInteger()]};")
+out.println("  port_control.port0.rxd1 = ${PORT0_CTRL_RXD1[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CONP0", "con_conp0_rxd1").toInteger()]};")
+out.println("  port_control.port0.rxd2 = ${PORT0_CTRL_RXD2[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CONP0", "con_conp0_rxd2").toInteger()]};")
+out.println("  port_control.port0.rxd3 = ${PORT0_CTRL_RXD3[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CONP0", "con_conp0_rxd3").toInteger()]};")
+out.println("  port_control.port0.rx_clk = ${PORT0_CTRL_RX_CLK[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CONP0", "con_conp0_rx_clk").toInteger()]};")
+out.println("  port_control.port0.rx_dv = ${PORT0_CTRL_RX_DV[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CONP0", "con_conp0_rx_dv").toInteger()]};")
+out.println("  port_control.port0.rx_err = ${PORT0_CTRL_RX_ERR[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CONP0", "con_conp0_rx_err").toInteger()]};")
+out.println("  port_control.port0.link = ${PORT0_CTRL_LINK[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CONP0", "con_conp0_link").toInteger()]};")
+out.println("  port_control.port0.tx_clk = ${PORT0_CTRL_TX_CLK[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CONP0", "con_conp0_tx_clk").toInteger()]};")
+out.println("  port_control.port0.tx_shift = XMC_ECAT_PORT0_CTRL_TX_SHIFT_${ecat_ssc_inst.gcombo_port0_tx_shift.value.toUpperCase()}; ")
+out.println("  port_control.port1.rxd0 = ${PORT1_CTRL_RXD0[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CONP1", "con_conp1_rxd0").toInteger()]};")
+out.println("  port_control.port1.rxd1 = ${PORT1_CTRL_RXD1[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CONP1", "con_conp1_rxd1").toInteger()]};")
+out.println("  port_control.port1.rxd2 = ${PORT1_CTRL_RXD2[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CONP1", "con_conp1_rxd2").toInteger()]};")
+out.println("  port_control.port1.rxd3 = ${PORT1_CTRL_RXD3[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CONP1", "con_conp1_rxd3").toInteger()]};")
+out.println("  port_control.port1.rx_clk = ${PORT1_CTRL_RX_CLK[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CONP1", "con_conp1_rx_clk").toInteger()]};")
+out.println("  port_control.port1.rx_dv = ${PORT1_CTRL_RX_DV[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CONP1", "con_conp1_rx_dv").toInteger()]};")
+out.println("  port_control.port1.rx_err = ${PORT1_CTRL_RX_ERR[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CONP1", "con_conp1_rx_err").toInteger()]};")
+out.println("  port_control.port1.link = ${PORT1_CTRL_LINK[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CONP1", "con_conp1_link").toInteger()]};")
+out.println("  port_control.port1.tx_clk = ${PORT1_CTRL_TX_CLK[ecat_ssc_inst.hwres_ecat.getRegValue("CON_CONP1", "con_conp1_tx_clk").toInteger()]};")
+out.println("  port_control.port1.tx_shift = XMC_ECAT_PORT1_CTRL_TX_SHIFT_${ecat_ssc_inst.gcombo_port1_tx_shift.value.toUpperCase()};")
+out.println("  XMC_ECAT_SetPortControl(port_control);")
+out.println("")
+out.println("  /* EtherCAT slave enable and intialization using LLD function */")
+out.println("  XMC_ECAT_Init((XMC_ECAT_CONFIG_t *)(void*)aEepromData);")
+out.println("")
+out.println("  /* EtherCAT slave physical layer pin configurations */")
+out.println("  gpio_config.output_strength = XMC_GPIO_OUTPUT_STRENGTH_STRONG_SHARP_EDGE;")
+out.println("  gpio_config.mode = ${output_mode[get_af(ecat_ssc_inst.hwres_port_pad_p0_txd3)]};")
+out.println("  XMC_GPIO_Init(ECAT_P0_TXD3, &gpio_config);")
+out.println("  gpio_config.mode = ${output_mode[get_af(ecat_ssc_inst.hwres_port_pad_p0_txd2)]};")
+out.println("  XMC_GPIO_Init(ECAT_P0_TXD2, &gpio_config);")
+out.println("  gpio_config.mode = ${output_mode[get_af(ecat_ssc_inst.hwres_port_pad_p0_txd1)]};")
+out.println("  XMC_GPIO_Init(ECAT_P0_TXD1, &gpio_config);")
+out.println("  gpio_config.mode = ${output_mode[get_af(ecat_ssc_inst.hwres_port_pad_p0_txd0)]};")
+out.println("  XMC_GPIO_Init(ECAT_P0_TXD0, &gpio_config);")
+out.println("  gpio_config.mode = ${output_mode[get_af(ecat_ssc_inst.hwres_port_pad_p0_tx_ena)]};")
+out.println("  XMC_GPIO_Init(ECAT_P0_TX_EN, &gpio_config);")
+out.println("")
+out.println("  gpio_config.mode = ${output_mode[get_af(ecat_ssc_inst.hwres_port_pad_p1_txd3)]};")
+out.println("  XMC_GPIO_Init(ECAT_P1_TXD3, &gpio_config);")
+out.println("  gpio_config.mode = ${output_mode[get_af(ecat_ssc_inst.hwres_port_pad_p1_txd2)]};")
+out.println("  XMC_GPIO_Init(ECAT_P1_TXD2, &gpio_config);")
+out.println("  gpio_config.mode = ${output_mode[get_af(ecat_ssc_inst.hwres_port_pad_p1_txd1)]};")
+out.println("  XMC_GPIO_Init(ECAT_P1_TXD1, &gpio_config);")
+out.println("  gpio_config.mode = ${output_mode[get_af(ecat_ssc_inst.hwres_port_pad_p1_txd0)]};")
+out.println("  XMC_GPIO_Init(ECAT_P1_TXD0, &gpio_config);")
+out.println("  gpio_config.mode = ${output_mode[get_af(ecat_ssc_inst.hwres_port_pad_p1_tx_ena)]};")
+out.println("  XMC_GPIO_Init(ECAT_P1_TX_EN, &gpio_config);")
+out.println("")
+out.println("  gpio_config.mode = ${output_mode[get_af(ecat_ssc_inst.hwres_port_pad_phy_clk25)]};")
+out.println("  XMC_GPIO_Init(ECAT_CLK25, &gpio_config);")
+out.println("")
+out.println("  gpio_config.mode = ${output_mode[get_af(ecat_ssc_inst.hwres_port_pad_mdc)]};")
+out.println("  XMC_GPIO_Init(ECAT_MCLK, &gpio_config);")
+out.println("  gpio_config.mode = ${output_mode[get_af(ecat_ssc_inst.hwres_port_pad_mdio)]};")
+out.println("  XMC_GPIO_Init(ECAT_MDO, &gpio_config);")
+out.println("  XMC_GPIO_SetHardwareControl(ECAT_MDO, ${hwsel[ecat_ssc_inst.hwres_port_pad_mdio.getRegValue("HWSEL", "hwsel_hw").toInteger()]});")
+out.println("")
+out.println("  gpio_config.output_strength = XMC_GPIO_OUTPUT_STRENGTH_STRONG_SOFT_EDGE;")
+out.println("  gpio_config.mode = ${output_mode[get_af(ecat_ssc_inst.hwres_port_pad_led_link_act_p0)]};")
+out.println("  XMC_GPIO_Init(ECAT_P0_LED_LINK_ACT, &gpio_config);")
+out.println("")
+out.println("  gpio_config.mode = ${output_mode[get_af(ecat_ssc_inst.hwres_port_pad_led_link_act_p1)]};")
+out.println("  XMC_GPIO_Init(ECAT_P1_LED_LINK_ACT, &gpio_config);")
+out.println("")
+out.println("  gpio_config.mode = ${output_mode[get_af(ecat_ssc_inst.hwres_port_pad_led_run)]};")
+out.println("  XMC_GPIO_Init(ECAT_LED_RUN, &gpio_config);")
+out.println("  XMC_GPIO_SetHardwareControl(ECAT_LED_RUN, ${hwsel[ecat_ssc_inst.hwres_port_pad_led_run.getRegValue("HWSEL", "hwsel_hw").toInteger()]});")
+out.println("")
+out.println("  gpio_config.mode = ${output_mode[get_af(ecat_ssc_inst.hwres_port_pad_led_err)]};")
+out.println("  XMC_GPIO_Init(ECAT_LED_ERR, &gpio_config);")
+out.println("  XMC_GPIO_SetHardwareControl(ECAT_LED_ERR, ${hwsel[ecat_ssc_inst.hwres_port_pad_led_err.getRegValue("HWSEL", "hwsel_hw").toInteger()]});")
+out.println("")
+out.println("  gpio_config.mode = ${output_mode[get_af(ecat_ssc_inst.hwres_port_pad_phy_reset)]};")
+out.println("  XMC_GPIO_Init(ECAT_PHY_RESET, &gpio_config);")
+out.println("")
+out.println("  /* Disable all supported sync manager channels */")
+out.println("  for (i = 0U; i < MAX_SYNC_MAN; i++)")
+out.println("  {")
+out.println("    XMC_ECAT_DisableSyncManChannel(i);")
+out.println("  }")
+out.println("")
+out.println("  /* EtherCAT slave event disable */")
+out.println("  XMC_ECAT_DisableEvent(0xffffffffU);")
+out.println("")
+out.println("  /* ECAT interrupt priority settings */")
+out.println("  NVIC_SetPriority(ECAT0_0_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),")
+out.println("                                                     ${ecat_ssc_inst.ginterruptprio_ecat.priorityValue}U,")
+out.println("                                                     ${ecat_ssc_inst.ginterruptprio_ecat.subPriorityValue}U));")
+out.println("")
+out.println("  /* EtherCAT slave interrupt enable */")
+out.println("  ENABLE_ESC_INT();")
+out.println("")  
+out.println("  return ((uint16_t)0U);")
+out.println("}")
+out.println("")
+out.println("/* Beckhoff Hw abstraction layer interface API to release the consumed resources */")
+out.println("void HW_Release(void)")
+out.println("{")
+out.println("")
+out.println("}")
+out.println("")
+out.println("/* Beckhoff Hw abstraction layer interface API to reset the XMC ECAT module */")
+out.println("void HW_RestartTarget(void)")
+out.println("{")
+out.println("")
+out.println("}")
+out.println("")
+out.println("")
+out.println("/* Beckhoff Hw abstraction layer interface API to write new configuration parameters to slave EEPROM area */")
+out.println("UINT16 HW_EepromWrite(UINT32 wordaddr)")
+out.println("{")
+out.println("  UINT32 status;")
+out.println("  UINT16 EEPROMReg = 0U; /* Regvalue 0x502 - 0x5003 */")
+out.println("  status = 0U;")
+out.println("  if ((wordaddr <= (uint32_t)ESC_EEPROM_SIZE) && (pEEPROM != NULL))")
+out.println("  {")
+out.println("     UINT16 *pData = (UINT16 *)(void*)pEEPROM;")
+out.println("     HW_EscRead((MEM_ADDR *)(void*)&pData[(wordaddr)], (uint16_t)ESC_EEPROM_DATA_OFFSET, (uint16_t)EEPROM_WRITE_SIZE);")
+out.println("     if ( (wordaddr == (uint32_t)7U) || (wordaddr ==  (((uint32_t)ESC_EEPROM_SIZE >> (uint32_t)1U) - (uint32_t)1U)) )")
+out.println("     {")
+out.println("       /*lets program the complete EEPROM new prepare Data for EEPROM */")
+out.println("       if (E_EEPROM_XMC4_WriteArray((uint16_t)0U,aEepromData,(uint16_t)ESC_EEPROM_SIZE) == true)")
+out.println("       {")
+out.println("         HW_EscReadWord(EEPROMReg,ESC_EEPROM_CONTROL_OFFSET);")
+out.println("         HW_EscWriteWord(EEPROMReg & (~ESC_EEPROM_BUSY_MASK),ESC_EEPROM_CONTROL_OFFSET);")
+out.println("")
+out.println("         __disable_irq();")
+out.println("         /* Program the RAM contents to Emulated EEPROM*/")
+out.println("         status = (uint32_t)E_EEPROM_XMC4_UpdateFlashContents();")
+out.println("         __enable_irq();")
+out.println("       }")
+out.println("     }")
+out.println("   }")
+out.println("")
+out.println("   return (uint16_t)status;")
+out.println("}")
+out.println("")
+out.println("/* Beckhoff Hw abstraction layer interface API to reload slave EEPROM area */")
+out.println("UINT16 HW_EepromReload(void)")
+out.println("{")
+out.println("  UINT16 EEPROMReg = 0U; /* Regvalue 0x502 - 0x5003 */")
+out.println("  UINT32 cmd = (uint32_t)EEPROMReg  & (uint32_t)ESC_EEPROM_CMD_MASK;")
+out.println("  UINT32 addr;")
+out.println("  HW_EscReadDWord(addr,(uint32_t)ESC_EEPROM_ADDRESS_OFFSET);")
+out.println("  addr = SWAPDWORD(addr);")
+out.println("")
+out.println("  /* EEPROM emulation ( 8Bytes EEPROM data) */")
+out.println("  if ((addr <= (uint32_t)ESC_EEPROM_SIZE) && (pEEPROM != NULL))")
+out.println("  {")
+out.println("    UINT16 *pData = (UINT16 *)(void*)pEEPROM;")
+out.println("    do")
+out.println("    {")
+out.println("    HW_EscWrite((MEM_ADDR *)(void*)&pData[(addr)], (uint16_t)ESC_EEPROM_DATA_OFFSET, (uint16_t)EEPROM_READ_SIZE);")
+out.println("")
+out.println("     /*Clear error bits */")
+out.println("     EEPROMReg &= (uint16_t)(~(uint16_t)(ESC_EEPROM_ERROR_MASK));")
+out.println("")
+out.println("     /*ack current reload segment */")
+out.println("     HW_EscWriteWord(EEPROMReg,(uint32_t)ESC_EEPROM_CONTROL_OFFSET);")
+out.println("")
+out.println("     /* read EEPROM control (to check if the reload is still pending) */")
+out.println("     HW_EscReadWord(EEPROMReg,ESC_EEPROM_CONTROL_OFFSET);")
+out.println("     cmd = (uint32_t)EEPROMReg  & (uint32_t)ESC_EEPROM_CMD_MASK;")
+out.println("")
+out.println("     HW_EscReadDWord(addr,(uint32_t)ESC_EEPROM_ADDRESS_OFFSET);")
+out.println("")
+out.println("    } while(cmd == (uint32_t)ESC_EEPROM_CMD_RELOAD_MASK);")
+out.println("  }")
+out.println("  else")
+out.println("  {")
+out.println("    /* Set Error  */")
+out.println("    EEPROMReg |= (uint16_t)ESC_EEPROM_ERROR_CMD_ACK;")
+out.println("  }")
+out.println("  return 0U;")
+out.println("}")
+out.println("")
+out.println("/* ECAT slave interrupt handler function */")
+out.println("void ECAT0_0_IRQHandler(void)")
+out.println("{")
+out.println("  PDI_Isr();")
+out.println("}")
+out.println("")
+out.println("/* ECAT slave timer interrupt handler function */")
+out.println("void ecat_ssc_timer_handler(void)")
+out.println("{")
+out.println("  ticks++;")
+out.println("  ECAT_CheckTimer();")
+out.println("}")
+out.println("")
+out.println("/* Beckhoff Hw abstraction layer interface API to get the current timer value in ticks */")
+out.println("UINT32 HW_GetTimer(void)")
+out.println("{")
+out.println("  return ticks;")
+out.println("}")
+out.println("")
+}

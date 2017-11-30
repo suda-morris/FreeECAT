@@ -1,0 +1,554 @@
+package Model.APPS.ECAT_SSC.v4_0_14;
+
+/*
+ Copyright (c) 2016, Infineon Technologies AG
+ All rights reserved.
+											
+ Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
+ following conditions are met:
+																			 
+ Redistributions of source code must retain the above copyright notice, this list of conditions and the following
+ disclaimer.
+  
+ Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following
+ disclaimer in the documentation and/or other materials provided with the distribution.
+  
+ Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ products derived from this software without specific prior written permission.
+																			 
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+																			 
+ To improve the quality of the software, users are encouraged to share modifications, enhancements or bug fixes with
+ Infineon Technologies AG: dave@infineon.com. */
+ 
+ /*************** Revision History **********************************************
+  Version        Date          Description
+  4.0.3       20-Jan-2016   1. Initial version for DAVEv4.<br>
+  4.0.4       05-Feb-2016   1. Updated documentation and consumed APP version number of E_EEPROM_XMC4.<br>
+                            2. Consumed CLOCK_XMC4 APP.<br>
+  4.0.6       06-APr-2016   1. Updated APP help documentation:  Added note in usage section for exporting ECAT APP 
+                               to Keil using gpdsc.<br>        
+  4.0.8       07-Jun-2016   Fixed code generation error for project folder paths with spaces in between. <br>	
+  4.0.10      27-Sep-2016   Fixed initialization of EEPROM data taking into account size of EEPROM specified in SSC tool. <br>	
+  4.0.12      09-Feb-2017   Fixed MDIO input multiplexer setting. <br>
+                            Fixed flash update issues with Bachmann host <br>
+  4.0.14      04-Apr-2017   Fixed TIMER app not triggering ecat_ssc_timer_hanlder <br>
+  *******************************************************************************/
+import ifx.davex.app.manifest.*
+
+class  ECAT_SSC extends ECAT_SSC_GUI {
+
+	 /* Note  : Following APP properties are mandatory and important */
+	 
+	 /* Begin : APP property section */
+	
+	/**
+	 * APP version
+	 * Format: a string with three digit separated by a dot.
+	 */
+	def version            = '4.0.14'
+	
+	/**
+	 * APP categories declaration. 
+	 * It is list of strings. Subcategories are separated by slash.
+	 * No limits on number of categories and subcategories depth.
+	 */
+	def categoriesDescription = ["Communication/Industrial"] 
+
+	/** 
+	 * Minimum DAVE version required for this APP.
+	 * 
+	 * It is string with three digit separated by a dot.
+	 */
+	def minDaveVersion           = '4.1.2'
+	
+	/** 
+	 * Keywords used by search feature in APPs selection view
+	 * 
+	 * It is a list of string.
+	 */
+	def keywords      = ['EtherCAT', 'Fieldbus', 'Industrial Ethernet','all']
+	
+	/** 
+	 * softwareIDs is used to declare which devices are compatible with this APP.
+	 * It is a map with key a string containing a pattern that shall match the SW id of
+	 * the device and as value the minimal version of the APP.
+	 */
+	
+	 def softwareIDs       = ["XMC4.8.*.*.*":"1.0.0", "XMC4.3.*.*.*":"1.0.0"]
+	
+	/**
+	 * Singleton property:
+	 * When it is true the app can be instantiated only once. 
+	 */
+	def singleton     = true
+
+	/**
+	 * initProvider property
+	 * It shall be true to add a call to <AppName>_Init() 
+	 */
+	def initProvider  = true
+	
+	/**
+	 * Deprecated APP
+	 * Set it to true to indicate that the app shall be not used for new projects.
+	 */
+	def deprecated    = false
+	
+	/**
+	 * Sharable property.
+	 * It shall be true to allows multiple APPs to require the same instance of this APP.
+	 */
+	def sharable      = false
+
+	/**
+	 *  APP function description.
+	 */
+	def description = "EtherCAT slave stack code APP serves as an interface between the EtherCAT fieldbus (Ethernet) and the slave application."
+	
+	/* End   : APP property section */
+	
+	/* Begin : User APP property section */
+	
+	MRequiredApp appres_timer
+	MRequiredApp appres_interrupt
+	MRequiredApp appres_eeprom
+	MRequiredApp appres_clock
+	MRequiredApp appres_cpu
+	
+	MVirtualResourceGroup hwres_ecat
+	
+	MVirtualResourceGroup hwres_port_pad_phy_clk25
+	MVirtualResourceGroup hwres_port_pad_phy_reset
+	
+	MVirtualResourceGroup hwres_port_pad_mdio
+	MVirtualResourceGroup hwres_port_pad_mdc
+	
+	MVirtualResourceGroup hwres_port_pad_led_run
+	MVirtualResourceGroup hwres_port_pad_led_err
+	MVirtualResourceGroup hwres_port_pad_led_link_act_p0
+	MVirtualResourceGroup hwres_port_pad_led_link_act_p1
+	
+	MVirtualResourceGroup hwres_port_pad_p0_link
+	MVirtualResourceGroup hwres_port_pad_p0_rx_clk
+	MVirtualResourceGroup hwres_port_pad_p0_rx_dv
+	MVirtualResourceGroup hwres_port_pad_p0_rxd0
+	MVirtualResourceGroup hwres_port_pad_p0_rxd1
+	MVirtualResourceGroup hwres_port_pad_p0_rxd2
+	MVirtualResourceGroup hwres_port_pad_p0_rxd3
+	MVirtualResourceGroup hwres_port_pad_p0_rx_err
+	MVirtualResourceGroup hwres_port_pad_p0_txd0
+	MVirtualResourceGroup hwres_port_pad_p0_txd1
+	MVirtualResourceGroup hwres_port_pad_p0_txd2
+	MVirtualResourceGroup hwres_port_pad_p0_txd3
+	MVirtualResourceGroup hwres_port_pad_p0_tx_ena
+	MVirtualResourceGroup hwres_port_pad_p0_tx_clk
+
+	MVirtualResourceGroup hwres_port_pad_p1_link
+	MVirtualResourceGroup hwres_port_pad_p1_rx_clk
+	MVirtualResourceGroup hwres_port_pad_p1_rx_dv
+	MVirtualResourceGroup hwres_port_pad_p1_rxd0
+	MVirtualResourceGroup hwres_port_pad_p1_rxd1
+	MVirtualResourceGroup hwres_port_pad_p1_rxd2
+	MVirtualResourceGroup hwres_port_pad_p1_rxd3
+	MVirtualResourceGroup hwres_port_pad_p1_rx_err
+	MVirtualResourceGroup hwres_port_pad_p1_txd0
+	MVirtualResourceGroup hwres_port_pad_p1_txd1
+	MVirtualResourceGroup hwres_port_pad_p1_txd2
+	MVirtualResourceGroup hwres_port_pad_p1_txd3
+	MVirtualResourceGroup hwres_port_pad_p1_tx_ena
+	MVirtualResourceGroup hwres_port_pad_p1_tx_clk
+
+	MVirtualSignal vs_port_pad_phy_clk25
+	MVirtualSignal vs_port_pad_phy_reset
+	
+	MVirtualSignal vs_port_pad_led_run
+	MVirtualSignal vs_port_pad_led_err
+	MVirtualSignal vs_port_pad_led_link_act_p0
+	MVirtualSignal vs_port_pad_led_link_act_p1
+	
+	MVirtualSignal vs_port_pad_mdio
+	MVirtualSignal vs_port_pad_mdio_hw_o
+	MVirtualSignal vs_port_pad_mdc
+
+	MVirtualSignal vs_port_pad_p0_rxd0
+	MVirtualSignal vs_port_pad_p0_rxd1
+	MVirtualSignal vs_port_pad_p0_rxd2
+	MVirtualSignal vs_port_pad_p0_rxd3
+	MVirtualSignal vs_port_pad_p0_rx_dv
+	MVirtualSignal vs_port_pad_p0_rx_err
+	MVirtualSignal vs_port_pad_p0_rx_clk
+	MVirtualSignal vs_port_pad_p0_link
+	MVirtualSignal vs_port_pad_p1_rxd0
+	MVirtualSignal vs_port_pad_p1_rxd1
+	MVirtualSignal vs_port_pad_p1_rxd2
+	MVirtualSignal vs_port_pad_p1_rxd3
+	MVirtualSignal vs_port_pad_p1_rx_dv
+	MVirtualSignal vs_port_pad_p1_rx_err
+	MVirtualSignal vs_port_pad_p1_rx_clk
+	MVirtualSignal vs_port_pad_p1_link
+	
+	MVirtualSignal vs_port_pad_p0_txd0
+	MVirtualSignal vs_port_pad_p0_txd1
+	MVirtualSignal vs_port_pad_p0_txd2
+	MVirtualSignal vs_port_pad_p0_txd3
+	MVirtualSignal vs_port_pad_p0_tx_clk
+	MVirtualSignal vs_port_pad_p0_tx_ena
+	MVirtualSignal vs_port_pad_p1_txd0
+	MVirtualSignal vs_port_pad_p1_txd1
+	MVirtualSignal vs_port_pad_p1_txd2
+	MVirtualSignal vs_port_pad_p1_txd3
+	MVirtualSignal vs_port_pad_p1_tx_clk
+	MVirtualSignal vs_port_pad_p1_tx_ena
+
+	MVirtualSignal vs_ecat_phy_clk25
+	MVirtualSignal vs_ecat_phy_reset
+	
+	MVirtualSignal vs_ecat_led_run
+	MVirtualSignal vs_ecat_led_err
+	MVirtualSignal vs_ecat_led_link_act_p0
+	MVirtualSignal vs_ecat_led_link_act_p1
+	
+	MVirtualSignal vs_ecat_mdio, vs_ecat_mdo 	
+	MVirtualSignal vs_ecat_mdc
+	
+	MVirtualSignal vs_ecat_latch0
+	MVirtualSignal vs_ecat_latch1
+	MVirtualSignal vs_ecat_sync0
+	MVirtualSignal vs_ecat_sync1
+
+	MVirtualSignal vs_ecat_p0_rxd0
+	MVirtualSignal vs_ecat_p0_rxd1
+	MVirtualSignal vs_ecat_p0_rxd2
+	MVirtualSignal vs_ecat_p0_rxd3
+	MVirtualSignal vs_ecat_p0_rx_dv
+	MVirtualSignal vs_ecat_p0_rx_err
+	MVirtualSignal vs_ecat_p0_rx_clk
+	MVirtualSignal vs_ecat_p0_link
+	MVirtualSignal vs_ecat_p1_rxd0
+	MVirtualSignal vs_ecat_p1_rxd1
+	MVirtualSignal vs_ecat_p1_rxd2
+	MVirtualSignal vs_ecat_p1_rxd3
+	MVirtualSignal vs_ecat_p1_rx_dv
+	MVirtualSignal vs_ecat_p1_rx_err
+	MVirtualSignal vs_ecat_p1_rx_clk
+	MVirtualSignal vs_ecat_p1_link
+	
+	MVirtualSignal vs_ecat_p0_txd0
+	MVirtualSignal vs_ecat_p0_txd1
+	MVirtualSignal vs_ecat_p0_txd2
+	MVirtualSignal vs_ecat_p0_txd3
+	MVirtualSignal vs_ecat_p0_tx_clk
+	MVirtualSignal vs_ecat_p0_tx_ena
+	MVirtualSignal vs_ecat_p1_txd0
+	MVirtualSignal vs_ecat_p1_txd1
+	MVirtualSignal vs_ecat_p1_txd2
+	MVirtualSignal vs_ecat_p1_txd3
+	MVirtualSignal vs_ecat_p1_tx_clk
+	MVirtualSignal vs_ecat_p1_tx_ena
+
+	MVirtualSignalRA vs_timer_ccu4_period_match_interrupt
+	MVirtualSignalRA vs_timer_ccu8_period_match_interrupt
+	MVirtualSignalRA vs_nvic_signal_in
+	
+	/* End   : User APP property section */
+
+	/* APP Constructor */
+	public ECAT_SSC(DaveEnv daveEnv) {
+		
+		/* -------------------------------------------------------------- */
+		/* ------------ Hardware resource consumption block ------------- */
+		/* -------------------------------------------------------------- */
+		
+		hwres_ecat = MVirtualResourceGroup("ECAT", ["peripheral","ecat", "0", "ecat"])
+		
+		hwres_port_pad_phy_clk25 =  MVirtualResourceGroup("phy_clk25", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_phy_reset =  MVirtualResourceGroup("phy_reset", ["port", "p", "*", "pad", "*"])
+		
+		hwres_port_pad_mdio =  MVirtualResourceGroup("mdio", ["port", "p", "*", "pad", "*"], MF({gcheck_enable_mdio.value}, Boolean))
+		hwres_port_pad_mdc =  MVirtualResourceGroup("mdc", ["port", "p", "*", "pad", "*"], MF({gcheck_enable_mdio.value}, Boolean))
+		
+		hwres_port_pad_led_run =  MVirtualResourceGroup("led_run", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_led_err =  MVirtualResourceGroup("led_err", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_led_link_act_p0 =  MVirtualResourceGroup("led_link_act_p0", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_led_link_act_p1 =  MVirtualResourceGroup("led_link_act_p1", ["port", "p", "*", "pad", "*"])
+
+		hwres_port_pad_p0_rxd0 =  MVirtualResourceGroup("p0_rxd0", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p0_rxd1 =  MVirtualResourceGroup("p0_rxd1", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p0_rxd2 =  MVirtualResourceGroup("p0_rxd2", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p0_rxd3 =  MVirtualResourceGroup("p0_rxd3", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p0_rx_dv =  MVirtualResourceGroup("p0_rx_dv", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p0_rx_err =  MVirtualResourceGroup("p0_rx_err", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p0_rx_clk =  MVirtualResourceGroup("p0_rx_clk", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p0_link =  MVirtualResourceGroup("p0_link", ["port", "p", "*", "pad", "*"])
+
+		hwres_port_pad_p1_rxd0 =  MVirtualResourceGroup("p1_rxd0", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p1_rxd1 =  MVirtualResourceGroup("p1_rxd1", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p1_rxd2 =  MVirtualResourceGroup("p1_rxd2", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p1_rxd3 =  MVirtualResourceGroup("p1_rxd3", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p1_rx_dv =  MVirtualResourceGroup("p1_rx_dv", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p1_rx_err =  MVirtualResourceGroup("p1_rx_err", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p1_rx_clk =  MVirtualResourceGroup("p1_rx_clk", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p1_link =  MVirtualResourceGroup("p1_link", ["port", "p", "*", "pad", "*"])
+
+		hwres_port_pad_p0_txd0 =  MVirtualResourceGroup("p0_txd0", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p0_txd1 =  MVirtualResourceGroup("p0_txd1", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p0_txd2 =  MVirtualResourceGroup("p0_txd2", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p0_txd3 =  MVirtualResourceGroup("p0_txd3", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p0_tx_clk =  MVirtualResourceGroup("p0_tx_clk", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p0_tx_ena =  MVirtualResourceGroup("p0_tx_ena", ["port", "p", "*", "pad", "*"])
+
+		hwres_port_pad_p1_txd0 =  MVirtualResourceGroup("p1_txd0", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p1_txd1 =  MVirtualResourceGroup("p1_txd1", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p1_txd2 =  MVirtualResourceGroup("p1_txd2", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p1_txd3 =  MVirtualResourceGroup("p1_txd3", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p1_tx_clk =  MVirtualResourceGroup("p1_tx_clk", ["port", "p", "*", "pad", "*"])
+		hwres_port_pad_p1_tx_ena =  MVirtualResourceGroup("p1_tx_ena", ["port", "p", "*", "pad", "*"])
+
+		/* -------------------------------------------------------------- */
+		/* -------------- APP IO Signals -------------------------------- */
+		/* -------------------------------------------------------------- */
+		
+		vs_ecat_phy_clk25 = MVirtualSignal( hwres_ecat, "ecat_phy_clk25", "phy_clk25", true, false)
+		vs_ecat_phy_reset = MVirtualSignal( hwres_ecat, "ecat_phy_reset", "phy_reset", true, false)
+		
+		vs_ecat_mdio = MVirtualSignal( hwres_ecat, "ecat_mdio", "mdio", MF({gcheck_enable_mdio.value}, Boolean), false)
+		vs_ecat_mdo = MVirtualSignal( hwres_ecat, "ecat_mdio", "mdo", MF({gcheck_enable_mdio.value}, Boolean), false)
+		vs_ecat_mdc = MVirtualSignal( hwres_ecat, "ecat_mdc", "mclk", MF({gcheck_enable_mdio.value}, Boolean), false)
+	
+		vs_ecat_led_run = MVirtualSignal( hwres_ecat, "ecat_led_run", "led_run", true, false)
+		vs_ecat_led_err = MVirtualSignal( hwres_ecat, "ecat_led_err", "led_err", true, false)
+		vs_ecat_led_link_act_p0 = MVirtualSignal( hwres_ecat, "ecat_p0_led_link_act", "p0_led_link_act", true, false)
+		vs_ecat_led_link_act_p1 = MVirtualSignal( hwres_ecat, "ecat_p1_led_link_act", "p1_led_link_act", true, false)
+		
+		vs_ecat_latch0 = MVirtualSignal( hwres_ecat, "latch_in_0", "latchin0", true, true)
+		vs_ecat_latch1 = MVirtualSignal( hwres_ecat, "latch_in_1", "latchin1", true, true)
+		vs_ecat_sync0 = MVirtualSignal( hwres_ecat, "sync_out_0", "sync0", true, true)
+		vs_ecat_sync1 = MVirtualSignal( hwres_ecat, "sync_out_1", "sync1", true, true)
+
+		vs_ecat_p0_rxd0 = MVirtualSignal( hwres_ecat, "ecat_p0_rxd0", "p0_rxd0", true, false)
+		vs_ecat_p0_rxd1 = MVirtualSignal( hwres_ecat, "ecat_p0_rxd1", "p0_rxd1", true, false)
+		vs_ecat_p0_rxd2 = MVirtualSignal( hwres_ecat, "ecat_p0_rxd2", "p0_rxd2", true, false)
+		vs_ecat_p0_rxd3 = MVirtualSignal( hwres_ecat, "ecat_p0_rxd3", "p0_rxd3", true, false)
+		vs_ecat_p0_rx_dv = MVirtualSignal( hwres_ecat, "ecat_p0_rx_dv", "p0_rx_dv", true, false)
+		vs_ecat_p0_rx_err = MVirtualSignal( hwres_ecat, "ecat_p0_rx_err", "p0_rx_err", true, false)
+		vs_ecat_p0_rx_clk = MVirtualSignal( hwres_ecat, "ecat_p0_rx_clk", "p0_rx_clk", true, false)
+		vs_ecat_p0_link = MVirtualSignal( hwres_ecat, "ecat_p0_link", "p0_link", true, false)
+
+		vs_ecat_p1_rxd0 = MVirtualSignal( hwres_ecat, "ecat_p1_rxd0", "p1_rxd0", true, false)
+		vs_ecat_p1_rxd1 = MVirtualSignal( hwres_ecat, "ecat_p1_rxd1", "p1_rxd1", true, false)
+		vs_ecat_p1_rxd2 = MVirtualSignal( hwres_ecat, "ecat_p1_rxd2", "p1_rxd2", true, false)
+		vs_ecat_p1_rxd3 = MVirtualSignal( hwres_ecat, "ecat_p1_rxd3", "p1_rxd3", true, false)
+		vs_ecat_p1_rx_dv = MVirtualSignal( hwres_ecat, "ecat_p1_rx_dv", "p1_rx_dv", true, false)
+		vs_ecat_p1_rx_err = MVirtualSignal( hwres_ecat, "ecat_p1_rx_err", "p1_rx_err", true, false)
+		vs_ecat_p1_rx_clk = MVirtualSignal( hwres_ecat, "ecat_p1_rx_clk", "p1_rx_clk", true, false)
+		vs_ecat_p1_link = MVirtualSignal( hwres_ecat, "ecat_p1_link", "p1_link", true, false)
+
+		vs_ecat_p0_txd0 = MVirtualSignal( hwres_ecat, "ecat_p0_txd0", "p0_txd0", true, false)
+		vs_ecat_p0_txd1 = MVirtualSignal( hwres_ecat, "ecat_p0_txd1", "p0_txd1", true, false)
+		vs_ecat_p0_txd2 = MVirtualSignal( hwres_ecat, "ecat_p0_txd2", "p0_txd2", true, false)
+		vs_ecat_p0_txd3 = MVirtualSignal( hwres_ecat, "ecat_p0_txd3", "p0_txd3", true, false)
+		vs_ecat_p0_tx_clk = MVirtualSignal( hwres_ecat, "ecat_p0_tx_clk", "p0_tx_clk", true, false)
+		vs_ecat_p0_tx_ena = MVirtualSignal( hwres_ecat, "ecat_p0_tx_ena", "p0_tx_ena", true, false)
+
+		vs_ecat_p1_txd0 = MVirtualSignal( hwres_ecat, "ecat_p1_txd0", "p1_txd0", true, false)
+		vs_ecat_p1_txd1 = MVirtualSignal( hwres_ecat, "ecat_p1_txd1", "p1_txd1", true, false)
+		vs_ecat_p1_txd2 = MVirtualSignal( hwres_ecat, "ecat_p1_txd2", "p1_txd2", true, false)
+		vs_ecat_p1_txd3 = MVirtualSignal( hwres_ecat, "ecat_p1_txd3", "p1_txd3", true, false)
+		vs_ecat_p1_tx_clk = MVirtualSignal( hwres_ecat, "ecat_p1_tx_clk", "p1_tx_clk", true, false)
+		vs_ecat_p1_tx_ena = MVirtualSignal( hwres_ecat, "ecat_p1_tx_ena", "p1_tx_ena", true, false)
+
+		@AddPin
+		vs_port_pad_phy_clk25 =  MVirtualSignal( hwres_port_pad_phy_clk25, "port_pad_phy_clk25", "pad", true, false)
+		@AddPin
+		vs_port_pad_phy_reset =  MVirtualSignal( hwres_port_pad_phy_reset, "port_pad_phy_reset", "pad", true, false)
+		
+		@AddPin
+		vs_port_pad_mdio =  MVirtualSignal( hwres_port_pad_mdio, "port_pad_mdio", "pad", MF({gcheck_enable_mdio.value}, Boolean), false)
+		vs_port_pad_mdio_hw_o =  MVirtualSignal( hwres_port_pad_mdio, "port_pad_mdio_hw_o", "hw_o", MF({gcheck_enable_mdio.value}, Boolean), false)
+		
+		@AddPin
+		vs_port_pad_mdc =  MVirtualSignal( hwres_port_pad_mdc, "port_pad_mdc", "pad", MF({gcheck_enable_mdio.value}, Boolean), false)
+	
+		@AddPin
+		vs_port_pad_led_run =  MVirtualSignal( hwres_port_pad_led_run, "port_pad_led_run", "pad", true, false)
+		@AddPin
+		vs_port_pad_led_err =  MVirtualSignal( hwres_port_pad_led_err, "port_pad_led_err", "pad", true, false)
+		@AddPin
+		vs_port_pad_led_link_act_p0 =  MVirtualSignal( hwres_port_pad_led_link_act_p0, "port_pad_led_link_act_p0", "pad", true, false)
+		@AddPin
+		vs_port_pad_led_link_act_p1 =  MVirtualSignal( hwres_port_pad_led_link_act_p1, "port_pad_led_link_act_p1", "pad", true, false)
+
+		@AddPin
+		vs_port_pad_p0_rxd0 =  MVirtualSignal( hwres_port_pad_p0_rxd0, "port_pad_p0_rxd0", "pad", true, false)
+		@AddPin
+		vs_port_pad_p0_rxd1 =  MVirtualSignal( hwres_port_pad_p0_rxd1, "port_pad_p0_rxd1", "pad", true, false)
+		@AddPin
+		vs_port_pad_p0_rxd2 =  MVirtualSignal( hwres_port_pad_p0_rxd2, "port_pad_p0_rxd2", "pad", true, false)
+		@AddPin
+		vs_port_pad_p0_rxd3 =  MVirtualSignal( hwres_port_pad_p0_rxd3, "port_pad_p0_rxd3", "pad", true, false)
+		@AddPin
+		vs_port_pad_p0_rx_dv =  MVirtualSignal( hwres_port_pad_p0_rx_dv, "port_pad_p0_rx_dv", "pad", true, false)
+		@AddPin
+		vs_port_pad_p0_rx_err =  MVirtualSignal( hwres_port_pad_p0_rx_err, "port_pad_p0_rx-err", "pad", true, false)
+		@AddPin
+		vs_port_pad_p0_rx_clk =  MVirtualSignal( hwres_port_pad_p0_rx_clk, "port_pad_p0_rx_clk", "pad", true, false)
+		@AddPin
+		vs_port_pad_p0_link =  MVirtualSignal( hwres_port_pad_p0_link, "port_pad_p0_link", "pad", true, false)
+
+		@AddPin
+		vs_port_pad_p1_rxd0 =  MVirtualSignal( hwres_port_pad_p1_rxd0, "port_pad_p1_rxd0", "pad", true, false)
+		@AddPin
+		vs_port_pad_p1_rxd1 =  MVirtualSignal( hwres_port_pad_p1_rxd1, "port_pad_p1_rxd1", "pad", true, false)
+		@AddPin
+		vs_port_pad_p1_rxd2 =  MVirtualSignal( hwres_port_pad_p1_rxd2, "port_pad_p1_rxd2", "pad", true, false)
+		@AddPin
+		vs_port_pad_p1_rxd3 =  MVirtualSignal( hwres_port_pad_p1_rxd3, "port_pad_p1_rxd3", "pad", true, false)
+		@AddPin
+		vs_port_pad_p1_rx_dv =  MVirtualSignal( hwres_port_pad_p1_rx_dv, "port_pad_p1_rx_dv", "pad", true, false)
+		@AddPin
+		vs_port_pad_p1_rx_err =  MVirtualSignal( hwres_port_pad_p1_rx_err, "port_pad_p1_rx-err", "pad", true, false)
+		@AddPin
+		vs_port_pad_p1_rx_clk =  MVirtualSignal( hwres_port_pad_p1_rx_clk, "port_pad_p1_rx_clk", "pad", true, false)
+		@AddPin
+		vs_port_pad_p1_link =  MVirtualSignal( hwres_port_pad_p1_link, "port_pad_p1_link", "pad", true, false)
+
+		@AddPin
+		vs_port_pad_p0_txd0 =  MVirtualSignal( hwres_port_pad_p0_txd0, "port_pad_p0_txd0", "pad", true, false)
+		@AddPin
+		vs_port_pad_p0_txd1 =  MVirtualSignal( hwres_port_pad_p0_txd1, "port_pad_p0_txd1", "pad", true, false)
+		@AddPin
+		vs_port_pad_p0_txd2 =  MVirtualSignal( hwres_port_pad_p0_txd2, "port_pad_p0_txd2", "pad", true, false)
+		@AddPin
+		vs_port_pad_p0_txd3 =  MVirtualSignal( hwres_port_pad_p0_txd3, "port_pad_p0_txd3", "pad", true, false)
+		@AddPin
+		vs_port_pad_p0_tx_clk =  MVirtualSignal( hwres_port_pad_p0_tx_clk, "port_pad_p0_tx_clk", "pad", true, false)
+		@AddPin
+		vs_port_pad_p0_tx_ena =  MVirtualSignal( hwres_port_pad_p0_tx_ena, "port_pad_p0_tx_ena", "pad", true, false)
+
+		@AddPin
+		vs_port_pad_p1_txd0 =  MVirtualSignal( hwres_port_pad_p1_txd0, "port_pad_p1_txd0", "pad", true, false)
+		@AddPin
+		vs_port_pad_p1_txd1 =  MVirtualSignal( hwres_port_pad_p1_txd1, "port_pad_p1_txd1", "pad", true, false)
+		@AddPin
+		vs_port_pad_p1_txd2 =  MVirtualSignal( hwres_port_pad_p1_txd2, "port_pad_p1_txd2", "pad", true, false)
+		@AddPin
+		vs_port_pad_p1_txd3 =  MVirtualSignal( hwres_port_pad_p1_txd3, "port_pad_p1_txd3", "pad", true, false)
+		@AddPin
+		vs_port_pad_p1_tx_clk =  MVirtualSignal( hwres_port_pad_p1_tx_clk, "port_pad_p1_tx_clk", "pad", true, false)
+		@AddPin
+		vs_port_pad_p1_tx_ena =  MVirtualSignal( hwres_port_pad_p1_tx_ena, "port_pad_p1_tx_ena", "pad", true, false)
+
+		/* -------------------------------------------------------------- */
+		/* ---------------- APP IO Connections -------------------------- */
+		/* -------------------------------------------------------------- */
+		
+		addConnectionConstraint( vs_ecat_phy_clk25, vs_port_pad_phy_clk25)
+		addConnectionConstraint( vs_ecat_phy_reset, vs_port_pad_phy_reset)
+		
+		addConnectionConstraint( vs_port_pad_mdio, vs_ecat_mdio, MF({gcheck_enable_mdio.value}, Boolean))
+		addConnectionConstraint( vs_ecat_mdo, vs_port_pad_mdio_hw_o, MF({gcheck_enable_mdio.value}, Boolean))
+		addConnectionConstraint( vs_ecat_mdc, vs_port_pad_mdc, MF({gcheck_enable_mdio.value}, Boolean))
+	
+		addConnectionConstraint( vs_ecat_led_run, vs_port_pad_led_run)
+		addConnectionConstraint( vs_ecat_led_err, vs_port_pad_led_err)
+		addConnectionConstraint( vs_ecat_led_link_act_p0, vs_port_pad_led_link_act_p0)
+		addConnectionConstraint( vs_ecat_led_link_act_p1, vs_port_pad_led_link_act_p1)
+
+		addConnectionConstraint( vs_port_pad_p0_rxd0, vs_ecat_p0_rxd0)
+		addConnectionConstraint( vs_port_pad_p0_rxd1, vs_ecat_p0_rxd1)
+		addConnectionConstraint( vs_port_pad_p0_rxd2, vs_ecat_p0_rxd2)
+		addConnectionConstraint( vs_port_pad_p0_rxd3, vs_ecat_p0_rxd3)
+		addConnectionConstraint( vs_port_pad_p0_rx_dv, vs_ecat_p0_rx_dv)
+		addConnectionConstraint( vs_port_pad_p0_rx_err, vs_ecat_p0_rx_err)
+		addConnectionConstraint( vs_port_pad_p0_rx_clk, vs_ecat_p0_rx_clk)
+		addConnectionConstraint( vs_port_pad_p0_link, vs_ecat_p0_link)
+
+		addConnectionConstraint( vs_port_pad_p1_rxd0, vs_ecat_p1_rxd0)
+		addConnectionConstraint( vs_port_pad_p1_rxd1, vs_ecat_p1_rxd1)
+		addConnectionConstraint( vs_port_pad_p1_rxd2, vs_ecat_p1_rxd2)
+		addConnectionConstraint( vs_port_pad_p1_rxd3, vs_ecat_p1_rxd3)
+		addConnectionConstraint( vs_port_pad_p1_rx_dv, vs_ecat_p1_rx_dv)
+		addConnectionConstraint( vs_port_pad_p1_rx_err, vs_ecat_p1_rx_err)
+		addConnectionConstraint( vs_port_pad_p1_rx_clk, vs_ecat_p1_rx_clk)
+		addConnectionConstraint( vs_port_pad_p1_link, vs_ecat_p1_link)
+
+		addConnectionConstraint( vs_ecat_p0_txd0, vs_port_pad_p0_txd0)
+		addConnectionConstraint( vs_ecat_p0_txd1, vs_port_pad_p0_txd1)
+		addConnectionConstraint( vs_ecat_p0_txd2, vs_port_pad_p0_txd2)
+		addConnectionConstraint( vs_ecat_p0_txd3, vs_port_pad_p0_txd3)
+		addConnectionConstraint( vs_port_pad_p0_tx_clk, vs_ecat_p0_tx_clk)
+		addConnectionConstraint( vs_ecat_p0_tx_ena, vs_port_pad_p0_tx_ena)
+
+		addConnectionConstraint( vs_ecat_p1_txd0, vs_port_pad_p1_txd0)
+		addConnectionConstraint( vs_ecat_p1_txd1, vs_port_pad_p1_txd1)
+		addConnectionConstraint( vs_ecat_p1_txd2, vs_port_pad_p1_txd2)
+		addConnectionConstraint( vs_ecat_p1_txd3, vs_port_pad_p1_txd3)
+		addConnectionConstraint( vs_port_pad_p1_tx_clk, vs_ecat_p1_tx_clk)
+		addConnectionConstraint( vs_ecat_p1_tx_ena, vs_port_pad_p1_tx_ena)
+
+		/* --------------------------------------------------------------- */
+		/* ------------ APP consumption Block ---------------------------- */
+		/* --------------------------------------------------------------- */
+		
+		appres_timer = MRequiredApp("TIMER", "TIMER", RNOTSHARABLE, "4.0.2")
+		appres_interrupt = MRequiredApp("INTERRUPT", "INTERRUPT", RNOTSHARABLE, "4.0.2")
+		appres_eeprom = MRequiredApp("E_EEPROM_XMC4", "E_EEPROM_XMC4", RSHARABLE, "4.0.14")
+		appres_clock = MRequiredApp("CLOCK_XMC4", "CLOCK_XMC4", RSHARABLE, "4.0.18")
+		appres_cpu =  MRequiredApp("CPU_CTRL_XMC4", "CPU", RSHARABLE, "4.0.2")
+		
+		gmessage_clock_setting_error.visible = MF({!appres_clock.getVal(["gcheck_enable_ecat_clock","value"])},Boolean)
+		appres_timer.setVal(["gfloat_time_interval", "value"], MF({1000.0 as Double}, Double))
+		appres_timer.setVal(["gcheck_start_after_initilization", "value"], MF({false}, Boolean))
+		appres_timer.setVal(["gcheck_period_match_interrupt", "value"], MF({true}, Boolean))
+		appres_interrupt.setVal(["gstring_handler", "value"], MF({"ecat_ssc_timer_handler"}, String))
+		
+		vs_timer_ccu4_period_match_interrupt =  MVirtualSignalRA(appres_timer, "vs_timer_ccu4_period_match_interrupt")
+		vs_timer_ccu8_period_match_interrupt =  MVirtualSignalRA(appres_timer, "vs_timer_ccu8_period_match_interrupt")		
+		vs_nvic_signal_in =  MVirtualSignalRA(appres_interrupt, "vs_nvic_signal_in")
+		
+		addConnectionConstraint(vs_timer_ccu4_period_match_interrupt, 
+			                    vs_nvic_signal_in,
+			                    MF({appres_timer.getVal(["gcombo_timer_module", "value"]) == "CCU4"}, Boolean))
+
+		addConnectionConstraint(vs_timer_ccu8_period_match_interrupt,
+			                    vs_nvic_signal_in,
+			                    MF({appres_timer.getVal(["gcombo_timer_module", "value"]) == "CCU8"}, Boolean))
+		
+		/* Read maximum sub priority value from CPU APP. It is applicable only for XMC4 devices */
+
+		ginterruptprio_ecat.maxSubPriority =  MF({
+												Integer SubPriority = appres_cpu.getVal(["gint_maxInterruptSubPriority", "value"]) as Integer
+												return SubPriority
+											  }, Integer)
+
+
+		/* Read the maximum priority value from CPU APP */
+		ginterruptprio_ecat.maxPriority = MF({
+			Integer Priority = appres_cpu.getVal(["gint_maxInterruptPreemptPriority", "value"]) as Integer
+			return Priority
+		}, Integer)
+		
+	}
+	
+	// File Generation
+	def generateFiles(){
+		copy("ecat_ssc.h", "ecat_ssc.h")
+		copy("ecat_ssc.c", "ecat_ssc.c")
+		copy("xmc_eschw.h", "xmc_eschw.h")
+		generate("xmc_eschwc.tmpl", "xmc_eschw.c")
+		generate("ecat_ssc_confc.tmpl", "ecat_ssc_conf.c")
+		generate("ecat_ssc_confh.tmpl", "ecat_ssc_conf.h")
+		generate("ecat_ssc_externh.tmpl", "ecat_ssc_extern.h")
+	}
+	
+	/**
+	 * Add main code here
+	 */
+}

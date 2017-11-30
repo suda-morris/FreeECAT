@@ -1,0 +1,23 @@
+package Model.APPS.EVENT_GENERATOR.v4_1_14;
+
+/* Import statements */
+import ifx.davex.app.manifest.*
+
+abstract class EVENT_GENERATOR_GUI extends AppManifest {
+	/* Begin : UI variable section */
+	 public GTab gtab_general_settings;
+	 public GCombo gcombo_gating_scheme;
+	 public GCheck gcheck_enable_pattern_detection;
+	 public GLabel glabel_gating_scheme;
+
+	 public EVENT_GENERATOR_GUI(DaveEnv daveEnv){
+
+	 gtab_general_settings = GTab(widgetName:"gtab_general_settings", text:"General Settings", enabled:true, visible:true)
+	 gcombo_gating_scheme = GCombo(widgetName:"gcombo_gating_scheme", options:["No Service Request","Independent of Pattern Detection","On Pattern Detection Match","On Pattern Detection Mismatch"], value:"Independent of Pattern Detection", enabled:true, visible:true, isMandatoryValue:false)
+	 gcheck_enable_pattern_detection = GCheck(widgetName:"gcheck_enable_pattern_detection", value:false, enabled:true, visible:true)
+	 glabel_gating_scheme = GLabel(widgetName:"glabel_gating_scheme", text:"Generate service request :", enabled:true, visible:true)
+
+
+	 }
+	/* End : UI variable section */
+}

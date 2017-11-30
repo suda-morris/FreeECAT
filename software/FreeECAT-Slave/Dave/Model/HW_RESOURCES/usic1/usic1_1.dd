@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ResourceModel:Peripheral xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" URI="http://resources/48.0.0/peripheral/usic/1" description="Universal Serial Interface Controller 1" baseAddress="0x48020008">
+  <provided xsi:type="ResourceModel:ResourceGroup" name="1" URI="http://resources/48.0.0/peripheral/usic/1/channel/1">
+    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/I2C_MASTER/v4_1_20/I2C_MASTER_0.app#//@hwResources.0"/>
+    <resourcesList name="brg" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_brg"/>
+    <resourcesList name="byp" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_byp"/>
+    <resourcesList name="bypcr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_bypcr"/>
+    <resourcesList name="ccfg" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_ccfg"/>
+    <resourcesList name="ccr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_ccr"/>
+    <resourcesList name="ccr_aien" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/aien"/>
+    <resourcesList name="ccr_brgien" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/brgien"/>
+    <resourcesList name="ccr_dlien" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/dlien"/>
+    <resourcesList name="ccr_hpcen" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/hpcen"/>
+    <resourcesList name="ccr_rien" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/rien"/>
+    <resourcesList name="ccr_rsien" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/rsien"/>
+    <resourcesList name="ccr_tbien" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/tbien"/>
+    <resourcesList name="ccr_tsien" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/tsien"/>
+    <resourcesList name="cmtr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_cmtr"/>
+    <resourcesList name="dx0cr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_dx0cr"/>
+    <resourcesList name="dx0cr_dsel" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_dx0cr/dsel"/>
+    <resourcesList name="dx1cr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_dx1cr"/>
+    <resourcesList name="dx1cr_dsel" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_dx1cr/dsel"/>
+    <resourcesList name="dx2cr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_dx2cr"/>
+    <resourcesList name="dx2cr_dsel" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_dx2cr/dsel"/>
+    <resourcesList name="dx3cr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_dx3cr"/>
+    <resourcesList name="dx3cr_dsel" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_dx3cr/dsel"/>
+    <resourcesList name="dx4cr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_dx4cr"/>
+    <resourcesList name="dx4cr_dsel" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_dx4cr/dsel"/>
+    <resourcesList name="dx5cr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_dx5cr"/>
+    <resourcesList name="dx5cr_dsel" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_dx5cr/dsel"/>
+    <resourcesList name="fdr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_fdr"/>
+    <resourcesList name="fmr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_fmr"/>
+    <resourcesList name="in0" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in0"/>
+    <resourcesList name="in1" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in1"/>
+    <resourcesList name="in2" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in2"/>
+    <resourcesList name="in3" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in3"/>
+    <resourcesList name="in4" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in4"/>
+    <resourcesList name="in5" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in5"/>
+    <resourcesList name="in6" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in6"/>
+    <resourcesList name="in7" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in7"/>
+    <resourcesList name="in8" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in8"/>
+    <resourcesList name="in9" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in9"/>
+    <resourcesList name="in10" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in10"/>
+    <resourcesList name="in11" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in11"/>
+    <resourcesList name="in12" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in12"/>
+    <resourcesList name="in13" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in13"/>
+    <resourcesList name="in14" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in14"/>
+    <resourcesList name="in15" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in15"/>
+    <resourcesList name="in16" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in16"/>
+    <resourcesList name="in17" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in17"/>
+    <resourcesList name="in18" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in18"/>
+    <resourcesList name="in19" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in19"/>
+    <resourcesList name="in20" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in20"/>
+    <resourcesList name="in21" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in21"/>
+    <resourcesList name="in22" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in22"/>
+    <resourcesList name="in23" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in23"/>
+    <resourcesList name="in24" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in24"/>
+    <resourcesList name="in25" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in25"/>
+    <resourcesList name="in26" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in26"/>
+    <resourcesList name="in27" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in27"/>
+    <resourcesList name="in28" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in28"/>
+    <resourcesList name="in29" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in29"/>
+    <resourcesList name="in30" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in30"/>
+    <resourcesList name="in31" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_in31"/>
+    <resourcesList name="inpr_ainp" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_inpr/ainp"/>
+    <resourcesList name="inpr_pinp" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_inpr/pinp"/>
+    <resourcesList name="inpr_rinp" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_inpr/rinp"/>
+    <resourcesList name="inpr_tbinp" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_inpr/tbinp"/>
+    <resourcesList name="inpr_tsinp" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_inpr/tsinp"/>
+    <resourcesList name="kscfg" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_kscfg"/>
+    <resourcesList name="outdr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_outdr"/>
+    <resourcesList name="outr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_outr"/>
+    <resourcesList name="pcr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_pcr"/>
+    <resourcesList name="pscr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_pscr"/>
+    <resourcesList name="psr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_psr"/>
+    <resourcesList name="rbctr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr"/>
+    <resourcesList name="rbctr_arbien" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/arbien"/>
+    <resourcesList name="rbctr_arbinp" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/arbinp"/>
+    <resourcesList name="rbctr_dptr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/dptr"/>
+    <resourcesList name="rbctr_rberien" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/rberien"/>
+    <resourcesList name="rbctr_size" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/size"/>
+    <resourcesList name="rbctr_srbien" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/srbien"/>
+    <resourcesList name="rbctr_srbinp" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/srbinp"/>
+    <resourcesList name="rbuf" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_rbuf"/>
+    <resourcesList name="rbuf0" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_rbuf0"/>
+    <resourcesList name="rbuf1" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_rbuf1"/>
+    <resourcesList name="rbuf01sr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_rbuf01sr"/>
+    <resourcesList name="rbufd" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_rbufd"/>
+    <resourcesList name="rbufsr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_rbufsr"/>
+    <resourcesList name="sctr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_sctr"/>
+    <resourcesList name="tbctr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr"/>
+    <resourcesList name="tbctr_atbinp" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/atbinp"/>
+    <resourcesList name="tbctr_dptr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/dptr"/>
+    <resourcesList name="tbctr_size" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/size"/>
+    <resourcesList name="tbctr_stbien" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/stbien"/>
+    <resourcesList name="tbctr_stbinp" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/stbinp"/>
+    <resourcesList name="tbctr_tberien" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/tberien"/>
+    <resourcesList name="tbuf0" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf0"/>
+    <resourcesList name="tbuf1" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf1"/>
+    <resourcesList name="tbuf2" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf2"/>
+    <resourcesList name="tbuf3" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf3"/>
+    <resourcesList name="tbuf4" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf4"/>
+    <resourcesList name="tbuf5" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf5"/>
+    <resourcesList name="tbuf6" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf6"/>
+    <resourcesList name="tbuf7" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf7"/>
+    <resourcesList name="tbuf8" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf8"/>
+    <resourcesList name="tbuf9" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf9"/>
+    <resourcesList name="tbuf10" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf10"/>
+    <resourcesList name="tbuf11" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf11"/>
+    <resourcesList name="tbuf12" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf12"/>
+    <resourcesList name="tbuf13" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf13"/>
+    <resourcesList name="tbuf14" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf14"/>
+    <resourcesList name="tbuf15" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf15"/>
+    <resourcesList name="tbuf16" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf16"/>
+    <resourcesList name="tbuf17" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf17"/>
+    <resourcesList name="tbuf18" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf18"/>
+    <resourcesList name="tbuf19" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf19"/>
+    <resourcesList name="tbuf20" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf20"/>
+    <resourcesList name="tbuf21" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf21"/>
+    <resourcesList name="tbuf22" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf22"/>
+    <resourcesList name="tbuf23" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf23"/>
+    <resourcesList name="tbuf24" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf24"/>
+    <resourcesList name="tbuf25" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf25"/>
+    <resourcesList name="tbuf26" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf26"/>
+    <resourcesList name="tbuf27" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf27"/>
+    <resourcesList name="tbuf28" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf28"/>
+    <resourcesList name="tbuf29" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf29"/>
+    <resourcesList name="tbuf30" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf30"/>
+    <resourcesList name="tbuf31" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tbuf31"/>
+    <resourcesList name="tcsr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_tcsr"/>
+    <resourcesList name="trbptr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_trbptr"/>
+    <resourcesList name="trbscr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_trbscr"/>
+    <resourcesList name="trbsr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/ch1_trbsr"/>
+    <resourcesList name="dx0ins" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_dx0ins"/>
+    <resourcesList name="dx1ins" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_dx1ins"/>
+    <resourcesList name="dx2ins" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_dx2ins"/>
+    <resourcesList name="dx3ins" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_dx3ins"/>
+    <resourcesList name="dx5ins" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_dx5ins"/>
+    <resourcesList name="dx4ins" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_dx4ins"/>
+    <resourcesList name="transmit_shift_int" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_transmit_shift_int"/>
+    <resourcesList name="transmit_buffer_int" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_transmit_buffer_int"/>
+    <resourcesList name="receive_start_int" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_receive_start_int"/>
+    <resourcesList name="standard_receive_int" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_standard_receive_int"/>
+    <resourcesList name="alternate_receive_int" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_alternate_receive_int"/>
+    <resourcesList name="data_lost_int" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_data_lost_int"/>
+    <resourcesList name="baud_rate_int" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_baud_rate_int"/>
+    <resourcesList name="standard_transmit_buffer_int" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_standard_transmit_buffer_int"/>
+    <resourcesList name="transmit_buffer_error_int" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_transmit_buffer_error_int"/>
+    <resourcesList name="standard_receive_buffer_int" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_standard_receive_buffer_int"/>
+    <resourcesList name="receive_buffer_error_int" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_receive_buffer_error_int"/>
+    <resourcesList name="alternate_receive_buffer_int" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_alternate_receive_buffer_int"/>
+    <resourcesList name="dout0" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_dout0"/>
+    <resourcesList name="dout1" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_dout1"/>
+    <resourcesList name="dout2" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_dout2"/>
+    <resourcesList name="dout3" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_dout3"/>
+    <resourcesList name="sclkout" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_sclkout"/>
+    <resourcesList name="mclkout" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_mclkout"/>
+    <resourcesList name="selo0" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_selo0"/>
+    <resourcesList name="selo1" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_selo1"/>
+    <resourcesList name="selo2" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_selo2"/>
+    <resourcesList name="selo3" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_selo3"/>
+    <resourcesList name="selo4" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_selo4"/>
+    <resourcesList name="selo5" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_selo5"/>
+    <resourcesList name="selo6" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_selo6"/>
+    <resourcesList name="selo7" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_selo7"/>
+    <resourcesList name="protocol_specific_int" requiredResourceUri="http://resources/48.0.0/peripheral/usic/1/channel1_protocol_specific_int"/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="CH1_TBCTR" URI="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr" value="0x00000000" toolTipHelpDescription="Transmitter Buffer Control Register" defaultValue="0x00000000" addressOffset="0x300" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="DPTR" URI="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/dptr" value="0x00000000" toolTipHelpDescription="Data Pointer" defaultValue="0x00000000" startPos="0" stopPos="5" accessPermission="w" maxValue="63" minValue="0"/>
+    <bitFields name="LIMIT" URI="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/limit" value="0x00000000" toolTipHelpDescription="Limit For Interrupt Generation" defaultValue="0x00000000" startPos="8" stopPos="13" accessPermission="rw" maxValue="63" minValue="0"/>
+    <bitFields name="STBTM" URI="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/stbtm" value="0x00000000" toolTipHelpDescription="Standard Transmit Buffer Trigger Mode" defaultValue="0x00000000" startPos="14" stopPos="14" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Trigger mode 0: While TRBSR.STBT=1, a standard buffer event will be generated whenever there is a data transfer to TBUF or data write to INx (depending on TBCTR.LOF setting). STBT is cleared when TRBSR.TBFLVL=TBCTR.LIMIT."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Trigger mode 1: While TRBSR.STBT=1, a standard buffer event will be generated whenever there is a data transfer to TBUF or data write to INx (depending on TBCTR.LOF setting). STBT is cleared when TRBSR.TBFLVL=TBCTR.SIZE."/>
+    </bitFields>
+    <bitFields name="STBTEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/stbten" value="0x00000000" toolTipHelpDescription="Standard Transmit Buffer Trigger Enable" defaultValue="0x00000000" startPos="15" stopPos="15" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The standard transmit buffer event trigger through bit TRBSR.STBT is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The standard transmit buffer event trigger through bit TRBSR.STBT is enabled."/>
+    </bitFields>
+    <bitFields name="STBINP" URI="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/stbinp" value="0x00000000" toolTipHelpDescription="Standard Transmit Buffer Interrupt Node Pointer" defaultValue="0x00000000" startPos="16" stopPos="18" accessPermission="rw" maxValue="7" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="Output SR0 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="Output SR1 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="Output SR2 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="Output SR3 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="Output SR4 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="Output SR5 becomes activated."/>
+    </bitFields>
+    <bitFields name="ATBINP" URI="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/atbinp" value="0x00000000" toolTipHelpDescription="Alternative Transmit Buffer Interrupt Node Pointer" defaultValue="0x00000000" startPos="19" stopPos="21" accessPermission="rw" maxValue="7" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="Output SR0 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="Output SR1 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="Output SR2 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="Output SR3 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="Output SR4 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="Output SR5 becomes activated."/>
+    </bitFields>
+    <bitFields name="SIZE" URI="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/size" value="0x00000000" toolTipHelpDescription="Buffer Size" defaultValue="0x00000000" startPos="24" stopPos="26" accessPermission="rw" maxValue="7" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="The FIFO mechanism is disabled. The buffer does not accept any request for data."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="The FIFO buffer contains 2 entries."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="The FIFO buffer contains 4 entries."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="The FIFO buffer contains 8 entries."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="The FIFO buffer contains 16 entries."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="The FIFO buffer contains 32 entries."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#110" description="The FIFO buffer contains 64 entries."/>
+    </bitFields>
+    <bitFields name="LOF" URI="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/lof" value="0x00000000" toolTipHelpDescription="Buffer Event on Limit Overflow" defaultValue="0x00000000" startPos="28" stopPos="28" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="A standard transmit buffer event occurs when the filling level equals the limit value and gets lower due to transmission of a data word."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="A standard transmit buffer interrupt event occurs when the filling level equals the limit value and gets bigger due to a write access to a data input location INx."/>
+    </bitFields>
+    <bitFields name="STBIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/stbien" value="0x00000000" toolTipHelpDescription="Standard Transmit Buffer Interrupt Enable" defaultValue="0x00000000" startPos="30" stopPos="30" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The standard transmit buffer interrupt generation is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The standard transmit buffer interrupt generation is enabled."/>
+    </bitFields>
+    <bitFields name="TBERIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/tberien" value="0x00000000" toolTipHelpDescription="Transmit Buffer Error Interrupt Enable" defaultValue="0x00000000" startPos="31" stopPos="31" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The transmit buffer error interrupt generation is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The transmit buffer error interrupt generation is enabled."/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="STBIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/stbien" value="0x00000000" toolTipHelpDescription="Standard Transmit Buffer Interrupt Enable" defaultValue="0x00000000" startPos="30" stopPos="30" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The standard transmit buffer interrupt generation is disabled."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The standard transmit buffer interrupt generation is enabled."/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="CH1_RBCTR" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr" value="0x00000000" toolTipHelpDescription="Receiver Buffer Control Register" defaultValue="0x00000000" addressOffset="0x304" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="DPTR" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/dptr" value="0x00000000" toolTipHelpDescription="Data Pointer" defaultValue="0x00000000" startPos="0" stopPos="5" accessPermission="w" maxValue="63" minValue="0"/>
+    <bitFields name="LIMIT" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/limit" value="0x00000000" toolTipHelpDescription="Limit For Interrupt Generation" defaultValue="0x00000000" startPos="8" stopPos="13" accessPermission="rw" maxValue="63" minValue="0"/>
+    <bitFields name="SRBTM" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/srbtm" value="0x00000000" toolTipHelpDescription="Standard Receive Buffer Trigger Mode" defaultValue="0x00000000" startPos="14" stopPos="14" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Trigger mode 0: While TRBSR.SRBT=1, a standard receive buffer event will be generated whenever there is a new data received or data read out (depending on RBCTR.LOF setting). SRBT is cleared when TRBSR.RBFLVL=RBCTR.LIMIT."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="Trigger mode 1: While TRBSR.SRBT=1, a standard receive buffer event will be generated whenever there is a new data received or data read out (depending on RBCTR.LOF setting). SRBT is cleared when TRBSR.RBFLVL=0."/>
+    </bitFields>
+    <bitFields name="SRBTEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/srbten" value="0x00000000" toolTipHelpDescription="Standard Receive Buffer Trigger Enable" defaultValue="0x00000000" startPos="15" stopPos="15" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The standard receive buffer event trigger through bit TRBSR.SRBT is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The standard receive buffer event trigger through bit TRBSR.SRBT is enabled."/>
+    </bitFields>
+    <bitFields name="SRBINP" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/srbinp" value="0x00000000" toolTipHelpDescription="Standard Receive Buffer Interrupt Node Pointer" defaultValue="0x00000000" startPos="16" stopPos="18" accessPermission="rw" maxValue="7" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="Output SR0 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="Output SR1 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="Output SR2 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="Output SR3 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="Output SR4 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="Output SR5 becomes activated."/>
+    </bitFields>
+    <bitFields name="ARBINP" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/arbinp" value="0x00000000" toolTipHelpDescription="Alternative Receive Buffer Interrupt Node Pointer" defaultValue="0x00000000" startPos="19" stopPos="21" accessPermission="rw" maxValue="7" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="Output SR0 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="Output SR1 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="Output SR2 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="Output SR3 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="Output SR4 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="Output SR5 becomes activated."/>
+    </bitFields>
+    <bitFields name="RCIM" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/rcim" value="0x00000000" toolTipHelpDescription="Receiver Control Information Mode" defaultValue="0x00000000" startPos="22" stopPos="23" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="RCI[4] = PERR, RCI[3:0] = WLEN"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="RCI[4] = SOF, RCI[3:0] = WLEN"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="RCI[4] = 0, RCI[3:0] = WLEN"/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="RCI[4] = PERR, RCI[3] = PAR, RCI[2:1] = 00B, RCI[0] = SOF"/>
+    </bitFields>
+    <bitFields name="SIZE" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/size" value="0x00000000" toolTipHelpDescription="Buffer Size" defaultValue="0x00000000" startPos="24" stopPos="26" accessPermission="rw" maxValue="7" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="The FIFO mechanism is disabled. The buffer does not accept any request for data."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="The FIFO buffer contains 2 entries."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="The FIFO buffer contains 4 entries."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="The FIFO buffer contains 8 entries."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="The FIFO buffer contains 16 entries."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="The FIFO buffer contains 32 entries."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#110" description="The FIFO buffer contains 64 entries."/>
+    </bitFields>
+    <bitFields name="RNM" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/rnm" value="0x00000000" toolTipHelpDescription="Receiver Notification Mode" defaultValue="0x00000000" startPos="27" stopPos="27" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="Filling level mode: A standard receive buffer event occurs when the filling level equals the limit value and changes, either due to a read access from OUTR (LOF = 0) or due to a new received data word (LOF = 1)."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="RCI mode: A standard receive buffer event occurs when register OUTR is updated with a new value if the corresponding value in OUTR.RCI[4] = 0. If OUTR.RCI[4] = 1, an alternative receive buffer event occurs instead of the standard receive buffer event."/>
+    </bitFields>
+    <bitFields name="LOF" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/lof" value="0x00000000" toolTipHelpDescription="Buffer Event on Limit Overflow" defaultValue="0x00000000" startPos="28" stopPos="28" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="A standard receive buffer event occurs when the filling level equals the limit value and gets lower due to a read access from OUTR."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="A standard receive buffer event occurs when the filling level equals the limit value and gets bigger due to the reception of a new data word."/>
+    </bitFields>
+    <bitFields name="ARBIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/arbien" value="0x00000000" toolTipHelpDescription="Alternative Receive Buffer Interrupt Enable" defaultValue="0x00000000" startPos="29" stopPos="29" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The alternative receive buffer interrupt generation is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The alternative receive buffer interrupt generation is enabled."/>
+    </bitFields>
+    <bitFields name="SRBIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/srbien" value="0x00000000" toolTipHelpDescription="Standard Receive Buffer Interrupt Enable" defaultValue="0x00000000" startPos="30" stopPos="30" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The standard receive buffer interrupt generation is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The standard receive buffer interrupt generation is enabled."/>
+    </bitFields>
+    <bitFields name="RBERIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/rberien" value="0x00000000" toolTipHelpDescription="Receive Buffer Error Interrupt Enable" defaultValue="0x00000000" startPos="31" stopPos="31" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The receive buffer error interrupt generation is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The receive buffer error interrupt generation is enabled."/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SRBIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/srbien" value="0x00000000" toolTipHelpDescription="Standard Receive Buffer Interrupt Enable" defaultValue="0x00000000" startPos="30" stopPos="30" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The standard receive buffer interrupt generation is disabled."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The standard receive buffer interrupt generation is enabled."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ARBIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/arbien" value="0x00000000" toolTipHelpDescription="Alternative Receive Buffer Interrupt Enable" defaultValue="0x00000000" startPos="29" stopPos="29" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The alternative receive buffer interrupt generation is disabled."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The alternative receive buffer interrupt generation is enabled."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RBERIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/rberien" value="0x00000000" toolTipHelpDescription="Receive Buffer Error Interrupt Enable" defaultValue="0x00000000" startPos="31" stopPos="31" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The receive buffer error interrupt generation is disabled."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The receive buffer error interrupt generation is enabled."/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="CH1_CCR" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr" value="0x00000000" toolTipHelpDescription="Channel Control Register" defaultValue="0x00000000" addressOffset="0x238" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="MODE" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/mode" value="0x00000000" toolTipHelpDescription="Operating Mode" defaultValue="0x00000000" startPos="0" stopPos="3" accessPermission="rw" maxValue="15" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="0x0" description="The USIC channel is disabled. All protocol-related state machines are set to an idle state."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="0x1" description="The SSC (SPI) protocol is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="0x2" description="The ASC (SCI, UART) protocol is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="0x3" description="The IIS protocol is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="0x4" description="The IIC protocol is selected."/>
+    </bitFields>
+    <bitFields name="HPCEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/hpcen" value="0x00000000" toolTipHelpDescription="Hardware Port Control Enable" defaultValue="0x00000000" startPos="6" stopPos="7" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="The hardware port control is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="The hardware port control is enabled for DX0 and DOUT0."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="The hardware port control is enabled for DX3, DX0 and DOUT[1:0]."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="The hardware port control is enabled for DX0, DX[5:3] and DOUT[3:0]."/>
+    </bitFields>
+    <bitFields name="PM" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/pm" value="0x00000000" toolTipHelpDescription="Parity Mode" defaultValue="0x00000000" startPos="8" stopPos="9" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="The parity generation is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="Even parity is selected (parity bit = 1 on odd number of 1s in data, parity bit = 0 on even number of 1s in data)."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Odd parity is selected (parity bit = 0 on odd number of 1s in data, parity bit = 1 on even number of 1s in data)."/>
+    </bitFields>
+    <bitFields name="RSIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/rsien" value="0x00000000" toolTipHelpDescription="Receiver Start Interrupt Enable" defaultValue="0x00000000" startPos="10" stopPos="10" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The receiver start interrupt is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The receiver start interrupt is enabled. In case of a receiver start event, the service request output SRx indicated by INPR.TBINP is activated."/>
+    </bitFields>
+    <bitFields name="DLIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/dlien" value="0x00000000" toolTipHelpDescription="Data Lost Interrupt Enable" defaultValue="0x00000000" startPos="11" stopPos="11" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The data lost interrupt is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The data lost interrupt is enabled. In case of a data lost event, the service request output SRx indicated by INPR.PINP is activated."/>
+    </bitFields>
+    <bitFields name="TSIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/tsien" value="0x00000000" toolTipHelpDescription="Transmit Shift Interrupt Enable" defaultValue="0x00000000" startPos="12" stopPos="12" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The transmit shift interrupt is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The transmit shift interrupt is enabled. In case of a transmit shift interrupt event, the service request output SRx indicated by INPR.TSINP is activated."/>
+    </bitFields>
+    <bitFields name="TBIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/tbien" value="0x00000000" toolTipHelpDescription="Transmit Buffer Interrupt Enable" defaultValue="0x00000000" startPos="13" stopPos="13" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The transmit buffer interrupt is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The transmit buffer interrupt is enabled. In case of a transmit buffer event, the service request output SRx indicated by INPR.TBINP is activated."/>
+    </bitFields>
+    <bitFields name="RIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/rien" value="0x00000000" toolTipHelpDescription="Receive Interrupt Enable" defaultValue="0x00000000" startPos="14" stopPos="14" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The receive interrupt is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The receive interrupt is enabled. In case of a receive event, the service request output SRx indicated by INPR.RINP is activated."/>
+    </bitFields>
+    <bitFields name="AIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/aien" value="0x00000000" toolTipHelpDescription="Alternative Receive Interrupt Enable" defaultValue="0x00000000" startPos="15" stopPos="15" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The alternative receive interrupt is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The alternative receive interrupt is enabled. In case of an alternative receive event, the service request output SRx indicated by INPR.AINP is activated."/>
+    </bitFields>
+    <bitFields name="BRGIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/brgien" value="0x00000000" toolTipHelpDescription="Baud Rate Generator Interrupt Enable" defaultValue="0x00000000" startPos="16" stopPos="16" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The baud rate generator interrupt is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The baud rate generator interrupt is enabled. In case of a baud rate generator event, the service request output SRx indicated by INPR.PINP is activated."/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RSIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/rsien" value="0x00000000" toolTipHelpDescription="Receiver Start Interrupt Enable" defaultValue="0x00000000" startPos="10" stopPos="10" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The receiver start interrupt is disabled."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The receiver start interrupt is enabled. In case of a receiver start event, the service request output SRx indicated by INPR.TBINP is activated."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DPTR" URI="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/dptr" value="0x00000000" toolTipHelpDescription="Data Pointer" defaultValue="0x00000000" startPos="0" stopPos="5" accessPermission="w" maxValue="63" minValue="0"/>
+  <provided xsi:type="ResourceModel:BitField" name="TBERIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/tberien" value="0x00000000" toolTipHelpDescription="Transmit Buffer Error Interrupt Enable" defaultValue="0x00000000" startPos="31" stopPos="31" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The transmit buffer error interrupt generation is disabled."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The transmit buffer error interrupt generation is enabled."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TBIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/tbien" value="0x00000000" toolTipHelpDescription="Transmit Buffer Interrupt Enable" defaultValue="0x00000000" startPos="13" stopPos="13" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The transmit buffer interrupt is disabled."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The transmit buffer interrupt is enabled. In case of a transmit buffer event, the service request output SRx indicated by INPR.TBINP is activated."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DLIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/dlien" value="0x00000000" toolTipHelpDescription="Data Lost Interrupt Enable" defaultValue="0x00000000" startPos="11" stopPos="11" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The data lost interrupt is disabled."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The data lost interrupt is enabled. In case of a data lost event, the service request output SRx indicated by INPR.PINP is activated."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DPTR" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/dptr" value="0x00000000" toolTipHelpDescription="Data Pointer" defaultValue="0x00000000" startPos="0" stopPos="5" accessPermission="w" maxValue="63" minValue="0"/>
+  <provided xsi:type="ResourceModel:BitField" name="SIZE" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/size" value="0x00000000" toolTipHelpDescription="Buffer Size" defaultValue="0x00000000" startPos="24" stopPos="26" accessPermission="rw" maxValue="7" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="The FIFO mechanism is disabled. The buffer does not accept any request for data."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="The FIFO buffer contains 2 entries."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="The FIFO buffer contains 4 entries."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="The FIFO buffer contains 8 entries."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="The FIFO buffer contains 16 entries."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="The FIFO buffer contains 32 entries."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#110" description="The FIFO buffer contains 64 entries."/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="CH1_DX2CR" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx2cr" value="0x00000000" toolTipHelpDescription="Input Control Register 2" defaultValue="0x00000000" addressOffset="0x21c" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="DSEL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx2cr/dsel" value="0x00000000" toolTipHelpDescription="Data Selection for Input Signal" defaultValue="0x00000000" startPos="0" stopPos="2" accessPermission="rw" maxValue="7" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="The data input DXnA is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="The data input DXnB is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="The data input DXnC is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="The data input DXnD is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="The data input DXnE is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="The data input DXnF is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#110" description="The data input DXnG is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#111" description="The data input is always 1."/>
+    </bitFields>
+    <bitFields name="INSW" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx2cr/insw" value="0x00000000" toolTipHelpDescription="Input Switch" defaultValue="0x00000000" startPos="4" stopPos="4" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The input of the data shift unit is controlled by the protocol pre-processor."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The input of the data shift unit is connected to the selected data input line. This setting is used if the signals are directly derived from an input pin without treatment by the protocol pre-processor."/>
+    </bitFields>
+    <bitFields name="DFEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx2cr/dfen" value="0x00000000" toolTipHelpDescription="Digital Filter Enable" defaultValue="0x00000000" startPos="5" stopPos="5" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The input signal is not digitally filtered."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The input signal is digitally filtered."/>
+    </bitFields>
+    <bitFields name="DSEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx2cr/dsen" value="0x00000000" toolTipHelpDescription="Data Synchronization Enable" defaultValue="0x00000000" startPos="6" stopPos="6" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The un-synchronized signal can be taken as input for the data shift unit."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The synchronized signal can be taken as input for the data shift unit."/>
+    </bitFields>
+    <bitFields name="DPOL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx2cr/dpol" value="0x00000000" toolTipHelpDescription="Data Polarity for DXn" defaultValue="0x00000000" startPos="8" stopPos="8" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The input signal is not inverted."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The input signal is inverted."/>
+    </bitFields>
+    <bitFields name="SFSEL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx2cr/sfsel" value="0x00000000" toolTipHelpDescription="Sampling Frequency Selection" defaultValue="0x00000000" startPos="9" stopPos="9" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The sampling frequency is fPB."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The sampling frequency is fFD."/>
+    </bitFields>
+    <bitFields name="CM" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx2cr/cm" value="0x00000000" toolTipHelpDescription="Combination Mode" defaultValue="0x00000000" startPos="10" stopPos="11" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="The trigger activation is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="A rising edge activates DXnT."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="A falling edge activates DXnT."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Both edges activate DXnT."/>
+    </bitFields>
+    <bitFields name="DXS" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx2cr/dxs" value="0x00000000" toolTipHelpDescription="Synchronized Data Value" defaultValue="0x00000000" startPos="15" stopPos="15" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The current value of DXnS is 0."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The current value of DXnS is 1."/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx2cr/dsel" value="0x00000000" toolTipHelpDescription="Data Selection for Input Signal" defaultValue="0x00000000" startPos="0" stopPos="2" accessPermission="rw" maxValue="7" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="The data input DXnA is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="The data input DXnB is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="The data input DXnC is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="The data input DXnD is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="The data input DXnE is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="The data input DXnF is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#110" description="The data input DXnG is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#111" description="The data input is always 1."/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="CH1_DX3CR" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx3cr" value="0x00000000" toolTipHelpDescription="Input Control Register 3" defaultValue="0x00000000" addressOffset="0x220" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="DSEL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx3cr/dsel" value="0x00000000" toolTipHelpDescription="Data Selection for Input Signal" defaultValue="0x00000000" startPos="0" stopPos="2" accessPermission="rw" maxValue="7" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="The data input DXnA is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="The data input DXnB is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="The data input DXnC is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="The data input DXnD is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="The data input DXnE is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="The data input DXnF is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#110" description="The data input DXnG is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#111" description="The data input is always 1."/>
+    </bitFields>
+    <bitFields name="INSW" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx3cr/insw" value="0x00000000" toolTipHelpDescription="Input Switch" defaultValue="0x00000000" startPos="4" stopPos="4" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The input of the data shift unit is controlled by the protocol pre-processor."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The input of the data shift unit is connected to the selected data input line. This setting is used if the signals are directly derived from an input pin without treatment by the protocol pre-processor."/>
+    </bitFields>
+    <bitFields name="DFEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx3cr/dfen" value="0x00000000" toolTipHelpDescription="Digital Filter Enable" defaultValue="0x00000000" startPos="5" stopPos="5" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The input signal is not digitally filtered."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The input signal is digitally filtered."/>
+    </bitFields>
+    <bitFields name="DSEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx3cr/dsen" value="0x00000000" toolTipHelpDescription="Data Synchronization Enable" defaultValue="0x00000000" startPos="6" stopPos="6" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The un-synchronized signal can be taken as input for the data shift unit."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The synchronized signal can be taken as input for the data shift unit."/>
+    </bitFields>
+    <bitFields name="DPOL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx3cr/dpol" value="0x00000000" toolTipHelpDescription="Data Polarity for DXn" defaultValue="0x00000000" startPos="8" stopPos="8" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The input signal is not inverted."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The input signal is inverted."/>
+    </bitFields>
+    <bitFields name="SFSEL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx3cr/sfsel" value="0x00000000" toolTipHelpDescription="Sampling Frequency Selection" defaultValue="0x00000000" startPos="9" stopPos="9" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The sampling frequency is fPB."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The sampling frequency is fFD."/>
+    </bitFields>
+    <bitFields name="CM" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx3cr/cm" value="0x00000000" toolTipHelpDescription="Combination Mode" defaultValue="0x00000000" startPos="10" stopPos="11" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="The trigger activation is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="A rising edge activates DXnT."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="A falling edge activates DXnT."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Both edges activate DXnT."/>
+    </bitFields>
+    <bitFields name="DXS" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx3cr/dxs" value="0x00000000" toolTipHelpDescription="Synchronized Data Value" defaultValue="0x00000000" startPos="15" stopPos="15" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The current value of DXnS is 0."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The current value of DXnS is 1."/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx3cr/dsel" value="0x00000000" toolTipHelpDescription="Data Selection for Input Signal" defaultValue="0x00000000" startPos="0" stopPos="2" accessPermission="rw" maxValue="7" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="The data input DXnA is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="The data input DXnB is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="The data input DXnC is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="The data input DXnD is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="The data input DXnE is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="The data input DXnF is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#110" description="The data input DXnG is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#111" description="The data input is always 1."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ARBINP" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/arbinp" value="0x00000000" toolTipHelpDescription="Alternative Receive Buffer Interrupt Node Pointer" defaultValue="0x00000000" startPos="19" stopPos="21" accessPermission="rw" maxValue="7" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="Output SR0 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="Output SR1 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="Output SR2 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="Output SR3 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="Output SR4 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="Output SR5 becomes activated."/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="CH1_INPR" URI="http://resources/48.0.0/peripheral/usic/1/ch1_inpr" value="0x00000000" toolTipHelpDescription="Interrupt Node Pointer Register" defaultValue="0x00000000" addressOffset="0x210" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="TSINP" URI="http://resources/48.0.0/peripheral/usic/1/ch1_inpr/tsinp" value="0x00000000" toolTipHelpDescription="Transmit Shift Interrupt Node Pointer" defaultValue="0x00000000" startPos="0" stopPos="2" accessPermission="rw" maxValue="7" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="Output SR0 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="Output SR1 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="Output SR2 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="Output SR3 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="Output SR4 becomes activated."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="Output SR5 becomes activated."/>
+    </bitFields>
+    <bitFields name="TBINP" URI="http://resources/48.0.0/peripheral/usic/1/ch1_inpr/tbinp" value="0x00000000" toolTipHelpDescription="Transmit Buffer Interrupt Node Pointer" defaultValue="0x00000000" startPos="4" stopPos="6" accessPermission="rw" maxValue="7" minValue="0"/>
+    <bitFields name="RINP" URI="http://resources/48.0.0/peripheral/usic/1/ch1_inpr/rinp" value="0x00000000" toolTipHelpDescription="Receive Interrupt Node Pointer" defaultValue="0x00000000" startPos="8" stopPos="10" accessPermission="rw" maxValue="7" minValue="0"/>
+    <bitFields name="AINP" URI="http://resources/48.0.0/peripheral/usic/1/ch1_inpr/ainp" value="0x00000000" toolTipHelpDescription="Alternative Receive Interrupt Node Pointer" defaultValue="0x00000000" startPos="12" stopPos="14" accessPermission="rw" maxValue="7" minValue="0"/>
+    <bitFields name="PINP" URI="http://resources/48.0.0/peripheral/usic/1/ch1_inpr/pinp" value="0x00000000" toolTipHelpDescription="Transmit Shift Interrupt Node Pointer" defaultValue="0x00000000" startPos="16" stopPos="18" accessPermission="rw" maxValue="7" minValue="0"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TSINP" URI="http://resources/48.0.0/peripheral/usic/1/ch1_inpr/tsinp" value="0x00000000" toolTipHelpDescription="Transmit Shift Interrupt Node Pointer" defaultValue="0x00000000" startPos="0" stopPos="2" accessPermission="rw" maxValue="7" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="Output SR0 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="Output SR1 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="Output SR2 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="Output SR3 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="Output SR4 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="Output SR5 becomes activated."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ATBINP" URI="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/atbinp" value="0x00000000" toolTipHelpDescription="Alternative Transmit Buffer Interrupt Node Pointer" defaultValue="0x00000000" startPos="19" stopPos="21" accessPermission="rw" maxValue="7" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="Output SR0 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="Output SR1 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="Output SR2 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="Output SR3 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="Output SR4 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="Output SR5 becomes activated."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="AIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/aien" value="0x00000000" toolTipHelpDescription="Alternative Receive Interrupt Enable" defaultValue="0x00000000" startPos="15" stopPos="15" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The alternative receive interrupt is disabled."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The alternative receive interrupt is enabled. In case of an alternative receive event, the service request output SRx indicated by INPR.AINP is activated."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="AINP" URI="http://resources/48.0.0/peripheral/usic/1/ch1_inpr/ainp" value="0x00000000" toolTipHelpDescription="Alternative Receive Interrupt Node Pointer" defaultValue="0x00000000" startPos="12" stopPos="14" accessPermission="rw" maxValue="7" minValue="0"/>
+  <provided xsi:type="ResourceModel:BitField" name="HPCEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/hpcen" value="0x00000000" toolTipHelpDescription="Hardware Port Control Enable" defaultValue="0x00000000" startPos="6" stopPos="7" accessPermission="rw" maxValue="3" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="The hardware port control is disabled."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="The hardware port control is enabled for DX0 and DOUT0."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="The hardware port control is enabled for DX3, DX0 and DOUT[1:0]."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="The hardware port control is enabled for DX0, DX[5:3] and DOUT[3:0]."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="STBINP" URI="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/stbinp" value="0x00000000" toolTipHelpDescription="Standard Transmit Buffer Interrupt Node Pointer" defaultValue="0x00000000" startPos="16" stopPos="18" accessPermission="rw" maxValue="7" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="Output SR0 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="Output SR1 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="Output SR2 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="Output SR3 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="Output SR4 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="Output SR5 becomes activated."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SIZE" URI="http://resources/48.0.0/peripheral/usic/1/ch1_tbctr/size" value="0x00000000" toolTipHelpDescription="Buffer Size" defaultValue="0x00000000" startPos="24" stopPos="26" accessPermission="rw" maxValue="7" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="The FIFO mechanism is disabled. The buffer does not accept any request for data."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="The FIFO buffer contains 2 entries."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="The FIFO buffer contains 4 entries."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="The FIFO buffer contains 8 entries."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="The FIFO buffer contains 16 entries."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="The FIFO buffer contains 32 entries."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#110" description="The FIFO buffer contains 64 entries."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SRBINP" URI="http://resources/48.0.0/peripheral/usic/1/ch1_rbctr/srbinp" value="0x00000000" toolTipHelpDescription="Standard Receive Buffer Interrupt Node Pointer" defaultValue="0x00000000" startPos="16" stopPos="18" accessPermission="rw" maxValue="7" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="Output SR0 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="Output SR1 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="Output SR2 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="Output SR3 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="Output SR4 becomes activated."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="Output SR5 becomes activated."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/rien" value="0x00000000" toolTipHelpDescription="Receive Interrupt Enable" defaultValue="0x00000000" startPos="14" stopPos="14" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The receive interrupt is disabled."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The receive interrupt is enabled. In case of a receive event, the service request output SRx indicated by INPR.RINP is activated."/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="CH1_DX4CR" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx4cr" value="0x00000000" toolTipHelpDescription="Input Control Register 4" defaultValue="0x00000000" addressOffset="0x224" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="DSEL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx4cr/dsel" value="0x00000000" toolTipHelpDescription="Data Selection for Input Signal" defaultValue="0x00000000" startPos="0" stopPos="2" accessPermission="rw" maxValue="7" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="The data input DXnA is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="The data input DXnB is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="The data input DXnC is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="The data input DXnD is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="The data input DXnE is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="The data input DXnF is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#110" description="The data input DXnG is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#111" description="The data input is always 1."/>
+    </bitFields>
+    <bitFields name="INSW" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx4cr/insw" value="0x00000000" toolTipHelpDescription="Input Switch" defaultValue="0x00000000" startPos="4" stopPos="4" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The input of the data shift unit is controlled by the protocol pre-processor."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The input of the data shift unit is connected to the selected data input line. This setting is used if the signals are directly derived from an input pin without treatment by the protocol pre-processor."/>
+    </bitFields>
+    <bitFields name="DFEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx4cr/dfen" value="0x00000000" toolTipHelpDescription="Digital Filter Enable" defaultValue="0x00000000" startPos="5" stopPos="5" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The input signal is not digitally filtered."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The input signal is digitally filtered."/>
+    </bitFields>
+    <bitFields name="DSEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx4cr/dsen" value="0x00000000" toolTipHelpDescription="Data Synchronization Enable" defaultValue="0x00000000" startPos="6" stopPos="6" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The un-synchronized signal can be taken as input for the data shift unit."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The synchronized signal can be taken as input for the data shift unit."/>
+    </bitFields>
+    <bitFields name="DPOL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx4cr/dpol" value="0x00000000" toolTipHelpDescription="Data Polarity for DXn" defaultValue="0x00000000" startPos="8" stopPos="8" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The input signal is not inverted."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The input signal is inverted."/>
+    </bitFields>
+    <bitFields name="SFSEL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx4cr/sfsel" value="0x00000000" toolTipHelpDescription="Sampling Frequency Selection" defaultValue="0x00000000" startPos="9" stopPos="9" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The sampling frequency is fPB."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The sampling frequency is fFD."/>
+    </bitFields>
+    <bitFields name="CM" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx4cr/cm" value="0x00000000" toolTipHelpDescription="Combination Mode" defaultValue="0x00000000" startPos="10" stopPos="11" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="The trigger activation is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="A rising edge activates DXnT."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="A falling edge activates DXnT."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Both edges activate DXnT."/>
+    </bitFields>
+    <bitFields name="DXS" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx4cr/dxs" value="0x00000000" toolTipHelpDescription="Synchronized Data Value" defaultValue="0x00000000" startPos="15" stopPos="15" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The current value of DXnS is 0."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The current value of DXnS is 1."/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx4cr/dsel" value="0x00000000" toolTipHelpDescription="Data Selection for Input Signal" defaultValue="0x00000000" startPos="0" stopPos="2" accessPermission="rw" maxValue="7" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="The data input DXnA is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="The data input DXnB is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="The data input DXnC is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="The data input DXnD is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="The data input DXnE is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="The data input DXnF is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#110" description="The data input DXnG is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#111" description="The data input is always 1."/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="CH1_DX0CR" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx0cr" value="0x00000000" toolTipHelpDescription="Input Control Register 0" defaultValue="0x00000000" addressOffset="0x214" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="DSEL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx0cr/dsel" value="0x00000000" toolTipHelpDescription="Data Selection for Input Signal" defaultValue="0x00000000" startPos="0" stopPos="2" accessPermission="rw" maxValue="7" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="The data input DXnA is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="The data input DXnB is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="The data input DXnC is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="The data input DXnD is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="The data input DXnE is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="The data input DXnF is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#110" description="The data input DXnG is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#111" description="The data input is always 1."/>
+    </bitFields>
+    <bitFields name="INSW" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx0cr/insw" value="0x00000000" toolTipHelpDescription="Input Switch" defaultValue="0x00000000" startPos="4" stopPos="4" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The input of the data shift unit is controlled by the protocol pre-processor."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The input of the data shift unit is connected to the selected data input line. This setting is used if the signals are directly derived from an input pin without treatment by the protocol pre-processor."/>
+    </bitFields>
+    <bitFields name="DFEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx0cr/dfen" value="0x00000000" toolTipHelpDescription="Digital Filter Enable" defaultValue="0x00000000" startPos="5" stopPos="5" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The input signal is not digitally filtered."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The input signal is digitally filtered."/>
+    </bitFields>
+    <bitFields name="DSEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx0cr/dsen" value="0x00000000" toolTipHelpDescription="Data Synchronization Enable" defaultValue="0x00000000" startPos="6" stopPos="6" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The un-synchronized signal can be taken as input for the data shift unit."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The synchronized signal can be taken as input for the data shift unit."/>
+    </bitFields>
+    <bitFields name="DPOL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx0cr/dpol" value="0x00000000" toolTipHelpDescription="Data Polarity for DXn" defaultValue="0x00000000" startPos="8" stopPos="8" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The input signal is not inverted."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The input signal is inverted."/>
+    </bitFields>
+    <bitFields name="SFSEL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx0cr/sfsel" value="0x00000000" toolTipHelpDescription="Sampling Frequency Selection" defaultValue="0x00000000" startPos="9" stopPos="9" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The sampling frequency is fPB."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The sampling frequency is fFD."/>
+    </bitFields>
+    <bitFields name="CM" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx0cr/cm" value="0x00000000" toolTipHelpDescription="Combination Mode" defaultValue="0x00000000" startPos="10" stopPos="11" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="The trigger activation is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="A rising edge activates DXnT."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="A falling edge activates DXnT."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Both edges activate DXnT."/>
+    </bitFields>
+    <bitFields name="DXS" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx0cr/dxs" value="0x00000000" toolTipHelpDescription="Synchronized Data Value" defaultValue="0x00000000" startPos="15" stopPos="15" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The current value of DXnS is 0."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The current value of DXnS is 1."/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx0cr/dsel" value="0x00000000" toolTipHelpDescription="Data Selection for Input Signal" defaultValue="0x00000000" startPos="0" stopPos="2" accessPermission="rw" maxValue="7" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="The data input DXnA is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="The data input DXnB is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="The data input DXnC is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="The data input DXnD is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="The data input DXnE is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="The data input DXnF is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#110" description="The data input DXnG is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#111" description="The data input is always 1."/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="CH1_DX1CR" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx1cr" value="0x00000000" toolTipHelpDescription="Input Control Register 1" defaultValue="0x00000000" addressOffset="0x218" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="DSEL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx1cr/dsel" value="0x00000000" toolTipHelpDescription="Data Selection for Input Signal" defaultValue="0x00000000" startPos="0" stopPos="2" accessPermission="rw" maxValue="7" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="The data input DX1A is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="The data input DX1B is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="The data input DX1C is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="The data input DX1D is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="The data input DX1E is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="The data input DX1F is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#110" description="The data input DX1G is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#111" description="The data input is always 1."/>
+    </bitFields>
+    <bitFields name="DCEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx1cr/dcen" value="0x00000000" toolTipHelpDescription="Delay Compensation Enable" defaultValue="0x00000000" startPos="3" stopPos="3" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The receive shift clock is dependent on INSW selection."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The receive shift clock is connected to the selected data input line. This setting is used if delay compensation is required in SSC and IIS protocols, else DCEN should always be 0."/>
+    </bitFields>
+    <bitFields name="INSW" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx1cr/insw" value="0x00000000" toolTipHelpDescription="Input Switch" defaultValue="0x00000000" startPos="4" stopPos="4" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The input of the data shift unit is controlled by the protocol pre-processor."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The input of the data shift unit is connected to the selected data input line. This setting is used if the signals are directly derived from an input pin without treatment by the protocol pre-processor."/>
+    </bitFields>
+    <bitFields name="DFEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx1cr/dfen" value="0x00000000" toolTipHelpDescription="Digital Filter Enable" defaultValue="0x00000000" startPos="5" stopPos="5" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The input signal is not digitally filtered."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The input signal is digitally filtered."/>
+    </bitFields>
+    <bitFields name="DSEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx1cr/dsen" value="0x00000000" toolTipHelpDescription="Data Synchronization Enable" defaultValue="0x00000000" startPos="6" stopPos="6" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The un-synchronized signal can be taken as input for the data shift unit."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The synchronized signal can be taken as input for the data shift unit."/>
+    </bitFields>
+    <bitFields name="DPOL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx1cr/dpol" value="0x00000000" toolTipHelpDescription="Data Polarity for DXn" defaultValue="0x00000000" startPos="8" stopPos="8" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The input signal is not inverted."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The input signal is inverted."/>
+    </bitFields>
+    <bitFields name="SFSEL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx1cr/sfsel" value="0x00000000" toolTipHelpDescription="Sampling Frequency Selection" defaultValue="0x00000000" startPos="9" stopPos="9" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The sampling frequency is fPB."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The sampling frequency is fFD."/>
+    </bitFields>
+    <bitFields name="CM" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx1cr/cm" value="0x00000000" toolTipHelpDescription="Combination Mode" defaultValue="0x00000000" startPos="10" stopPos="11" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="The trigger activation is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="A rising edge activates DX1T."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="A falling edge activates DX1T."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Both edges activate DX1T."/>
+    </bitFields>
+    <bitFields name="DXS" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx1cr/dxs" value="0x00000000" toolTipHelpDescription="Synchronized Data Value" defaultValue="0x00000000" startPos="15" stopPos="15" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The current value of DX1S is 0."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The current value of DX1S is 1."/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx1cr/dsel" value="0x00000000" toolTipHelpDescription="Data Selection for Input Signal" defaultValue="0x00000000" startPos="0" stopPos="2" accessPermission="rw" maxValue="7" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="The data input DX1A is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="The data input DX1B is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="The data input DX1C is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="The data input DX1D is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="The data input DX1E is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="The data input DX1F is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#110" description="The data input DX1G is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#111" description="The data input is always 1."/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="CH1_DX5CR" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx5cr" value="0x00000000" toolTipHelpDescription="Input Control Register 5" defaultValue="0x00000000" addressOffset="0x228" resetValue="0x00000000" resetMask="0xFFFFFFFF">
+    <bitFields name="DSEL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx5cr/dsel" value="0x00000000" toolTipHelpDescription="Data Selection for Input Signal" defaultValue="0x00000000" startPos="0" stopPos="2" accessPermission="rw" maxValue="7" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="The data input DXnA is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="The data input DXnB is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="The data input DXnC is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="The data input DXnD is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="The data input DXnE is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="The data input DXnF is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#110" description="The data input DXnG is selected."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#111" description="The data input is always 1."/>
+    </bitFields>
+    <bitFields name="INSW" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx5cr/insw" value="0x00000000" toolTipHelpDescription="Input Switch" defaultValue="0x00000000" startPos="4" stopPos="4" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The input of the data shift unit is controlled by the protocol pre-processor."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The input of the data shift unit is connected to the selected data input line. This setting is used if the signals are directly derived from an input pin without treatment by the protocol pre-processor."/>
+    </bitFields>
+    <bitFields name="DFEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx5cr/dfen" value="0x00000000" toolTipHelpDescription="Digital Filter Enable" defaultValue="0x00000000" startPos="5" stopPos="5" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The input signal is not digitally filtered."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The input signal is digitally filtered."/>
+    </bitFields>
+    <bitFields name="DSEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx5cr/dsen" value="0x00000000" toolTipHelpDescription="Data Synchronization Enable" defaultValue="0x00000000" startPos="6" stopPos="6" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The un-synchronized signal can be taken as input for the data shift unit."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The synchronized signal can be taken as input for the data shift unit."/>
+    </bitFields>
+    <bitFields name="DPOL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx5cr/dpol" value="0x00000000" toolTipHelpDescription="Data Polarity for DXn" defaultValue="0x00000000" startPos="8" stopPos="8" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The input signal is not inverted."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The input signal is inverted."/>
+    </bitFields>
+    <bitFields name="SFSEL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx5cr/sfsel" value="0x00000000" toolTipHelpDescription="Sampling Frequency Selection" defaultValue="0x00000000" startPos="9" stopPos="9" accessPermission="rw" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The sampling frequency is fPB."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The sampling frequency is fFD."/>
+    </bitFields>
+    <bitFields name="CM" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx5cr/cm" value="0x00000000" toolTipHelpDescription="Combination Mode" defaultValue="0x00000000" startPos="10" stopPos="11" accessPermission="rw" maxValue="3" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#00" description="The trigger activation is disabled."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#01" description="A rising edge activates DXnT."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="A falling edge activates DXnT."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#11" description="Both edges activate DXnT."/>
+    </bitFields>
+    <bitFields name="DXS" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx5cr/dxs" value="0x00000000" toolTipHelpDescription="Synchronized Data Value" defaultValue="0x00000000" startPos="15" stopPos="15" maxValue="1" minValue="0">
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The current value of DXnS is 0."/>
+      <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The current value of DXnS is 1."/>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DSEL" URI="http://resources/48.0.0/peripheral/usic/1/ch1_dx5cr/dsel" value="0x00000000" toolTipHelpDescription="Data Selection for Input Signal" defaultValue="0x00000000" startPos="0" stopPos="2" accessPermission="rw" maxValue="7" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#000" description="The data input DXnA is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#001" description="The data input DXnB is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#010" description="The data input DXnC is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#011" description="The data input DXnD is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#100" description="The data input DXnE is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#101" description="The data input DXnF is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#110" description="The data input DXnG is selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#111" description="The data input is always 1."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TSIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/tsien" value="0x00000000" toolTipHelpDescription="Transmit Shift Interrupt Enable" defaultValue="0x00000000" startPos="12" stopPos="12" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The transmit shift interrupt is disabled."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The transmit shift interrupt is enabled. In case of a transmit shift interrupt event, the service request output SRx indicated by INPR.TSINP is activated."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TBINP" URI="http://resources/48.0.0/peripheral/usic/1/ch1_inpr/tbinp" value="0x00000000" toolTipHelpDescription="Transmit Buffer Interrupt Node Pointer" defaultValue="0x00000000" startPos="4" stopPos="6" accessPermission="rw" maxValue="7" minValue="0"/>
+  <provided xsi:type="ResourceModel:BitField" name="PINP" URI="http://resources/48.0.0/peripheral/usic/1/ch1_inpr/pinp" value="0x00000000" toolTipHelpDescription="Transmit Shift Interrupt Node Pointer" defaultValue="0x00000000" startPos="16" stopPos="18" accessPermission="rw" maxValue="7" minValue="0"/>
+  <provided xsi:type="ResourceModel:BitField" name="RINP" URI="http://resources/48.0.0/peripheral/usic/1/ch1_inpr/rinp" value="0x00000000" toolTipHelpDescription="Receive Interrupt Node Pointer" defaultValue="0x00000000" startPos="8" stopPos="10" accessPermission="rw" maxValue="7" minValue="0"/>
+  <provided xsi:type="ResourceModel:BitField" name="BRGIEN" URI="http://resources/48.0.0/peripheral/usic/1/ch1_ccr/brgien" value="0x00000000" toolTipHelpDescription="Baud Rate Generator Interrupt Enable" defaultValue="0x00000000" startPos="16" stopPos="16" accessPermission="rw" maxValue="1" minValue="0">
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#0" description="The baud rate generator interrupt is disabled."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="#1" description="The baud rate generator interrupt is enabled. In case of a baud rate generator event, the service request output SRx indicated by INPR.PINP is activated."/>
+  </provided>
+  <addressBlock offset="0" size="4" usage="registers"/>
+</ResourceModel:Peripheral>

@@ -1,0 +1,33 @@
+package Model.APPS.TIMER.v4_1_10;
+
+/* Import statements */
+import ifx.davex.app.manifest.*
+
+abstract class TIMER_GUI extends AppManifest {
+	/* Begin : UI variable section */
+	 public GTab gtab_general_settings;
+	 public GTab gtab_event_settings;
+	 public GCombo gcombo_timer_module;
+	 public GFloat gfloat_time_interval;
+	 public GCheck gcheck_start_after_initilization;
+	 public GCheck gcheck_period_match_interrupt;
+	 public GLabel glabel_timer_module;
+	 public GLabel glabel_time_interval;
+	 public GGroup ggroup_timer_settings;
+
+	 public TIMER_GUI(DaveEnv daveEnv){
+
+	 gtab_general_settings = GTab(widgetName:"gtab_general_settings", text:"General Settings", enabled:true, visible:true)
+	 gtab_event_settings = GTab(widgetName:"gtab_event_settings", text:"Event Settings", enabled:true, visible:true)
+	 gcombo_timer_module = GCombo(widgetName:"gcombo_timer_module", options:["CCU4","CCU8"], value:"CCU4", enabled:true, visible:true, isMandatoryValue:false)
+	 gfloat_time_interval = GFloat(widgetName:"gfloat_time_interval", value:1, minValue:0.2, maxValue:4294967200, enabled:true, visible:true, isMandatoryValue:false)
+	 gcheck_start_after_initilization = GCheck(widgetName:"gcheck_start_after_initilization", value:true, enabled:true, visible:true)
+	 gcheck_period_match_interrupt = GCheck(widgetName:"gcheck_period_match_interrupt", value:false, enabled:true, visible:true)
+	 glabel_timer_module = GLabel(widgetName:"glabel_timer_module", text:"Select timer module:", enabled:true, visible:true)
+	 glabel_time_interval = GLabel(widgetName:"glabel_time_interval", text:"Time interval [usec]:", enabled:true, visible:true)
+	 ggroup_timer_settings = GGroup(widgetName:"ggroup_timer_settings", text:"Timer Settings", enabled:true, visible:true)
+
+
+	 }
+	/* End : UI variable section */
+}

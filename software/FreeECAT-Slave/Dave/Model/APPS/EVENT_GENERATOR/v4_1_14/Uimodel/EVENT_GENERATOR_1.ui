@@ -1,0 +1,32 @@
+<p1:Tab  xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt" xmlns:p1="clr-namespace:com.ifx.davex.ui.controls.app" x:Class="e" layout="{x:Null}">
+	<p1:TabFolder bounds="5, 5, 588, 600">
+	    <p1:GTab text="General Settings" widgetName="gtab_general_settings" visible="true" enabled="true" manifestObj="true">
+			<p1:GTab.control>
+			  <p1:Tab>
+				<p1:Tab.layout>
+					<GridLayout horizontalSpacing="10" verticalSpacing="10" numColumns="2"/>
+				</p1:Tab.layout>
+				<p1:GImage visible="true" widgetName="gimage" path="doc/eru_ogu.png">
+					<p1:GImage.layoutData>
+						<GridData horizontalAlignment="FILL" horizontalSpan="2" heightHint="387" widthHint="565"/>
+					</p1:GImage.layoutData>
+					<p1:GImage.layout>
+						<GridLayout/>
+					</p1:GImage.layout>
+				</p1:GImage>
+			  	<p1:GCheck text="Enable pattern detection" manifestObj="true" widgetName="gcheck_enable_pattern_detection" toolTipText="Configures the pattern match in OGU" description="Configuration of pattern match in OGU is done after enabling this option">
+			  		<p1:GCheck.layoutData>
+			  			<GridData horizontalSpan="2"/>
+			  		</p1:GCheck.layoutData>
+			  	</p1:GCheck>
+				<p1:GLabel text="Generate service request :" visible="true" manifestObj="true" widgetName="glabel_gating_scheme">
+				<p1:GLabel.layoutData>
+					<GridData widthHint="146"/>
+				</p1:GLabel.layoutData>
+				</p1:GLabel>
+				<p1:GCombo mandatory="(com.ifx.davex.ui.controls.util.AppUiConstants).FALSE" manifestObj="true" widgetName="gcombo_gating_scheme" options="No Service Request&#13;&#10;Independent of Pattern Detection&#13;&#10;On Pattern Detection Match&#13;&#10;On Pattern Detection Mismatch" value="Independent of Pattern Detection" toolTipText="Configures the gating scheme to apply on pattern match output" description="This provides options to configure the gating scheme to be applied on for sevice request generation:&#13;&#10;&lt;UL&gt;&#13;&#10;&lt;LI&gt;&#13;&#10;&lt;VAR&gt;&lt;b&gt;No service request: &lt;/b&gt;&lt;/VAR&gt;&lt;br&gt; &#13;&#10;  &lt;OL&gt;&#13;&#10;   &lt;LI&gt; &#13;&#10;   In this mode, no event leads to a service request.&lt;br&gt;&#13;&#10;   &lt;/LI&gt;&#13;&#10;   &lt;LI&gt;&#13;&#10;   The &lt;i&gt; Pattern Match Output Signal &lt;/i&gt; can be used independently from the &lt;i&gt;Trigger Output Signal&lt;/i&gt; for gating purposes of other peripherals.&lt;br&gt;&#13;&#10;   &lt;/LI&gt;&#13;&#10;   &lt;LI&gt;&#13;&#10;   &lt;i&gt;Gating Output Signal&lt;/i&gt; is always disabled and &lt;i&gt;Gated Trigger Output Signal&lt;/i&gt; is always deactivated.&#13;&#10;   &lt;/LI&gt; &#13;&#10;  &lt;/OL&gt;&#13;&#10;&lt;/LI&gt;&#13;&#10;&#13;&#10;&lt;LI&gt;&#13;&#10;&lt;VAR&gt;&lt;b&gt;Independent of pattern detection: &lt;/b&gt;&lt;/VAR&gt;&lt;br&gt; &#13;&#10; &lt;OL&gt;&#13;&#10;   &lt;LI&gt; &#13;&#10;   In this mode, each occurring trigger event leads to a service request.&lt;br&gt;&#13;&#10;   &lt;/LI&gt;&#13;&#10;   &lt;LI&gt;&#13;&#10;   The &lt;i&gt; Pattern Match Output Signal &lt;/i&gt; can be used independently from the &lt;i&gt;Trigger Output Signal&lt;/i&gt; for gating purposes of other peripherals.&lt;br&gt;&#13;&#10;   &lt;/LI&gt;&#13;&#10;   &lt;LI&gt;&#13;&#10;   &lt;i&gt;Gating Output Signal&lt;/i&gt; is always enabled and &lt;i&gt;Gated Trigger Output Signal&lt;/i&gt; becomes activated with each activation of &lt;i&gt;Trigger Output Signal&lt;/i&gt;&#13;&#10;   &lt;/LI&gt; &#13;&#10;  &lt;/OL&gt;&#13;&#10;&lt;/LI&gt;&#13;&#10;&#13;&#10;&lt;LI&gt;&#13;&#10;&lt;VAR&gt;&lt;b&gt;On pattern detection match:&lt;/b&gt;&lt;/VAR&gt;&lt;br&gt; &#13;&#10; &lt;OL&gt;&#13;&#10;   &lt;LI&gt; &#13;&#10;   A service request is issued when a trigger event occurs while the pattern detection shows a pattern match.&lt;br&gt;&#13;&#10;   &lt;/LI&gt;&#13;&#10;   &lt;LI&gt;&#13;&#10;   &lt;i&gt;Gating Output Signal&lt;/i&gt; is equal to &lt;i&gt; Pattern Match Output Signal &lt;/i&gt; and &lt;i&gt;Gated Trigger Output Signal&lt;/i&gt; becomes activated with an activation of &lt;i&gt;Trigger Output Signal&lt;/i&gt; &#13;&#10;   &lt;/LI&gt;&#13;&#10;   &lt;LI&gt;&#13;&#10;   while the desired pattern is detected.&#13;&#10;   &lt;/LI&gt; &#13;&#10;  &lt;/OL&gt;&#13;&#10;&lt;/LI&gt;&#13;&#10;&#13;&#10;&lt;LI&gt;&#13;&#10;&lt;VAR&gt;&lt;b&gt;On pattern detection mismatch: &lt;/b&gt;&lt;/VAR&gt;&lt;br&gt; &#13;&#10; &lt;OL&gt;&#13;&#10;   &lt;LI&gt; &#13;&#10;   A service request is issued when the trigger event occurs while the pattern detection shows a pattern miss.&lt;br&gt;&#13;&#10;   &lt;/LI&gt;&#13;&#10;   &lt;LI&gt;&#13;&#10;   &lt;i&gt;Gating Output Signal&lt;/i&gt; is inverted to &lt;i&gt; Pattern Match Output Signal &lt;/i&gt; and &lt;i&gt;Gated Trigger Output Signal&lt;/i&gt; becomes activated with an activation of &lt;i&gt;Trigger Output Signal&lt;/i&gt; &#13;&#10;   &lt;/LI&gt;&#13;&#10;   &lt;LI&gt;&#13;&#10;   while the desired pattern is not detected.&#13;&#10;   &lt;/LI&gt; &#13;&#10;  &lt;/OL&gt;&#13;&#10;&lt;/LI&gt;&#13;&#10;&lt;/UL&gt;"/>
+			  </p1:Tab>
+			</p1:GTab.control>
+		</p1:GTab>
+	</p1:TabFolder>
+</p1:Tab>

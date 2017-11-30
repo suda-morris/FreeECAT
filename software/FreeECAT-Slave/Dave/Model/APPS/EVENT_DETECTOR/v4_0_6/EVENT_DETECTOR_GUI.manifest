@@ -1,0 +1,27 @@
+package Model.APPS.EVENT_DETECTOR.v4_0_6;
+
+/* Import statements */
+import ifx.davex.app.manifest.*
+
+abstract class EVENT_DETECTOR_GUI extends AppManifest {
+	/* Begin : UI variable section */
+	 public GImage gimage;
+	 public GCombo gcombo_input_selection;
+	 public GCombo gcombo_input_edge_detector;
+	 public GCheck gcheck_enable_input_a_inversion;
+	 public GCheck gcheck_enable_input_b_inversion;
+	 public GCheck gcheck_enable_status_flag_autoclear;
+
+	 public EVENT_DETECTOR_GUI(DaveEnv daveEnv){
+
+	 gimage = GImage(widgetName:"gimage", path: "doc/eru_etl.png", enabled:true, visible:true)
+	 gcombo_input_selection = GCombo(widgetName:"gcombo_input_selection", options:["A","B","A OR B","A AND B"], value:"A", enabled:true, visible:true, isMandatoryValue:false)
+	 gcombo_input_edge_detector = GCombo(widgetName:"gcombo_input_edge_detector", options:["Disabled","Rising Edge","Falling Edge","Either Edge"], value:"Disabled", enabled:true, visible:true, isMandatoryValue:false)
+	 gcheck_enable_input_a_inversion = GCheck(widgetName:"gcheck_enable_input_a_inversion", value:false, enabled:true, visible:true)
+	 gcheck_enable_input_b_inversion = GCheck(widgetName:"gcheck_enable_input_b_inversion", value:false, enabled:true, visible:true)
+	 gcheck_enable_status_flag_autoclear = GCheck(widgetName:"gcheck_enable_status_flag_autoclear", value:false, enabled:true, visible:true)
+
+
+	 }
+	/* End : UI variable section */
+}

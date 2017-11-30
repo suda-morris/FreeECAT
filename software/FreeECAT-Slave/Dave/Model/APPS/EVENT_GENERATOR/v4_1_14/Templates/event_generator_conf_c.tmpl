@@ -1,0 +1,178 @@
+package Model.APPS.EVENT_GENERATOR.v4_1_14.Templates;
+
+import Model.APPS.EVENT_GENERATOR.v4_1_14.EVENT_GENERATOR
+
+out.print("""
+/**
+ * @cond
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) 2015, Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * To improve the quality of the software, users are encouraged to share modifications, enhancements or bug fixes
+ * with Infineon Technologies AG (dave@infineon.com).
+ ***********************************************************************************************************************
+ *
+ * Change History
+ * --------------
+ *
+ * 2015-02-16:
+ *     - Initial version<br>
+ *
+ * 2015-05-08:
+ *     - Comments updated<br>
+ *
+ * @endcond
+ *
+ */
+
+/***********************************************************************************************************************
+ * HEADER FILES
+ **********************************************************************************************************************/
+#include "event_generator.h"
+
+/***********************************************************************************************************************
+* DATA STRUCTURES
+***********************************************************************************************************************/
+""");
+/* Variable declaration */
+List MappedUri = null
+String appInst  = null
+String UnitInst = null
+String ChannelInst  = null
+String nmi_eru_mask = '0U'
+/************************************************************************************
+ ***   Conversion of GUI Combo values into corresponding LLD Enumeration values   ***
+ ************************************************************************************/
+
+Map servicerequest= [
+	'No Service Request'               : 'XMC_ERU_OGU_SERVICE_REQUEST_DISABLED',
+	'Independent of Pattern Detection' : 'XMC_ERU_OGU_SERVICE_REQUEST_ON_TRIGGER',
+	'On Pattern Detection Match'       : 'XMC_ERU_OGU_SERVICE_REQUEST_ON_TRIGGER_AND_PATTERN_MATCH',
+	'On Pattern Detection Mismatch'    : 'XMC_ERU_OGU_SERVICE_REQUEST_ON_TRIGGER_AND_PATTERN_MISMATCH'
+]
+
+for (Object appIns : appInstancesList ) {
+appInst = appIns.getInstanceLabel()
+MappedUri = appIns.hwres_eru_ogu.getSolverUri()
+
+/* This is the GUI configurations made for EVENT_GENERATOR app Instance */
+if (MappedUri != null) {
+  UnitInst = MappedUri[4]  
+  ChannelInst = MappedUri[6] 
+  String pattern_detection_input = '0U'
+  String family = daveEnv.project.selectedDevice.deviceId.family
+  Integer no_of_inputs = 0
+  String add_space = " "
+  for(Integer i = 0; i < 31; i++)
+  {
+	  add_space+= " "
+  }
+  if(appIns.hwres_eru_ogu.getRegValue("exocon", "exocon_ipen0"))
+  {
+	pattern_detection_input = 'XMC_ERU_OGU_PATTERN_DETECTION_INPUT0'
+	no_of_inputs++;
+  }
+  if(appIns.hwres_eru_ogu.getRegValue("exocon", "exocon_ipen1"))
+  {
+	if(no_of_inputs > 0)
+	{
+	  pattern_detection_input += ' |\\' + '\n' + add_space + 'XMC_ERU_OGU_PATTERN_DETECTION_INPUT1'
+	}
+	else
+	{
+	  pattern_detection_input = 'XMC_ERU_OGU_PATTERN_DETECTION_INPUT1'
+	  no_of_inputs++;
+	}
+  }
+  if(appIns.hwres_eru_ogu.getRegValue("exocon", "exocon_ipen2"))
+  {
+	if(no_of_inputs > 0)
+	{
+	  pattern_detection_input += ' |\\' + '\n' + add_space + 'XMC_ERU_OGU_PATTERN_DETECTION_INPUT2'
+	}
+	else
+	{
+	  pattern_detection_input = 'XMC_ERU_OGU_PATTERN_DETECTION_INPUT2'
+	  no_of_inputs++;
+	}
+  }
+  if(appIns.hwres_eru_ogu.getRegValue("exocon", "exocon_ipen3"))
+  {
+	if(no_of_inputs > 0)
+	{
+	  pattern_detection_input += ' |\\' + '\n' + add_space + 'XMC_ERU_OGU_PATTERN_DETECTION_INPUT3'
+	}
+	else
+	{
+	  pattern_detection_input = 'XMC_ERU_OGU_PATTERN_DETECTION_INPUT3'
+	  no_of_inputs++;
+	}
+  }
+  if(family == 'XMC4')
+  {
+    if (appIns.hwres_scu_gcu_interrupt_erunmi.getRegValue("nmireqen","nmireqen_eru"))
+    {
+  	  nmi_eru_mask = 'XMC_SCU_NMIREQ_ERU'+UnitInst+'_'+ChannelInst
+    }
+  }
+  
+  out.print("""
+/**
+ * @brief Contents entered via GUI
+ */
+const XMC_ERU_OGU_CONFIG_t ${appInst}_OGU_Config =
+{
+  .peripheral_trigger         = ${if(appIns.hwres_eru_ogu.getRegValue("exocon","exocon_iss") == 0)
+                                     '0U'
+                                  else
+                                     'XMC_ERU_OGU_PERIPHERAL_TRIGGER'+"${appIns.hwres_eru_ogu.getRegValue("exocon","exocon_iss")}"
+                                 }, /* OGU input peripheral trigger */
+  .enable_pattern_detection   = ${appIns.gcheck_enable_pattern_detection.value}, /* Enables generation of pattern match event */
+  .service_request            = ${servicerequest[appIns.gcombo_gating_scheme.value]}, /* Interrupt gating signal */
+  .pattern_detection_input    = ${pattern_detection_input}
+};
+
+
+EVENT_GENERATOR_t ${appInst} = 
+{
+  .eru         = XMC_ERU${UnitInst}, /* ERU module assigned */    
+  .channel     = ${ChannelInst}U,    /* ERU channel assigned(0-3) */
+  .config      = &${appInst}_OGU_Config, /* reference to hardware configuration */
+""")
+if(family == 'XMC4'){
+  out.print("""  .nmi_eru_msk = ${nmi_eru_mask}, /**< Mask to enable the NMI feature */""")
+}
+  out.print("""
+  .init_status = false /* Initialized status */
+};
+
+		""");
+	}
+	else {
+		out.print("""
+  /*ERU Channel NOT MAPPED FOR APP INSTANCE: ${appInst} */
+		""");
+	}
+}/* End of for loop */

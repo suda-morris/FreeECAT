@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Project MotherSystem_Version="" Name="OpenECAT-Slave" Path="G:\±ÏÒµÉè¼Æ\OpenECAT-Slave\software\OpenECAT-Slave">
+    <COMPILER>
+        <Name>ARM_GCC_HOME</Name>
+        <Version/>
+        <Memory_Model/>
+    </COMPILER>
+    <DEVICE>
+        <Sales_Code>XMC4800-F144x1024</Sales_Code>
+        <Description/>
+    </DEVICE>
+    <Generated_Files>
+        <Source_Files>
+            <Source_File>
+                <File_Name>clock_xmc4.c</File_Name>
+                <Path>\Dave\Generated\CLOCK_XMC4\clock_xmc4.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>clock_xmc4_conf.c</File_Name>
+                <Path>\Dave\Generated\CLOCK_XMC4\clock_xmc4_conf.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>cpu_ctrl_xmc4.c</File_Name>
+                <Path>\Dave\Generated\CPU_CTRL_XMC4\cpu_ctrl_xmc4.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>cpu_ctrl_xmc4_conf.c</File_Name>
+                <Path>\Dave\Generated\CPU_CTRL_XMC4\cpu_ctrl_xmc4_conf.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>DAVE.c</File_Name>
+                <Path>\Dave\Generated\DAVE.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>digital_io.c</File_Name>
+                <Path>\Dave\Generated\DIGITAL_IO\digital_io.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>digital_io_conf.c</File_Name>
+                <Path>\Dave\Generated\DIGITAL_IO\digital_io_conf.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>ecat_ssc.c</File_Name>
+                <Path>\Dave\Generated\ECAT_SSC\ecat_ssc.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>ecat_ssc_conf.c</File_Name>
+                <Path>\Dave\Generated\ECAT_SSC\ecat_ssc_conf.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>xmc_eschw.c</File_Name>
+                <Path>\Dave\Generated\ECAT_SSC\xmc_eschw.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>event_detector.c</File_Name>
+                <Path>\Dave\Generated\EVENT_DETECTOR\event_detector.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>event_detector_conf.c</File_Name>
+                <Path>\Dave\Generated\EVENT_DETECTOR\event_detector_conf.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>event_generator.c</File_Name>
+                <Path>\Dave\Generated\EVENT_GENERATOR\event_generator.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>event_generator_conf.c</File_Name>
+                <Path>\Dave\Generated\EVENT_GENERATOR\event_generator_conf.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>e_eeprom_xmc4.c</File_Name>
+                <Path>\Dave\Generated\E_EEPROM_XMC4\e_eeprom_xmc4.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>e_eeprom_xmc4_conf.c</File_Name>
+                <Path>\Dave\Generated\E_EEPROM_XMC4\e_eeprom_xmc4_conf.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>global_ccu4.c</File_Name>
+                <Path>\Dave\Generated\GLOBAL_CCU4\global_ccu4.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>global_ccu4_conf.c</File_Name>
+                <Path>\Dave\Generated\GLOBAL_CCU4\global_ccu4_conf.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>i2c_master.c</File_Name>
+                <Path>\Dave\Generated\I2C_MASTER\i2c_master.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>i2c_master_conf.c</File_Name>
+                <Path>\Dave\Generated\I2C_MASTER\i2c_master_conf.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>interrupt.c</File_Name>
+                <Path>\Dave\Generated\INTERRUPT\interrupt.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>interrupt_conf.c</File_Name>
+                <Path>\Dave\Generated\INTERRUPT\interrupt_conf.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>timer.c</File_Name>
+                <Path>\Dave\Generated\TIMER\timer.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>timer_conf.c</File_Name>
+                <Path>\Dave\Generated\TIMER\timer_conf.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+        </Source_Files>
+        <Header_Files>
+            <Header_File>
+                <File_Name>clock_xmc4.h</File_Name>
+                <Path>\Dave\Generated\CLOCK_XMC4\clock_xmc4.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>clock_xmc4_conf.h</File_Name>
+                <Path>\Dave\Generated\CLOCK_XMC4\clock_xmc4_conf.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>clock_xmc4_extern.h</File_Name>
+                <Path>\Dave\Generated\CLOCK_XMC4\clock_xmc4_extern.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>cpu_ctrl_xmc4.h</File_Name>
+                <Path>\Dave\Generated\CPU_CTRL_XMC4\cpu_ctrl_xmc4.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>cpu_ctrl_xmc4_conf.h</File_Name>
+                <Path>\Dave\Generated\CPU_CTRL_XMC4\cpu_ctrl_xmc4_conf.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>cpu_ctrl_xmc4_extern.h</File_Name>
+                <Path>\Dave\Generated\CPU_CTRL_XMC4\cpu_ctrl_xmc4_extern.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>DAVE.h</File_Name>
+                <Path>\Dave\Generated\DAVE.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>DAVE_Common.h</File_Name>
+                <Path>\Dave\Generated\DAVE_Common.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>digital_io.h</File_Name>
+                <Path>\Dave\Generated\DIGITAL_IO\digital_io.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>digital_io_conf.h</File_Name>
+                <Path>\Dave\Generated\DIGITAL_IO\digital_io_conf.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>digital_io_extern.h</File_Name>
+                <Path>\Dave\Generated\DIGITAL_IO\digital_io_extern.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>ecat_ssc.h</File_Name>
+                <Path>\Dave\Generated\ECAT_SSC\ecat_ssc.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>ecat_ssc_conf.h</File_Name>
+                <Path>\Dave\Generated\ECAT_SSC\ecat_ssc_conf.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>ecat_ssc_extern.h</File_Name>
+                <Path>\Dave\Generated\ECAT_SSC\ecat_ssc_extern.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>xmc_eschw.h</File_Name>
+                <Path>\Dave\Generated\ECAT_SSC\xmc_eschw.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>event_detector.h</File_Name>
+                <Path>\Dave\Generated\EVENT_DETECTOR\event_detector.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>event_detector_conf.h</File_Name>
+                <Path>\Dave\Generated\EVENT_DETECTOR\event_detector_conf.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>event_detector_extern.h</File_Name>
+                <Path>\Dave\Generated\EVENT_DETECTOR\event_detector_extern.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>event_generator.h</File_Name>
+                <Path>\Dave\Generated\EVENT_GENERATOR\event_generator.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>event_generator_conf.h</File_Name>
+                <Path>\Dave\Generated\EVENT_GENERATOR\event_generator_conf.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>event_generator_extern.h</File_Name>
+                <Path>\Dave\Generated\EVENT_GENERATOR\event_generator_extern.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>e_eeprom_xmc4.h</File_Name>
+                <Path>\Dave\Generated\E_EEPROM_XMC4\e_eeprom_xmc4.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>e_eeprom_xmc4_conf.h</File_Name>
+                <Path>\Dave\Generated\E_EEPROM_XMC4\e_eeprom_xmc4_conf.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>e_eeprom_xmc4_extern.h</File_Name>
+                <Path>\Dave\Generated\E_EEPROM_XMC4\e_eeprom_xmc4_extern.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>global_ccu4.h</File_Name>
+                <Path>\Dave\Generated\GLOBAL_CCU4\global_ccu4.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>global_ccu4_conf.h</File_Name>
+                <Path>\Dave\Generated\GLOBAL_CCU4\global_ccu4_conf.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>global_ccu4_extern.h</File_Name>
+                <Path>\Dave\Generated\GLOBAL_CCU4\global_ccu4_extern.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>i2c_master.h</File_Name>
+                <Path>\Dave\Generated\I2C_MASTER\i2c_master.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>i2c_master_conf.h</File_Name>
+                <Path>\Dave\Generated\I2C_MASTER\i2c_master_conf.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>i2c_master_extern.h</File_Name>
+                <Path>\Dave\Generated\I2C_MASTER\i2c_master_extern.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>interrupt.h</File_Name>
+                <Path>\Dave\Generated\INTERRUPT\interrupt.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>interrupt_conf.h</File_Name>
+                <Path>\Dave\Generated\INTERRUPT\interrupt_conf.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>interrupt_extern.h</File_Name>
+                <Path>\Dave\Generated\INTERRUPT\interrupt_extern.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>timer.h</File_Name>
+                <Path>\Dave\Generated\TIMER\timer.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>timer_conf.h</File_Name>
+                <Path>\Dave\Generated\TIMER\timer_conf.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>timer_extern.h</File_Name>
+                <Path>\Dave\Generated\TIMER\timer_extern.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+        </Header_Files>
+        <Library_Files/>
+        <Assembly_Files/>
+    </Generated_Files>
+    <Include_Path>
+        <Path>\Libraries\XMCLib\inc</Path>
+        <Path>\Libraries\CMSIS\Include</Path>
+        <Path>\Libraries\CMSIS\Infineon\XMC4800_series\Include</Path>
+        <Path/>
+        <Path>\Dave\Generated</Path>
+        <Path>\Libraries</Path>
+    </Include_Path>
+    <Preprocessor_Symbols>
+        <Assembler_Symbol>XMC4800_F144x1024=</Assembler_Symbol>
+        <Compiler_Symbol>XMC4800_F144x1024=</Compiler_Symbol>
+    </Preprocessor_Symbols>
+</Project>

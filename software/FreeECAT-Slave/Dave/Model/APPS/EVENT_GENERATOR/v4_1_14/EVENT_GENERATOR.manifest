@@ -1,0 +1,205 @@
+package Model.APPS.EVENT_GENERATOR.v4_1_14;
+
+/*
+ Copyright (c) 2015, Infineon Technologies AG
+ All rights reserved.
+											
+ Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
+ following conditions are met:
+																			 
+ Redistributions of source code must retain the above copyright notice, this list of conditions and the following
+ disclaimer.
+  
+ Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following
+ disclaimer in the documentation and/or other materials provided with the distribution.
+  
+ Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ products derived from this software without specific prior written permission.
+																			 
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+																			 
+ To improve the quality of the software, users are encouraged to share modifications, enhancements or bug fixes with
+ Infineon Technologies AG: dave@infineon.com. */
+
+
+/*************** Revision History **********************************************
+Version     Date          Description
+
+4.0.0       16-Feb-2015   Initial version for DAVEv4<br>
+4.0.2       20-May-2015   1. Coding guidelines update for PR release<br>
+                          2. Display name of the signal "trigger" changed to "trigger_out"<br>
+4.1.2       29-Jun-2015   1. Promotion of the eru event as NMI is supported.<br>
+4.1.4       06-Jul-2015   1. Extra "out" signal is not exposed, for XMC4000 devices.<br>
+4.1.6       07-Jul-2015   1. Help Doc updated.<br>
+4.1.8       13-Jul-2015   1. Fixed the display issue of "iout" signal for xmc4000 devices, in "HW Signal Connectivity" view.<br>
+4.1.12      08-Oct-2015   1. XMC14, XMC48, XMC47 device support added<br>
+                          2. "EVENT_GENERATOR_NMI_ENABLED" macro is changed as "EVENT_GENERATOR_NMI_SUPPORTED" in Init<br>
+4.1.14      18-Dec-2015   1. Added support for XMC4300 devices.<br>                          
+*******************************************************************************/
+/* Import statements */
+import ifx.davex.app.manifest.*
+
+class  EVENT_GENERATOR extends EVENT_GENERATOR_GUI {
+
+	/**
+	 * APP version
+	 * Format: a string with three digit separated by a dot.
+	 */
+	def version            = '4.1.14'
+	
+	/**
+	 * APP categories declaration. 
+	 * It is list of strings. Subcategories are separated by slash.
+	 * No limits on number of categories and subcategories depth.
+	 */
+	def categoriesDescription = ["System"] 
+
+	/** 
+	 * Minimum DAVE version required for this APP.
+	 * 
+	 * It is string with three digit separated by a dot.
+	 */	
+	def minDaveVersion           = '4.0.0'
+	
+	/** 
+	 * Keywords used by search feature in APPs selection view
+	 * 
+	 * It is a list of string.
+	 */	def keywords = [
+		'all',
+		'ERU',
+		'Trigger',
+		'EVENT_GENERATOR',
+		'OGU',
+		'external interrupt',
+		'interrupt',
+		'Output Gating',
+		'gating'
+		]
+	
+	/** 
+	 * softwareIDs is used to declare which devices are compatible with this APP.
+	 * It is a map with key a string containing a pattern that shall match the SW id of
+	 * the device and as value the minimal version of the APP.
+	 */	
+	def softwareIDs       = [	
+		"XMC4.5.*.*.*":"1.0.0",
+		"XMC4.4.*.*.*":"1.0.0",
+		"XMC4.3.*.*.*":"1.0.0",
+		"XMC4.2.*.*.*":"1.0.0",
+		"XMC4.1.*.*.*":"1.0.0",
+		"XMC4.7.*.*.*":"1.0.0",
+		"XMC4.8.*.*.*":"1.0.0",
+		"XMC1.1.*.*.*":"1.0.0",
+		"XMC1.2.*.*.*":"1.0.0",
+		"XMC1.3.*.*.*":"1.0.0",
+		"XMC1.4.*.*.*":"1.0.0"
+	]
+	
+	/**
+	 * Singleton property:
+	 * When it is true the APP can be instantiated only once.
+	 */
+	def singleton     = false
+	/**
+	 * initProvider property
+	 * It shall be true to add a call to <APPName>_Init()
+	 */
+	def initProvider  = true
+	/**
+	 * Deprecated APP
+	 * Set it to true to indicate that the APP shall be not used for new projects.
+	 */
+	def deprecated    = false
+	/**
+	 * Sharable property.
+	 * It shall be true to allows multiple APPs to require the same instance of this APP.
+	 */
+	def sharable      = true
+
+	/**
+	 *  APP function description.
+	 */ 	
+	def description = "Provides the configuration for Output Gating Unit of ERU"
+	
+	/* End   : EVENT_GENERATOR property section */
+	
+	/* Begin : User variable section */
+	
+	/* eru_ogu resource consumptions */
+	MVirtualResourceGroup hwres_eru_ogu
+	MVirtualResourceGroup hwres_scu_gcu_interrupt_erunmi
+	/*Signal declaration*/
+	MVirtualSignal vs_event_generator_pdin
+	MVirtualSignal vs_event_generator_trin
+	MVirtualSignal vs_event_generator_pdout
+	MVirtualSignal vs_event_generator_gout
+	MVirtualSignal vs_event_generator_iout
+	
+	MVirtualSignal vs_event_generator_erunmi_in
+	MVirtualSignal vs_event_generator_erunmi_out
+	/* End   : User variable section */
+
+	/* EVENT_GENERATOR Constructor */
+	public EVENT_GENERATOR(DaveEnv daveEnv) {
+		/* -------------------------------------------------------------- */
+		/*-----------------------Local variables & constants -------------*/
+		/* -------------------------------------------------------------- */
+		boolean family_4x = false
+		String event_generator_family = daveEnv.project.selectedDevice.deviceId.family
+		if (event_generator_family == "XMC4")
+		{
+			family_4x = true
+		}
+		/* -------------------------------------------------------------- */
+	    /* -------------- Hardware resource consumption block ----------- */
+	    /* -------------------------------------------------------------- */
+		hwres_eru_ogu =  MVirtualResourceGroup("ogu", ["peripheral", "eru", "*", "ogu","*"], true)
+		if (family_4x == true)
+		{
+			hwres_scu_gcu_interrupt_erunmi = MVirtualResourceGroup("erunmi", ["peripheral", "scu", "*", "gcu","interrupt","erunmi","*"], true)
+		}
+		/* -------------------------------------------------------------- */
+		/* ------------------ APP IO Signals ---------------------------- */
+		/* -------------------------------------------------------------- */
+		vs_event_generator_pdin  = MVirtualSignal(hwres_eru_ogu, "pattern", "pdin", true, true)
+		vs_event_generator_trin  = MVirtualSignal(hwres_eru_ogu, "trigger_in", "trin", true, true)
+		vs_event_generator_pdout = MVirtualSignal(hwres_eru_ogu, "pdout", "pdout", true, true)
+		
+		if (family_4x == true)
+		{
+			vs_event_generator_iout  = MVirtualSignal(hwres_eru_ogu, "ogu_iout", "iout", true, false)
+			vs_event_generator_erunmi_in = MVirtualSignal(hwres_scu_gcu_interrupt_erunmi, "erunmi_in", "in", true, false)
+			vs_event_generator_erunmi_out = MVirtualSignal(hwres_scu_gcu_interrupt_erunmi, "iout", "out", true, true)
+		}
+		else
+		{
+			vs_event_generator_iout  = MVirtualSignal(hwres_eru_ogu, "iout", "iout", true, true)
+		}
+
+		if(daveEnv.project.selectedDevice.deviceId.family == 'XMC1')
+		{
+			vs_event_generator_gout  = MVirtualSignal(hwres_eru_ogu, "gout", "gout", true, true)
+		}
+		
+		if (family_4x == true)
+		{
+			addConnectionConstraint(vs_event_generator_iout, vs_event_generator_erunmi_in, true)
+		}
+	}
+	
+	/* File Generation */
+	def generateFiles(){
+		copy("event_generator.c", "event_generator.c")
+		copy("event_generator.h", "event_generator.h")
+		generate("event_generator_conf_c.tmpl", "event_generator_conf.c")
+		generate("event_generator_conf_h.tmpl", "event_generator_conf.h")
+		generate("event_generator_extern_h.tmpl", "event_generator_extern.h")
+	}
+}

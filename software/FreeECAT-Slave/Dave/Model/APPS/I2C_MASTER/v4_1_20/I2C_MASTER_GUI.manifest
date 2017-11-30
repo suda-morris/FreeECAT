@@ -1,0 +1,109 @@
+package Model.APPS.I2C_MASTER.v4_1_20;
+
+// Import statements
+import ifx.davex.app.manifest.*
+
+abstract class I2C_MASTER_GUI extends AppManifest {
+	/* Begin : UI variable section */
+	 public GTab gtab_interrupt_settings;
+	 public GInteger gint_desiredbaudrate;
+	 public GInteger ginteger_ownaddress;
+	 public GCombo gcombo_i2c_tx_fifosize;
+	 public GCombo gcombo_i2c_rx_fifosize;
+	 public GCombo gcombo_tx_mode;
+	 public GCombo gcombo_rx_mode;
+	 public GCombo gcombo_sda_char;
+	 public GCombo gcombo_sda_drive;
+	 public GCombo gcombo_scl_char;
+	 public GCombo gcombo_scl_drive;
+	 public GFloat gfloat_actualbaud;
+	 public GString gstring_end_of_tx_callback;
+	 public GString gstring_end_of_rx_callback;
+	 public GString gstring_nack;
+	 public GString gstring_arbitration;
+	 public GString gstring_error;
+	 public GCheck gcheck_multimaster;
+	 public GCheck gcheck_txfifo;
+	 public GCheck gcheck_rxfifo;
+	 public GCheck gcheck_end_of_tx_callback;
+	 public GCheck gcheck_end_of_rx_callback;
+	 public GCheck gcheck_nack;
+	 public GCheck gcheck_arbitration;
+	 public GCheck gcheck_error;
+	 public GCheck gcheck_pinconfig;
+	 public GLabel glabel_ownaddress;
+	 public GLabel glabel_i2c_tx_fifosize;
+	 public GLabel glabel_i2c_rx_fifosize;
+	 public GLabel glabel_sda_char;
+	 public GLabel glabel_sda_drive;
+	 public GLabel glabel_scl_char;
+	 public GLabel glabel_scl_drive;
+	 public GGroup ggroup_transmit;
+	 public GGroup ggroup_receive;
+	 public GGroup ggroup_error_handling;
+	 public GGroup ggroup_error_callbacks;
+	 public GGroup ggroup_sdaconfig;
+	 public GGroup ggroup_sclconfig;
+	 public GInterruptPrio ginterruptprio_tx;
+	 public GInterruptPrio ginterruptprio_rx;
+	 public GInterruptPrio ginterruptprio_error;
+	 public GMessage gmessage_tx_callback;
+	 public GMessage gmessage_rx_callback;
+	 public GMessage gmessage_nack;
+	 public GMessage gmessage_arbitration;
+	 public GMessage gmessage_error;
+
+	 public I2C_MASTER_GUI(DaveEnv daveEnv){
+
+	 gtab_interrupt_settings = GTab(widgetName:"gtab_interrupt_settings", text:"Interrupt Settings", enabled:true, visible:true)
+	 gint_desiredbaudrate = GInteger(widgetName:"gint_desiredbaudrate", value:100, minValue:1, maxValue:400, enabled:true, visible:true, isMandatoryValue:false)
+	 ginteger_ownaddress = GInteger(widgetName:"ginteger_ownaddress", value:0, minValue:0, maxValue:0xffff, enabled:true, visible:true, isMandatoryValue:false)
+	 gcombo_i2c_tx_fifosize = GCombo(widgetName:"gcombo_i2c_tx_fifosize", options:["2","4","8","16","32","64"], value:"16", enabled:true, visible:true, isMandatoryValue:false)
+	 gcombo_i2c_rx_fifosize = GCombo(widgetName:"gcombo_i2c_rx_fifosize", options:["2","4","8","16","32","64"], value:"16", enabled:true, visible:true, isMandatoryValue:false)
+	 gcombo_tx_mode = GCombo(widgetName:"gcombo_tx_mode", options:["Interrupt","DMA","Direct"], value:"Interrupt", enabled:true, visible:true, isMandatoryValue:false)
+	 gcombo_rx_mode = GCombo(widgetName:"gcombo_rx_mode", options:["Interrupt","DMA","Direct"], value:"Interrupt", enabled:true, visible:true, isMandatoryValue:false)
+	 gcombo_sda_char = GCombo(widgetName:"gcombo_sda_char", options:["Push Pull","Open Drain"], value:"Open Drain", enabled:true, visible:true, isMandatoryValue:false)
+	 gcombo_sda_drive = GCombo(widgetName:"gcombo_sda_drive", options:["Don't Care","Medium","Weak","Strong Soft Edge","Strong Slow Edge","Strong Sharp Edge","Strong Medium Edge"], value:"Don't Care", enabled:true, visible:true, isMandatoryValue:false)
+	 gcombo_scl_char = GCombo(widgetName:"gcombo_scl_char", options:["Push Pull","Open Drain"], value:"Open Drain", enabled:true, visible:true, isMandatoryValue:false)
+	 gcombo_scl_drive = GCombo(widgetName:"gcombo_scl_drive", options:["Don't Care","Medium","Weak","Strong Soft Edge","Strong Slow Edge","Strong Sharp Edge","Strong Medium Edge"], value:"Don't Care", enabled:true, visible:true, isMandatoryValue:false)
+	 gfloat_actualbaud = GFloat(widgetName:"gfloat_actualbaud", value:0.0, minValue:1, maxValue:400, enabled:true, visible:true, isMandatoryValue:false)
+	 gstring_end_of_tx_callback = GString(widgetName:"gstring_end_of_tx_callback", value:"", enabled:true, visible:true, isMandatoryValue:false)
+	 gstring_end_of_rx_callback = GString(widgetName:"gstring_end_of_rx_callback", value:"", enabled:true, visible:true, isMandatoryValue:false)
+	 gstring_nack = GString(widgetName:"gstring_nack", value:"", enabled:true, visible:true, isMandatoryValue:false)
+	 gstring_arbitration = GString(widgetName:"gstring_arbitration", value:"", enabled:true, visible:true, isMandatoryValue:false)
+	 gstring_error = GString(widgetName:"gstring_error", value:"", enabled:true, visible:true, isMandatoryValue:false)
+	 gcheck_multimaster = GCheck(widgetName:"gcheck_multimaster", value:false, enabled:true, visible:true)
+	 gcheck_txfifo = GCheck(widgetName:"gcheck_txfifo", value:true, enabled:true, visible:true)
+	 gcheck_rxfifo = GCheck(widgetName:"gcheck_rxfifo", value:true, enabled:true, visible:true)
+	 gcheck_end_of_tx_callback = GCheck(widgetName:"gcheck_end_of_tx_callback", value:false, enabled:true, visible:true)
+	 gcheck_end_of_rx_callback = GCheck(widgetName:"gcheck_end_of_rx_callback", value:false, enabled:true, visible:true)
+	 gcheck_nack = GCheck(widgetName:"gcheck_nack", value:false, enabled:true, visible:true)
+	 gcheck_arbitration = GCheck(widgetName:"gcheck_arbitration", value:false, enabled:true, visible:true)
+	 gcheck_error = GCheck(widgetName:"gcheck_error", value:false, enabled:true, visible:true)
+	 gcheck_pinconfig = GCheck(widgetName:"gcheck_pinconfig", value:false, enabled:true, visible:true)
+	 glabel_ownaddress = GLabel(widgetName:"glabel_ownaddress", text:"Own address:", enabled:true, visible:true)
+	 glabel_i2c_tx_fifosize = GLabel(widgetName:"glabel_i2c_tx_fifosize", text:"Size:", enabled:true, visible:true)
+	 glabel_i2c_rx_fifosize = GLabel(widgetName:"glabel_i2c_rx_fifosize", text:"Size:", enabled:true, visible:true)
+	 glabel_sda_char = GLabel(widgetName:"glabel_sda_char", text:"Mode:", enabled:true, visible:true)
+	 glabel_sda_drive = GLabel(widgetName:"glabel_sda_drive", text:"Drive strength:", enabled:true, visible:true)
+	 glabel_scl_char = GLabel(widgetName:"glabel_scl_char", text:"Mode:", enabled:true, visible:true)
+	 glabel_scl_drive = GLabel(widgetName:"glabel_scl_drive", text:"Drive strength:", enabled:true, visible:true)
+	 ggroup_transmit = GGroup(widgetName:"ggroup_transmit", text:"Transmit", enabled:true, visible:true)
+	 ggroup_receive = GGroup(widgetName:"ggroup_receive", text:"Receive", enabled:true, visible:true)
+	 ggroup_error_handling = GGroup(widgetName:"ggroup_error_handling", text:"Error Handling", enabled:true, visible:true)
+	 ggroup_error_callbacks = GGroup(widgetName:"ggroup_error_callbacks", text:"Error Handling Callback Functions", enabled:true, visible:true)
+	 ggroup_sdaconfig = GGroup(widgetName:"ggroup_sdaconfig", text:"SDA", enabled:true, visible:true)
+	 ggroup_sclconfig = GGroup(widgetName:"ggroup_sclconfig", text:"SCL", enabled:true, visible:true)
+	 ginterruptprio_tx = GInterruptPrio(widgetName:"ginterruptprio_tx", priorityValue:63, minPriority:0, maxPriority:63, subPriorityValue:0, minSubPriority:0, maxSubPriority:3, subPriorityVisible:true, enabled:true, visible:true)
+	 ginterruptprio_rx = GInterruptPrio(widgetName:"ginterruptprio_rx", priorityValue:63, minPriority:0, maxPriority:63, subPriorityValue:0, minSubPriority:0, maxSubPriority:3, subPriorityVisible:true, enabled:true, visible:true)
+	 ginterruptprio_error = GInterruptPrio(widgetName:"ginterruptprio_error", priorityValue:63, minPriority:0, maxPriority:63, subPriorityValue:0, minSubPriority:0, maxSubPriority:3, subPriorityVisible:true, enabled:true, visible:true)
+	 gmessage_tx_callback = GMessage(widgetName:"gmessage_tx_callback", text:"Invalid function name for -\"End of transmit callback\"", isError:false, visible:true)
+	 gmessage_rx_callback = GMessage(widgetName:"gmessage_rx_callback", text:"Invalid function name for -\"End of receive callback\"", isError:false, visible:true)
+	 gmessage_nack = GMessage(widgetName:"gmessage_nack", text:"Invalid function name for -\"Nack received callback\"", isError:false, visible:true)
+	 gmessage_arbitration = GMessage(widgetName:"gmessage_arbitration", text:"Invalid function name for -\"Arbitration lost callback\"", isError:false, visible:true)
+	 gmessage_error = GMessage(widgetName:"gmessage_error", text:"Invalid function name for -\"Error detected callback\"", isError:false, visible:true)
+
+
+	 }
+	/* End : UI variable section */
+}

@@ -1,0 +1,190 @@
+package Model.APPS.TIMER.v4_1_10.Templates;
+
+import Model.APPS.TIMER.v4_1_10.TIMER
+
+out.print("""
+/**
+ * @cond
+ ***********************************************************************************************************************
+ *
+ * Copyright (c) 2015, Infineon Technologies AG
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ *   Redistributions of source code must retain the above copyright notice, this list of conditions and the  following
+ *   disclaimer.
+ *
+ *   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+ *   following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ *   Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ *   products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  OF THE
+ * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * To improve the quality of the software, users are encouraged to share modifications, enhancements or bug fixes
+ * with Infineon Technologies AG (dave@infineon.com).
+ ***********************************************************************************************************************
+ *
+ * Change History
+ * --------------
+ *
+ * 2015-02-16:
+ *     - Initial version<br>
+ *
+ * 2015-05-08:
+ *     - Added Shadow transfer mask generation<br>
+ *
+ * 2015-08-31:
+ *     - invert_out parameters are removed in CCU8 config structure, to remove the device dependency<br>
+ *
+ * @endcond
+ *
+ */
+
+/***********************************************************************************************************************
+ * HEADER FILES
+ **********************************************************************************************************************/
+/* Included to access TIMER app data structure, functions & enumerations */
+#include "timer.h"
+
+/***********************************************************************************************************************
+* DATA STRUCTURES
+***********************************************************************************************************************/
+""");
+List MappedUri = null
+String appInst  = null
+String ccu_device = null
+String kernelno = null
+String sliceno = null
+
+Map ccu_module =[
+	'CCU4' : 'TIMER_MODULE_CCU4',
+	'CCU8' : 'TIMER_MODULE_CCU8'
+	]
+
+for (Object appIns : appInstancesList ) {
+ccu_device  = appIns.gcombo_timer_module.value
+appInst = appIns.getInstanceLabel()
+  
+if(ccu_device == 'CCU4')
+  MappedUri = appIns.hwres_ccu4_cc4.getSolverUri()
+else
+  MappedUri = appIns.hwres_ccu8_cc8.getSolverUri()
+
+  kernelno  = MappedUri[4]
+  sliceno   = MappedUri[6]
+  
+/* This is the GUI configurations made for TIMER app Instance */
+if (MappedUri != null) {
+  
+	if(ccu_device == 'CCU4')
+	{
+            out.print("""
+/**
+ * @brief Contents entered via GUI
+ */
+
+XMC_CCU4_SLICE_COMPARE_CONFIG_t ${appInst}_config =
+{
+  .timer_mode          = XMC_CCU4_SLICE_TIMER_COUNT_MODE_EA,
+  .monoshot            = XMC_CCU4_SLICE_TIMER_REPEAT_MODE_REPEAT,
+  .shadow_xfer_clear   = false,
+  .dither_timer_period = false,
+  .dither_duty_cycle   = false,
+  .prescaler_mode      = XMC_CCU4_SLICE_PRESCALER_MODE_NORMAL,
+  .mcm_enable          = false,
+  .prescaler_initval   = ${appIns.timer_prescaler.value}U,
+  .float_limit         = 0U,
+  .dither_limit        = 0U,
+  .passive_level       = XMC_CCU4_SLICE_OUTPUT_PASSIVE_LEVEL_LOW, 
+  .timer_concatenation = false
+};
+
+TIMER_t ${appInst} = 
+{
+  .ccu4_slice_ptr         = (XMC_CCU4_SLICE_t*) CCU4${kernelno}_CC4${sliceno},
+  .ccu4_slice_number      = ${sliceno}U,
+  .time_interval_value_us = ${((appIns.gfloat_time_interval.value * 100)).toLong()}U,
+  .timer_max_value_us     = ${(appIns.gfloat_time_interval.maxValue * 100).toLong()}U,
+  .timer_min_value_us     = ${((appIns.gfloat_time_interval.minValue * 100)).toLong()}U,
+  .global_ccu4_handler    = (GLOBAL_CCU4_t*)&${appIns.app_global_ccu4.getInstanceLabel()}, 
+  .ccu4_slice_config_ptr  = (XMC_CCU4_SLICE_COMPARE_CONFIG_t*)&${appInst}_config,
+  .shadow_mask            = (uint32_t)((uint32_t)XMC_CCU4_SHADOW_TRANSFER_SLICE_${sliceno} | 
+                                       (uint32_t)XMC_CCU4_SHADOW_TRANSFER_PRESCALER_SLICE_${sliceno}),
+  .ccu4_period_match_node = XMC_CCU4_SLICE_SR_ID_${appIns.hwres_ccu4_cc4.getRegValue("srs","srs_posr")},
+  .timer_module           = ${ccu_module[appIns.gcombo_timer_module.value]},
+  .period_value           = ${appIns.timer_period_reg.value}U,
+  .start_control          = ${appIns.gcheck_start_after_initilization.value},
+  .period_match_enable    = ${appIns.gcheck_period_match_interrupt.value},
+  .initialized            = false
+};
+
+                      """);
+	}
+	else
+	{
+	
+			out.print("""
+/**
+  * @brief Contents entered via GUI
+  */
+XMC_CCU8_SLICE_COMPARE_CONFIG_t ${appInst}_config =
+{
+  .timer_mode          = XMC_CCU8_SLICE_TIMER_COUNT_MODE_EA,
+  .monoshot            = XMC_CCU8_SLICE_TIMER_REPEAT_MODE_REPEAT,
+  .shadow_xfer_clear   = false,
+  .dither_timer_period = false,
+  .dither_duty_cycle   = false,
+  .prescaler_mode      = XMC_CCU8_SLICE_PRESCALER_MODE_NORMAL,
+  .mcm_ch1_enable      = false,
+  .mcm_ch2_enable      = false,
+  .slice_status        = XMC_CCU8_SLICE_STATUS_CHANNEL_1,
+  .passive_level_out0  = XMC_CCU8_SLICE_OUTPUT_PASSIVE_LEVEL_LOW, 
+  .passive_level_out1  = XMC_CCU8_SLICE_OUTPUT_PASSIVE_LEVEL_LOW, 
+  .passive_level_out2  = XMC_CCU8_SLICE_OUTPUT_PASSIVE_LEVEL_LOW, 
+  .passive_level_out3  = XMC_CCU8_SLICE_OUTPUT_PASSIVE_LEVEL_LOW, 
+  .asymmetric_pwm      = false,
+  .prescaler_initval   = ${appIns.timer_prescaler.value}U,
+  .float_limit         = 0U,
+  .dither_limit        = 0U,
+  .timer_concatenation = false
+
+};
+
+TIMER_t ${appInst} = 
+{
+  .ccu8_slice_ptr         = (XMC_CCU8_SLICE_t*) CCU8${kernelno}_CC8${sliceno},
+  .ccu8_slice_number      = ${sliceno}U,
+  .time_interval_value_us = ${((appIns.gfloat_time_interval.value * 100)).toLong()}U,
+  .timer_max_value_us     = ${(appIns.gfloat_time_interval.maxValue * 100).toLong()}U,
+  .timer_min_value_us     = ${((appIns.gfloat_time_interval.minValue * 100)).toLong()}U,
+  .global_ccu8_handler    = (GLOBAL_CCU8_t*)&${appIns.app_global_ccu8.getInstanceLabel()}, 
+  .ccu8_slice_config_ptr  = (XMC_CCU8_SLICE_COMPARE_CONFIG_t*)&${appInst}_config,
+  .shadow_mask            = (uint32_t)((uint32_t)XMC_CCU8_SHADOW_TRANSFER_SLICE_${sliceno} | 
+                                       (uint32_t)XMC_CCU8_SHADOW_TRANSFER_PRESCALER_SLICE_${sliceno}),
+  .ccu8_period_match_node = XMC_CCU8_SLICE_SR_ID_${appIns.hwres_ccu8_cc8.getRegValue("srs","srs_posr")},
+  .timer_module           = ${ccu_module[appIns.gcombo_timer_module.value]},
+  .period_value           = ${appIns.timer_period_reg.value}U,
+  .start_control          = ${appIns.gcheck_start_after_initilization.value},
+  .period_match_enable    = ${appIns.gcheck_period_match_interrupt.value},
+  .initialized            = false
+};
+
+                      """);
+	}
+ } else {
+           out.print("""
+  /* TIMER RESOURCE NOT MAPPED */
+		   """);
+ }
+}/* End of for loop */
+

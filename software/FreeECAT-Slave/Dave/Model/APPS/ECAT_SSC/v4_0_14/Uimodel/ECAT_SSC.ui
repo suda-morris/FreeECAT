@@ -1,0 +1,60 @@
+<p1:Tab  xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt" xmlns:p1="clr-namespace:com.ifx.davex.ui.controls.app" x:Class="e" layout="{x:Null}">
+	<p1:TabFolder bounds="5, 5, 600, 500">
+		<p1:GTab text="General Settings" visible="true" enabled="true" widgetName="gtab_1">
+			<p1:GTab.control>
+				<p1:Tab widgetName="composite_1">
+					<p1:Tab.layout>
+						<GridLayout numColumns="2"/>
+					</p1:Tab.layout>
+					<p1:GCheck text="Enable reset request" manifestObj="true" widgetName="gcheck_enable_reset_request" description="Enables the reset request signal. To release both, PHY and ECAT module out of reset, this reset signal shall be used. The EtherCAT master can trigger a reset of the ECAT slave microcontroller." toolTipText="Allows ECAT master to trigger a reset of the XMC MCU."/>
+					<p1:GImage visible="true" manifestObj="true" widgetName="gimage_5" path="doc/ECAT_Logo.jpg">
+						<p1:GImage.layoutData>
+							<GridData horizontalAlignment="RIGHT" heightHint="34" widthHint="165"/>
+						</p1:GImage.layoutData>
+					</p1:GImage>
+					<p1:GGroup text="PHY Settings" manifestObj="true" widgetName="ggroup_phy_settings">
+						<p1:GGroup.layout>
+							<GridLayout numColumns="2"/>
+						</p1:GGroup.layout>
+						<p1:GGroup.layoutData>
+							<GridData horizontalSpan="2" horizontalAlignment="FILL" grabExcessHorizontalSpace="true"/>
+						</p1:GGroup.layoutData>
+						<p1:GCheck manifestObj="true" text="Enable PHY management interface" value="true" widgetName="gcheck_enable_mdio" description="Use PHY management interface and expose  MDIO signals." toolTipText="Use PHY management interface and expose  MDIO signals.">
+							<p1:GCheck.layoutData>
+								<GridData horizontalSpan="2"/>
+							</p1:GCheck.layoutData>
+						</p1:GCheck>
+						<p1:GLabel text="PHY address of port 0:" widgetName="glabel_phy_offset"/>
+						<p1:GInteger format="(com.ifx.davex.ui.controls.util.AppUiConstants).DEC" mandatory="(com.ifx.davex.ui.controls.util.AppUiConstants).FALSE" manifestObj="true" maxValue="31" minValue="0" value="0" widgetName="ginteger_phy_offset" toolTipText="Offset address to move the PHY address to any concecutive address range. " description="A PHY address offset of 0-31 can be applied. It moves the PHY addresses to &#13;&#10;corresponding address range. The ECAT module expects logical port 0 to have PHY&#13;&#10;address 0 plus PHY address offset. The PHY address offset is selected in register&#13;&#10;ECAT0_CON.">
+							<p1:GInteger.layoutData>
+								<GridData widthHint="54"/>
+							</p1:GInteger.layoutData>
+						</p1:GInteger>
+						<p1:GLabel text="Port 0 TX shift:" visible="true" widgetName="glabel_port0_tx_shift"/>
+						<p1:GCombo mandatory="(com.ifx.davex.ui.controls.util.AppUiConstants).FALSE" manifestObj="true" widgetName="gcombo_port0_tx_shift" options="0ns&#13;&#10;10ns&#13;&#10;20ns&#13;&#10;30ns&#13;&#10;" value="0ns" toolTipText="Select the additional transmit signal delay for the PHY Port-0. " description="Port0 Manual TX Shift configuration. This bit field defines the additional transmit signal delay for port 0.">
+							<p1:GCombo.layoutData>
+								<GridData grabExcessHorizontalSpace="true"/>
+							</p1:GCombo.layoutData>
+						</p1:GCombo>
+						<p1:GLabel text="Port 1 TX shift:" visible="true" widgetName="glabel_port1_tx_shift"/>
+						<p1:GCombo mandatory="(com.ifx.davex.ui.controls.util.AppUiConstants).FALSE" manifestObj="true" widgetName="gcombo_port1_tx_shift" options="0ns&#13;&#10;10ns&#13;&#10;20ns&#13;&#10;30ns&#13;&#10;" value="0ns" toolTipText="Select the additional transmit signal delay for the PHY Port-1." description="Port-1 Manual TX Shift configuration. This bit field defines the additional transmit signal delay for Port 1.">
+							<p1:GCombo.layoutData>
+								<GridData grabExcessHorizontalSpace="true"/>
+							</p1:GCombo.layoutData>
+						</p1:GCombo>
+					</p1:GGroup>
+					<p1:GInterruptPrio text="Priority Settings" x:Style="NONE" minPriority="0" maxPriority="63" minSubPriority="0" maxSubPriority="0" priorityValue="63" subPriorityValue="0" priorityMandatory="false" subPriorityMandatory="false" manifestObj="true" widgetName="ginterruptprio_ecat" description="Sets the priority settings of ECAT interrupt code consumed inside the APP.">
+						<p1:GInterruptPrio.layoutData>
+							<GridData horizontalSpan="2" horizontalAlignment="FILL"/>
+						</p1:GInterruptPrio.layoutData>
+					</p1:GInterruptPrio>
+					<p1:GMessage text="EtherCAT clock  is not enabled in the &quot;Clock Selection Settings&quot; tab of CLOCK_XMC4 APP. Enable the same to continue." visible="true" manifestObj="true" isError="true" widgetName="gmessage_clock_setting_error">
+						<p1:GMessage.layoutData>
+							<GridData grabExcessHorizontalSpace="true" horizontalAlignment="FILL" widthHint="485" horizontalSpan="2"/>
+						</p1:GMessage.layoutData>
+					</p1:GMessage>
+				</p1:Tab>
+			</p1:GTab.control>
+		</p1:GTab>
+	</p1:TabFolder>
+</p1:Tab>
