@@ -1,0 +1,25 @@
+var structec__device =
+[
+    [ "master", "structec__device.html#a3678edcc317d6324936b02c4509de443", null ],
+    [ "dev", "structec__device.html#a9503692598d3950969ca8b4daf5fd5ac", null ],
+    [ "poll", "structec__device.html#aa51d769eb590a04e98f8544ea758322f", null ],
+    [ "module", "structec__device.html#a79af9075672aa2abf993a703b4d964ed", null ],
+    [ "open", "structec__device.html#a0a3f5a12926e0d4ef17409d05b36d18a", null ],
+    [ "link_state", "structec__device.html#ab58236227ed28e568e0de571499d5e68", null ],
+    [ "tx_skb", "structec__device.html#a733aeb60035ac3696f05dc33adf49004", null ],
+    [ "tx_ring_index", "structec__device.html#af9353b63b910b0b64d06837b3f7075b7", null ],
+    [ "jiffies_poll", "structec__device.html#af98c616a488455db59c5c4297206b8fb", null ],
+    [ "tx_count", "structec__device.html#a0cdf625147761dedcd8aa0ee08434949", null ],
+    [ "last_tx_count", "structec__device.html#afca221601cff7e6280283df48902a019", null ],
+    [ "rx_count", "structec__device.html#ab53eaa1db2b7696c28f06146fd253786", null ],
+    [ "last_rx_count", "structec__device.html#a5ad25fde7d43696988dcb602fa947a7b", null ],
+    [ "tx_bytes", "structec__device.html#a969a3e6f0057eeb8b1becc34d500e281", null ],
+    [ "last_tx_bytes", "structec__device.html#ac4a738c0943134edc5c68f2c85b9a089", null ],
+    [ "rx_bytes", "structec__device.html#afea25f45c6911c97a08b8615154a2b91", null ],
+    [ "last_rx_bytes", "structec__device.html#a53f0337afe2d2bdb4b24e2ee4ccb8180", null ],
+    [ "tx_errors", "structec__device.html#a076ce4fd0d53e53ba7236b12bf4ecf66", null ],
+    [ "tx_frame_rates", "structec__device.html#a0de91079b171a6b07cb724a6362f340b", null ],
+    [ "rx_frame_rates", "structec__device.html#a8e78783b1d22fd12b5d2abe263184bb1", null ],
+    [ "tx_byte_rates", "structec__device.html#a5decb734bd07c7e1a1b66e08904f0bba", null ],
+    [ "rx_byte_rates", "structec__device.html#a577e0651d974aa3db43fcb8fab639637", null ]
+];
