@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Project MotherSystem_Version="" Name="OpenECAT-Slave" Path="G:\毕业设计\OpenECAT-Slave\software\OpenECAT-Slave">
+<Project MotherSystem_Version="" Name="FreeECAT-Slave" Path="G:\毕业设计\FreeECAT\software\FreeECAT-Slave">
     <COMPILER>
         <Name>ARM_GCC_HOME</Name>
         <Version/>
@@ -324,6 +324,7 @@
         <Path/>
         <Path>\Dave\Generated</Path>
         <Path>\Libraries</Path>
+        <Path>\Sensors</Path>
     </Include_Path>
     <Preprocessor_Symbols>
         <Assembler_Symbol>XMC4800_F144x1024=</Assembler_Symbol>
