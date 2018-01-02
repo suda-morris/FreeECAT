@@ -37,10 +37,10 @@ int main(void) {
 	Init_ECAT_Adapt_LED();
 	Clear_ECAT_Adapt_LED();
 	Init_Relax_Button();
-	TEMP_Init();
+//	TEMP_Init();
 	while (1U) {
 		MainLoop();
-		tsensor = TEMP_Read();
+//		tsensor = TEMP_Read();
 	}
 }
 

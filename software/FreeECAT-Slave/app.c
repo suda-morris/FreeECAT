@@ -1,3 +1,3 @@
 #include "app.h"
 
-uint16_t tsensor = 0;
+uint16_t tsensor = 350;

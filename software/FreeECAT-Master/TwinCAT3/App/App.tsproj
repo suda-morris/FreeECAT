@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4022.0">
+	<ImageDatas>
+		<ImageData Id="1000">424dd8020000000000003600000028000000100000000e0000000100180000000000a2020000120b0000120b000000000000000000001306e31306e3190ce42b1fe62b1fe61306e31f13e5190ce42519e51306e31306e3190ce42f24e7190ce41306e31306e31306e31306e35f56ec645ced645ced4137e91f13e5473de95f57ec3227e71306e3473de95a51ec271be61306e31306e31409ca524cc68e8ad74f48c1615cc82218d03e36bf716bce746fce453dc01307ce3931ba7d78d27671d1150cb21409ca1712801b1d1d1b1d1d1b1d1d1b1d1d120b891b1d1d1b1d1d1b1d1d1b1d1d120b891b1d1d1b1d1d1b1d1d1b1d1d1712801712807f8080d4d5d5d4d5d5383939120b89545656d4d5d5d4d5d5626464130c89292b2bd4d5d5d4d5d56264641915801712804647471b1d1daaaaaad4d5d5130e82383939292b2b717272d4d5d5151183d4d5d57f80801b1d1d7172721e1c81191580464747d4d5d5d4d5d51b1d1d19158a292b2bd4d5d5d4d5d5292b2b1b1b8ad4d5d56264641b1d1d1b1d1d2427821e1d81d4d5d54647476264643839391e208bd4d5d57f8080464747545656242a8bd4d5d59b9c9c292b2baaaaaa2d3683252882464747d4d5d5d4d5d51b1d1d272d85292b2bd4d5d5d4d5d5292b2b2e37861b1d1dd4d5d5d4d5d5464747394484323bb52324812122822426822526824554c0323883292b822a2d83353c84424cbf3238843940842e32834853865d6ebb5262eb3e43e83334e74147e94349e9535feb4d56ea5662eb484dea545deb636fed545aea5a63ec6671ed8ca0f290a5f2748aef6b7bee5d68ec6874ed788aef8397f17684ef7986ef8c9ff2818ff1818ef08e9df18a97f18791f19ba9f3b0c0f691a4f291a2f28390f192a1f29cacf3a3b3f498a6f3a4b3f4aebdf5b0bef59ea8f3a3adf4bbc7f7c4d1f8cad7f8ced9f9b4c4f6b8c8f6acb8f59aa3f3b6c1f6c5d2f8c2cdf8ccd7f9d2ddf9d5e0fad2daf9d5dcf9dfe7fbe2e9fbe5ebfbe8eefb0000</ImageData>
+	</ImageDatas>
+	<Project ProjectGUID="{F771198F-B99E-467B-B178-3A806A020205}" Target64Bit="true" ShowHideConfigurations="#x106">
+		<Io>
+			<Device DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="192.168.1.101.2.1" RemoteName="ECAT-Master (EtherCAT)" Id="1">
+				<Name>ECAT-Master (EtherCAT)</Name>
+				<AddressInfo>
+					<Pnp>
+						<DeviceDesc>本地连接 (Qualcomm Atheros AR8152/8158 PCI-E Fast E</DeviceDesc>
+						<DeviceName>\DEVICE\{392FD8C9-A7D3-4FA0-B661-213AE6A11A99}</DeviceName>
+						<DeviceData>00266cecce80</DeviceData>
+					</Pnp>
+				</AddressInfo>
+				<Image Id="1" AddrType="9" ImageType="3">
+					<Name>Image</Name>
+				</Image>
+				<Box BoxType="9099" Id="1">
+					<Name>Box 1 (XMC_ESC)</Name>
+					<ImageId>1000</ImageId>
+					<EtherCAT SlaveType="2" PdiType="#x3c00" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x0000034e" InfoDataAddr="true" InfoDataDcTimes="true" TimeoutStateChange1="2000" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="XMC_ESC" Desc="XMC_ESC" PortABoxInfo="#x00ffffff">
+						<SyncMan>001080002600010001000000220080008000001026010000</SyncMan>
+						<SyncMan>801080002200010002000000220080008000801022010000</SyncMan>
+						<SyncMan>001101006400010003000000000000000100001164010000</SyncMan>
+						<SyncMan>001402002000010004000000000000000200001420010000</SyncMan>
+						<Fmmu>0000000000000000001100020100000001000000000000000000000000000000</Fmmu>
+						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
+						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
+						<DcData>0003000000000000000000000000000001000000010000000000000000000000</DcData>
+						<DcMode>53796e6368726f6e0000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000</DcMode>
+						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000030100000000000000000000000000000000000000000000000000000000000000</DcMode>
+						<Pdo Name="Sensor process data mapping" Index="#x1a00" Flags="#x0011" SyncMan="3">
+							<Entry Name="Sensor1" Index="#x6000" Sub="#x01">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="LED process data mapping" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="2">
+							<Entry Name="LED1" Index="#x7000" Sub="#x01">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="LED2" Index="#x7000" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="LED3" Index="#x7000" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="LED4" Index="#x7000" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="LED5" Index="#x7000" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="LED6" Index="#x7000" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="LED7" Index="#x7000" Sub="#x07">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="LED8" Index="#x7000" Sub="#x08">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<CoeProfile ProfileNo="5001"/>
+					</EtherCAT>
+				</Box>
+				<Box BoxType="9099" Id="2">
+					<Name>Box 2 (XMC_ESC)</Name>
+					<ImageId>1000</ImageId>
+					<EtherCAT SlaveType="2" PdiType="#x3c00" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x0000034e" InfoDataAddr="true" InfoDataDcTimes="true" TimeoutStateChange1="2000" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="XMC_ESC" Desc="XMC_ESC" PortABoxInfo="#x01000001">
+						<SyncMan>001080002600010001000000220080008000001026010000</SyncMan>
+						<SyncMan>801080002200010002000000220080008000801022010000</SyncMan>
+						<SyncMan>001101006400010003000000000000000100001164010000</SyncMan>
+						<SyncMan>001402002000010004000000000000000200001420010000</SyncMan>
+						<Fmmu>0000000000000000001100020100000001000000000000000000000000000000</Fmmu>
+						<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
+						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
+						<DcData>0003000000000000000000000000000001000000010000000000000000000000</DcData>
+						<DcMode>53796e6368726f6e0000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000</DcMode>
+						<DcMode>4443000000000000000000000000000044432d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000030100000000000000000000000000000000000000000000000000000000000000</DcMode>
+						<Pdo Name="Sensor process data mapping" Index="#x1a00" Flags="#x0011" SyncMan="3">
+							<Entry Name="Sensor1" Index="#x6000" Sub="#x01">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="LED process data mapping" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="2">
+							<Entry Name="LED1" Index="#x7000" Sub="#x01">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="LED2" Index="#x7000" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="LED3" Index="#x7000" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="LED4" Index="#x7000" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="LED5" Index="#x7000" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="LED6" Index="#x7000" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="LED7" Index="#x7000" Sub="#x07">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="LED8" Index="#x7000" Sub="#x08">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<CoeProfile ProfileNo="5001"/>
+					</EtherCAT>
+				</Box>
+				<EtherCAT DeviceDesc="本地连接 (Qualcomm Atheros AR8152/8158 PCI-E Fast Ethernet Controller (NDIS 6.20))" DcSyncMode="3"/>
+			</Device>
+		</Io>
+	</Project>
+</TcSmProject>
